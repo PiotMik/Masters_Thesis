@@ -1,1 +1,10 @@
 Python/thesis
+Python/.ipynb_checkpoints/**
+LaTeX/**.aux
+LaTeX/**.blg
+LaTeX/**-blx.bib
+LaTeX/**.log
+LaTeX/**.txt
+LaTeX/**.run.xml
+LaTeX/**.synctex.gz
+LaTeX/**.toc
