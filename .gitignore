@@ -1,5 +1,5 @@
 Python/thesis
-Python/.ipynb_checkpoints
+Python/.ipynb_checkpoints/**
 LaTeX/**.aux
 LaTeX/**.blg
 LaTeX/**-blx.bib
