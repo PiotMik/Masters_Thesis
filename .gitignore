@@ -8,5 +8,9 @@ LaTeX/**-blx.bib
 LaTeX/**.log
 LaTeX/**.txt
 LaTeX/**.run.xml
+LaTeX/**.run
 LaTeX/**.synctex.gz
+LaTeX/**.synctex
 LaTeX/**.toc
+LaTeX/**.thm
+LaTeX/**.bcf
