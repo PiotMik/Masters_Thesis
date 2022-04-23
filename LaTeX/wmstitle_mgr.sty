@@ -1,0 +1,209 @@
+%% ************ AKADEMIA GÓRNICZO-HUTNICZA W KRAKOWIE **************
+%% ***************** Wydzial Matematyki Stosowanej *****************
+%% ******* STRONA TYTULOWA PRACY MAGISTERSKIEJ w LaTeX-u ***********
+%%
+%% This is file `wmstitle_lic.sty',
+%% author: Rafa/l Czarny
+%% version:  0.99  10/04/2003
+%%
+%% Copyright (C) 2003 by Rafal Czarny & WMS. All rights reserved.
+%%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.2
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%%
+%%
+%\NeedsTeXFormat{LaTeX2e}[1996/12/01]
+\ProvidesPackage{wmstitle_mgr}
+  \typeout{************************************************}
+  \typeout{** AKADEMIA GORNICZO-HUTNICZA W KRAKOWIE        }
+  \typeout{** Wydzial Matematyki Stosowanej                }
+  \typeout{** Strona tytulowa pracy magisterskiej          }
+  \typeout{** Autor: Rafa/l Czarny                         }
+  \typeout{************************************************}
+%---------------- nowe if-y -------------------%
+\newif\ifmgr@pdftex\mgr@pdftexfalse
+\newif\ifmgr@man\mgr@manfalse
+%----------------- Opcje ----------------------%
+\DeclareOption{pdftex}{\mgr@pdftextrue}
+\DeclareOption{man}{\mgr@mantrue}
+\ProcessOptions
+%---------- Zaladowanie pakietow ---------------%
+\RequirePackage{calc}
+\RequirePackage{ifthen}
+\ifmgr@pdftex
+ \RequirePackage[pdftex]{graphicx}
+\else
+ \RequirePackage[dvips]{graphicx}\fi
+%----- Definicje uniwersalnych literek :)-------%
+\newcommand{\m@a}{\char161}
+\newcommand{\m@c}{\char162}
+\newcommand{\m@e}{\char166}
+\newcommand{\m@l}{\char170}
+\newcommand{\m@o}{\char243}
+\newcommand{\m@s}{\char177}
+\newcommand{\m@z}{\char187}
+\ifmgr@man\gdef\m@k{y}\else\gdef\m@k{a}\fi
+%---------------- Marginesy --------------------%
+\newlength{\mgrlewy}\newlength{\mgrprawy}
+\newlength{\mgrgora}\newlength{\mgrdol}
+\newlength{\mgrstopka}\newlength{\mgrdoglowki}
+%------- Ustawienia marginesów --------%
+\setlength{\mgrlewy}{3.5cm}
+\setlength{\mgrprawy}{2.1cm}
+\setlength{\mgrgora}{1.75cm}
+\setlength{\mgrdol}{2.25cm}
+\setlength{\mgrstopka}{2.75\baselineskip}
+\setlength{\mgrdoglowki}{1.5pt}
+%--------------------------------------%
+\newlength{\@pomc}
+\newcount\@tempcntr
+\setlength\marginparwidth{0pt}
+\setlength\marginparsep{0pt}
+\setlength\oddsidemargin{\mgrlewy}
+\addtolength\oddsidemargin{-1in}
+\setlength\evensidemargin{\mgrprawy}
+\addtolength\evensidemargin{-1in}
+\setlength\textwidth{\paperwidth}
+\addtolength\textwidth{-\mgrlewy}
+\addtolength\textwidth{-\mgrprawy}
+  %------ wymiary pionowe -------%
+\setlength\headheight{\baselineskip}
+\addtolength\headheight{0.3pt}
+\setlength\headsep{\baselineskip}
+\addtolength\headsep{\mgrdoglowki}
+\setlength\footskip{\mgrstopka}
+\setlength\topmargin{\mgrgora}
+\addtolength\topmargin{-1in}
+\setlength\@pomc{\paperheight}
+\addtolength\@pomc{-\mgrgora}
+\addtolength\@pomc{-\mgrdol}
+\addtolength\@pomc{-\headheight}
+\addtolength\@pomc{-\headsep}
+\addtolength\@pomc{-\footskip}
+ \advance\@pomc-.5\baselineskip
+ \divide\@pomc\baselineskip
+ \@tempcntr=\@pomc
+ \setlength\textheight{\@tempcntr\baselineskip}
+ \addtolength\textheight{\topskip}
+%% Kontrolujemy odstepy pionowe
+\raggedbottom
+%-------------- STONA TYTULOWA ----------------%
+%------ Dodatkowe polecenia
+\let\@date\@empty
+\def\promotor#1{\gdef\@promotor{#1}}
+\def\@promotor{\ClassError{mgrwms}{Brak promotora pracy!}\@ehc}
+\def\nralbumu#1{\gdef\@nralbumu{#1}}
+\def\@nralbumu{\ClassError{mgrwms}{Brak numeru albumu!}\@ehc}
+\ifmgr@pdftex
+  \def\@orzelek{logoAGH.pdf}
+  \def\@logoWMS{logoWMS.png}
+\else
+  \def\@orzelek{logoAGH.eps}
+  \def\@logoWMS{logoWMS.eps}\fi
+\newcommand{\mgr@titlesetup}{\huge\bfseries}
+\newcommand{\mgr@aut@font}{\LARGE}
+\newcommand{\mgr@other@font}{\large}
+\newcommand{\mgr@otheri@font}{\normalsize}
+\newlength{\mgr@tit@dim}
+\settowidth{\mgr@tit@dim}{\mgr@other@font Nr albumu: }
+%---- sklad ,,wlasciwy'' ----%
+\renewcommand{\maketitle}{\begin{titlepage}%
+ \vbox to\textheight{%
+  \hyphenpenalty=10000
+  \begin{center}%
+    \vspace{-3\baselineskip}
+     \includegraphics[height=6\baselineskip]{\@orzelek}\par
+		\vspace*{\medskipamount}
+    \begin{tabular}{c}
+      \mgr@other@font Akademia Górniczo-Hutnicza \\[\smallskipamount]
+      \mgr@other@font im. Stanisława Staszica \\[\smallskipamount]
+      \mgr@other@font w Krakowie
+		\end{tabular}\par
+  \vspace{\smallskipamount}
+  \noindent\rule{\textwidth}{1pt}\\[-3.65\smallskipamount]
+  \noindent\rule{\textwidth}{.4pt}\par
+    \vspace*{2\baselineskip}
+    {\mgr@aut@font Praca magisterska\par}
+     \vspace*{2\baselineskip}
+    {\mgr@titlesetup\@title\par} %
+     \vspace{3\baselineskip}
+    {\LARGE\strut\@author\par}
+		\vfill
+		\noindent\begin{tabular}[b]{@{}p{\mgr@tit@dim}@{\ }l@{}}
+      {\mgr@otheri@font\hfill Kierunek:} & {\mgr@otheri@font Matematyka} \\
+%{\mgr@otheri@font\hfill Specjalno\'s\'c:} & {\mgr@otheri@font Matematyka w ....} \\
+    \end{tabular}\hfill\mbox{}\par\vspace*{\baselineskip}
+		\noindent\begin{tabular}[b]{@{}p{\mgr@tit@dim}@{\ }l@{}}
+      {\mgr@other@font\hfill Nr albumu:}& {\mgr@other@font\@nralbumu}
+    \end{tabular}\hfill
+    \begin{tabular}[b]{@{}l@{}}
+      Promotor \\[\smallskipamount]
+      {\mgr@other@font\@promotor}
+    \end{tabular}\par
+	 	\vspace*{2.75\baselineskip}	
+  \includegraphics[height=2.25\baselineskip]{\@logoWMS}\par
+ {\mgr@other@font Wydział\ Matematyki Stosowanej}\par\vspace{-\smallskipamount}
+  \noindent\rule{\textwidth}{.4pt}\\[-3.65\smallskipamount]
+  \noindent\rule{\textwidth}{1pt}\\[\smallskipamount]
+ {\mgr@other@font Kraków 2022}
+  \end{center} }
+%------- Oswiadczenie --------%
+  \newpage\thispagestyle{empty}
+    %\vspace*{2\baselineskip}
+    \begin{center}
+			{\large\bfseries O{\m@s}wiadczenie studenta}\par\bigskip
+    \end{center}
+    {\itshape
+Uprzedzony(-a) o odpowiedzialno\'sci karnej na podstawie art. 115 ust. 1 i 2 ustawy z dnia 4 lutego 1994 r.
+o prawie autorskim i prawach pokrewnych (t.j. Dz.U. z 2018 r. poz. 1191 z p\'o\'zn. zm.):
+„Kto przywłaszcza sobie autorstwo albo wprowadza w błąd co do autorstwa cało\'sci lub czę\'sci cudzego utworu albo artystycznego wykonania, podlega grzywnie, karze ograniczenia wolno\'sci albo
+pozbawienia wolno\'sci do lat 3. Tej samej karze podlega, kto rozpowszechnia bez podania nazwiska
+lub pseudonimu tw\'orcy cudzy utw\'or w wersji oryginalnej albo w postaci opracowania, artystyczne
+wykonanie albo publicznie zniekształca taki utw\'or, artystyczne wykonanie, fonogram, wideogram lub nadanie.",
+a także uprzedzony(-a) o odpowiedzialno\'sci dyscyplinarnej na podstawie art. 307 ust. 1 ustawy z dnia 20 lipca 2018 r.
+Prawo o szkolnictwie wyższym i nauce (Dz. U.
+z 2018 r. poz. 1668 z p\'o\'zn. zm.)
+„Student podlega odpowiedzialno\'sci dyscyplinarnej za naruszenie
+przepis\'ow obowiązujących w uczelni oraz za czyn uchybiający godno\'sci studenta.",
+o\'swiadczam, że niniejszą pracę dyplomową wykonałem(-am) osobi\'scie
+i samodzielnie i nie korzystałem(-am) ze \'zr\'odeł innych niż wymienione w pracy.
+Jednocze\'snie Uczelnia informuje, że zgodnie z art. 15a ww. ustawy o prawie autorskim
+i prawach pokrewnych Uczelni przysługuje pierwszeństwo w opublikowaniu pracy dyplomowej studenta.
+Jeżeli Uczelnia nie opublikowała pracy dyplomowej w terminie
+6 miesięcy od dnia jej obrony, autor może ją opublikowa\'c, chyba że praca jest czę\'scią utworu zbiorowego.
+Ponadto Uczelnia jako podmiot, o kt\'orym mowa w art. 7 ust. 1 pkt 1 ustawy z dnia 20 lipca 2018 r.
+$-$ Prawo o szkolnictwie wyższym i nauce (Dz. U. z 2018 r. poz. 1668 z p\'o\'zn. zm.), może korzysta\'c bez
+wynagrodzenia i bez konieczno\'sci uzyskania zgody autora z utworu stworzonego przez studenta w wyniku
+wykonywania obowiązk\'ow związanych z odbywaniem studi\'ow, udostępnia\'c utw\'or ministrowi wła\'sciwemu do spraw
+szkolnictwa wyższego i nauki oraz korzysta\'c z utwor\'ow znajdujących się w prowadzonych przez niego bazach danych,
+w celu sprawdzania z wykorzystaniem systemu antyplagiatowego. Minister wła\'sciwy do spraw szkolnictwa wyższego i nauki
+może korzysta\'c z prac dyplomowych znajdujących się w prowadzonych przez niego bazach danych w zakresie niezbędnym do
+zapewnienia prawidłowego utrzymania i rozwoju tych baz oraz wsp\'ołpracujących z nimi system\'ow informatycznych.}
+
+\vspace{2\baselineskip}
+	  \hfill\parbox{15em}{{\small\dotfill}\\[-.3ex] \centerline{\footnotesize(Podpis czytelny studenta)}}\par
+    \vspace{3\baselineskip}
+	  \begin{center}
+      {\large\bfseries O\'swiadczenie promotora}\par\bigskip
+	  \end{center}
+	    {\itshape O\'swiadczam, że praca spełnia wymogi stawiane pracom magisterskim.}
+	  \par\vspace{2\baselineskip}
+	  \hfill\parbox{15em}{{\small\dotfill}\\[-.3ex] \centerline{\footnotesize(Podpis promotora)}}\par
+	 \setcounter{page}{0}
+   \end{titlepage}%
+  \global\let\maketitle\relax
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax
+  \global\let\promotor\relax
+  \global\let\nralbumu\relax
+}
+%-----------------------------------------------------------%
+\endinput
+%% End of file 'wmstitle_lic.sty'

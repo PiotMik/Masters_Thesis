@@ -1,0 +1,44 @@
+%& --translate-file=cp1250pl
+%% ************ AKADEMIA GÓRNICZO-HUTNICZA W KRAKOWIE **************
+%% ***************** Wydzia³ Matematyki Stosowanej *****************
+%% ******* STRONA TYTULOWA PRACY Magisterskiaj w LaTeX-u ***********
+%%    autor: Rafa³ Czarny
+%%    Copyright (C) 2003 by ------
+%% *****************************************************************
+%%
+%-> Opcje pakietu 'wmstitle_lic':
+%->  - man -> Wersja "mêska" pracy :) Kwestia jednej litery w owiadczeniu. Domylnie jest
+%->           w wersji "damskiej".
+%->  - pdftex -> Obowi¹zkowa przy kompilacji pdfLaTeX-em.
+%% ======== PREAMBU£A ========
+%\documentclass[12pt,a4paper]{article}
+%%
+%-> Pakiet inputenc jezeli TeX nie obs³uguje przekodowañ (pierwsza linijka pliku),
+%-> a chcemy pisac z pomoc¹ stron kodowych
+%-> (cp1250 dla Windows, iso 8859-2 (latin2) dla Linuxa)
+%%
+%\usepackage[cp1250]{inputenc}  % opcja latin2 dla Linuxa
+%%
+%-> £adujemy wybrany pakiet polonizacyjny.
+%%
+%%
+%-> Pakiet ze stron¹ tytu³ow¹ pracy magisterskiej, opcje jak wy¿ej
+%\usepackage[pdftex]{wmstitle_mgr}
+%%
+%%\begin{document}
+\prefixing  % jeli piszemy z 'polskim' oraz u¿ywamy 'ciachów': /a, /e, /c,...
+%%
+%% ======== METRYCZKA PRACY ========
+%%
+\title{}
+\author{Piotr Mikler}
+\promotor{dr inż. Jerzy Dzieża}
+\nralbumu{409145}
+\maketitle
+%%
+%%
+
+%%\end{document}
+
+%% Happy TeXing!
+%% Rafa/l Czarny
