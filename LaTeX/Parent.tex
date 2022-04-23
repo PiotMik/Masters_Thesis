@@ -1,180 +1,48 @@
-\documentclass[11pt]{aghdpl}
-% \documentclass[en,11pt]{aghdpl}  % praca w języku angielskim
+%%---------PREAMBLE---------%%
+\documentclass[12pt, a4paper]{article}
+\usepackage[pdftex, man]{wmstitle_mgr}
 
-% Lista wszystkich języków stanowiących języki pozycji bibliograficznych użytych w pracy.
-% (Zgodnie z zasadami tworzenia bibliografii każda pozycja powinna zostać utworzona zgodnie z zasadami języka, w którym dana publikacja została napisana.)
-\usepackage[english,polish]{babel}
-
-% Użyj polskiego łamania wyrazów (zamiast domyślnego angielskiego).
-\usepackage{polski}
-
+%% Packages
+\usepackage[polish]{babel}
+\usepackage[OT4]{fontenc}
 \usepackage[utf8]{inputenc}
-
-% dodatkowe pakiety
-
-\usepackage{mathtools}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amsthm}
-
-% --- < bibliografia > ---
-
-\usepackage[
-style=numeric,
-sorting=none,
-%
-% Zastosuj styl wpisu bibliograficznego właściwy językowi publikacji.
-language=autobib,
-autolang=other,
-% Zapisuj datę dostępu do strony WWW w formacie RRRR-MM-DD.
-urldate=iso8601,
-% Nie dodawaj numerów stron, na których występuje cytowanie.
-backref=false,
-% Podawaj ISBN.
-isbn=true,
-% Nie podawaj URL-i, o ile nie jest to konieczne.
-url=false,
-%
-% Ustawienia związane z polskimi normami dla bibliografii.
-maxbibnames=3,
-% Jeżeli używamy BibTeXa:
-backend=bibtex
-]{biblatex}
-
 \usepackage{csquotes}
-% Ponieważ `csquotes` nie posiada polskiego stylu, można skorzystać z mocno zbliżonego stylu chorwackiego.
-\DeclareQuoteAlias{croatian}{polish}
+\usepackage{amsmath, amsfonts, mathdots, 
+			amssymb, yfonts, amsthm, geometry}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage[style=numeric, sorting=none, language=autobib, autolang=other, 
+			backref=false, isbn=true, url=false, maxbibnames=3, backend=biber]{biblatex}
 
+%% Defining commands
+\newtheorem{defi}{Definicja}[section]
+\newtheorem{tw}{Twierdzenie}[section]
+\newtheorem{conclusion}{Wniosek}[section]
+\newtheorem{lem}{Lemat}
+\newtheorem{uw}{Uwaga}
+\newtheorem{prz}{Przykład}[section]
+\theoremstyle{definition}
+\newtheorem*{dow}{Dowód}
+
+% Additional sources
 \addbibresource{bibliografia.bib}
 
-% Nie wyświetlaj wybranych pól.
-%\AtEveryBibitem{\clearfield{note}}
+% Style options
+\titlespacing\section{0pt}{24pt plus 4pt minus 2pt}{24pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{20pt plus 4pt minus 2pt}{20pt plus 2pt minus 2pt}
 
-
-% ------------------------
-% --- < listingi > ---
-
-% Użyj czcionki kroju Courier.
-\usepackage{courier}
-
-\usepackage{listings}
-\lstloadlanguages{TeX}
-
-\lstset{
-	literate={ą}{{\k{a}}}1
-           {ć}{{\'c}}1
-           {ę}{{\k{e}}}1
-           {ó}{{\'o}}1
-           {ń}{{\'n}}1
-           {ł}{{\l{}}}1
-           {ś}{{\'s}}1
-           {ź}{{\'z}}1
-           {ż}{{\.z}}1
-           {Ą}{{\k{A}}}1
-           {Ć}{{\'C}}1
-           {Ę}{{\k{E}}}1
-           {Ó}{{\'O}}1
-           {Ń}{{\'N}}1
-           {Ł}{{\L{}}}1
-           {Ś}{{\'S}}1
-           {Ź}{{\'Z}}1
-           {Ż}{{\.Z}}1,
-	basicstyle=\footnotesize\ttfamily,
-}
-
-% ------------------------
-
-\AtBeginDocument{
-	\renewcommand{\tablename}{Tabela}
-	\renewcommand{\figurename}{Rys.}
-}
-
-% ------------------------
-% --- < tabele > ---
-
-\usepackage{array}
-\usepackage{tabularx}
-\usepackage{multirow}
-\usepackage{booktabs}
-\usepackage{makecell}
-\usepackage[flushleft]{threeparttable}
-
-% defines the X column to use m (\parbox[c]) instead of p (`parbox[t]`)
-\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
-
-
-%---------------------------------------------------------------------------
-
-\author{Piotr Mikler}
-\shortauthor{P. Mikler}
-
-%\titlePL{Przygotowanie bardzo długiej i pasjonującej pracy dyplomowej w~systemie~\LaTeX}
-%\titleEN{Preparation of a very long and fascinating bachelor or master thesis in \LaTeX}
-
-\titlePL{Przygotowanie pracy dyplomowej w~systemie~\LaTeX}
-\titleEN{Thesis in \LaTeX}
-
-
-\shorttitlePL{Przygotowanie pracy dyplomowej w~systemie \LaTeX} % skrócona wersja tytułu jeśli jest bardzo długi
-\shorttitleEN{Preparation of a long and fascinating thesis in \LaTeX}
-
-\thesistype{Praca dyplomowa magisterska}
-%\thesistype{Master of Science Thesis}
-
-\supervisor{dr inż. Jerzy Dzieża}
-%\supervisor{Marcin Szpyrka PhD, DSc}
-
-\degreeprogramme{Matematyka}
-%\degreeprogramme{Computer Science}
-
-\date{2022}
-
-\department{Katedra Matematyki Finansowej}
-%\department{Department of Applied Computer Science}
-
-\faculty{Wydział Matematyki Stosowanej}
-%\faculty{Faculty of Electrical Engineering, Automatics, Computer Science and Biomedical Engineering}
-
-\acknowledgements{Serdecznie dziękuję \dots tu ciąg dalszych podziękowań np. dla promotora, żony, sąsiada itp.}
-
-
-\setlength{\cftsecnumwidth}{10mm}
-
-%---------------------------------------------------------------------------
-\setcounter{secnumdepth}{4}
-\brokenpenalty=10000\relax
-
+%%---------DOC---------%%
 \begin{document}
+% AGH Template
+\input{okladka_mgr.tex}
+\input{formularz_oceny_pracy.tex}
 
-\titlepages
-
-% Ponowne zdefiniowanie stylu `plain`, aby usunąć numer strony z pierwszej strony spisu treści i poszczególnych rozdziałów.
-\fancypagestyle{plain}
-{
-	% Usuń nagłówek i stopkę
-	\fancyhf{}
-	% Usuń linie.
-	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0pt}
-}
-
-\setcounter{tocdepth}{2}
+% Content
 \tableofcontents
-\clearpage
-
-\include{rozdzial3}
 \include{rozdzial1}
-\include{rozdzial2}
-\include{tests}
 
-
-
-% itd.
-% \appendix
-% \include{dodatekA}
-% \include{dodatekB}
-% itd.
-
+% Bibliography
 \printbibliography
-
 \end{document}
