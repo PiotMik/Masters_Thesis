@@ -1,19 +1,22 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage{polski}
-\usepackage[polish]{babel}     % pakiet 'babel' razem z pakietem 'fontenc' !!!
+%%---------PREAMBLE---------%%
+\documentclass[12pt, a4paper]{article}
+\usepackage[pdftex, man]{wmstitle_mgr}
+
+%% Packages
+\usepackage[polish]{babel}
 \usepackage[OT4]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
-\usepackage{amsmath,amsfonts,mathdots,amssymb,yfonts,amsthm,geometry}
+\usepackage{amsmath, amsfonts, mathdots, 
+			amssymb, yfonts, amsthm, geometry}
 \usepackage{float}
-\usepackage{appendix}
 \usepackage{enumitem}
 \usepackage{indentfirst}
 \usepackage{titlesec}
-%\usepackage{graphicx}
-%\usepackage[amsmath,amsthm,thmmarks]{ntheorem}
-\usepackage[polish]{babel}
-\usepackage[pdftex,man]{wmstitle_mgr}
+\usepackage[style=numeric, sorting=none, language=autobib, autolang=other, 
+			backref=false, isbn=true, url=false, maxbibnames=3, backend=biber]{biblatex}
+
+%% Defining commands
 \newtheorem{defi}{Definicja}[section]
 \newtheorem{tw}{Twierdzenie}[section]
 \newtheorem{conclusion}{Wniosek}[section]
@@ -22,30 +25,24 @@
 \newtheorem{prz}{Przykład}[section]
 \theoremstyle{definition}
 \newtheorem*{dow}{Dowód}
+
+% Additional sources
+\addbibresource{bibliografia.bib}
+
+% Style options
 \titlespacing\section{0pt}{24pt plus 4pt minus 2pt}{24pt plus 2pt minus 2pt}
 \titlespacing\subsection{0pt}{20pt plus 4pt minus 2pt}{20pt plus 2pt minus 2pt}
 
-
-
-\usepackage[style=numeric,
-			sorting=none,
-			language=autobib,
-			autolang=other,
-			backref=false,
-			isbn=true,
-			url=false,
-			maxbibnames=3,
-			backend=biber]{biblatex}
-
-\addbibresource{bibliografia.bib}
-
-
 %%---------DOC---------%%
 \begin{document}
+% AGH Template
 \input{okladka_mgr.tex}
 \input{formularz_oceny_pracy.tex}
+
+% Content
 \tableofcontents
 \include{rozdzial1}
-\newpage
+
+% Bibliography
 \printbibliography
 \end{document}
