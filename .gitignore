@@ -1,7 +1,9 @@
 Python/thesis
 Python/.ipynb_checkpoints/**
+LaTeX/Parent.pdf
 LaTeX/**.aux
 LaTeX/**.blg
+LaTeX/**.bbl
 LaTeX/**-blx.bib
 LaTeX/**.log
 LaTeX/**.txt
