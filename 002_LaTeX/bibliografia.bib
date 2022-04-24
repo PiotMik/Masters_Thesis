@@ -1,68 +1,92 @@
-@Book{Lam92,
-author = {Lamport, L.},
-title = {LaTeX system przygotowywania dokumentów},
-publisher = {Wydawnictwo Ariel},
-year = {1992},
-address = {Kraków},
+%% Theory
 
-langid = {polish},
+% Sklar's Theorem
+@article{Sklar_Theorem,
+title={Fonctions de repartition an dimensions et leurs marges},
+author={Sklar, A},
+journal={Publications de l'Institut de statistique de l'Université de Paris},
+volume={8},
+pages={229--231},
+year={1959}
 }
 
-@Book{Dil00,
-author = {Diller, A.},
-title = {LaTeX wiersz po wierszu},
-publisher = {Wydawnictwo Helion},
-year = {2000},
-address = {Gliwice},
+%% TODO
+% Find something with a comprehensive list of copula families
 
-langid = {polish},
-}
-
-
-@Manual{ARM06,
-title = {Ada Reference Manual {ISO}/{IEC} 8652:200y({E}) {E}d. 3},
-organization = {Ada Europe},
-year = {2006}
-}
-
-@Article{BuDo03,
-author = {Burns, A. and Dobbing, B.},
-title = {The {R}avenscar {P}rofile for Real--Time and High Integrity Systems},
-journal = {Cross{T}alk},
-year = {2003},
-volume = {16},
-number = {11},
-pages = {9--12}
-}
-
-
-
-@InProceedings{PeDa04,
-author = {Peleska, J. and Große, D. and Haxthausen, A. E. and Drechsler, R.},
-title = {Automated Verification for Train Control Systems},
-booktitle = {Proc. of the 5th Symposium on Formal Methods for Automation and Safety in Railway and Automotive Systems (FORMS/FORMAT 2004)},
+% Base citation for most of the mathematical theorems
+@book{Cherubini_Copula_Methods_in_Finance,
+author = {Cherubini, Umberto and Luciano, Elisa and Vecchiato, Walter},
 year = {2004},
-pages = {252--265},
-address = {Braunschweig, Germany},
-month = {December}
+month = {06},
+pages = {},
+title = {Copula Methods in Finance},
+isbn = {9780470863442},
+doi = {10.1002/9781118673331}
 }
 
-@TechReport{BuDoVa03,
-author = {Burns, A. and Dobbing, B. and Vardanega, T.},
-title = {Guide for the Use of the Ada Ravenscar Profile in High Integrity Systems},
-institution = {University of York},
+% For copula-martingale processes and constructions
+@book{Cherubini_Dynamic_Copula_Methods_in_Finance,
+author = {Cherubini, Umberto and Gobbi, F. and Mulinacci, S. and Romagnoli, Silvia},
+year = {2012},
+month = {05},
+pages = {},
+title = {Dynamic Copula Methods in Finance},
+isbn={9780470683071},
+doi = {10.1002/9781118467404}
+}
+
+% Main citation for Vine Copulas, Pair Copula Constructions
+@book{Czado_Vine_Copulas,
+author = {Czado, Claudia},
+year = {2019},
+pages = {},
+title = {Analyzing Dependent Data with Vine Copulas},
+isbn = {9783030137847},
+}
+
+% More advanced Vine Copula use-cases, methods and concepts
+@book{Kurowicka_Dependence_Modeling,
+author = {Kurowicka, Dorota and Joe, Harry},
+year = {2010},
+month = {12},
+title = {Dependence Modeling: Vine Copula Handbook},
+isbn = {978-981-4299-87-9},
+doi = {10.1142/7699}
+}
+
+% Theory of bi-/multi- variate option pricing in Pair Copula Construction framework
+@article{Bernard_Pricing_Multivariate_Options_with_copulae,
+author = {Bernard, Carole and Czado, Claudia},
+year = {2012},
+month = {07},
+pages = {},
+title = {Multivariate option pricing using copulae},
+volume = {29},
+journal = {Applied Stochastic Models in Business and Industry},
+doi = {10.1002/asmb.1934}
+}
+
+%% Applications
+
+% Vine Copulas for German Credit Spread Data
+@article{Pan_Conditional_Inference,
+    author = {Pan, Shenyi and Joe, Harry and Li, Guofu},
+    title = {Conditional Inferences Based on Vine Copulas with Applications to Credit Spread Data of Corporate Bonds},
+    journal = {Journal of Financial Econometrics},
+    year = {2021},
+    month = {07},
+    issn = {1479-8409},
+    doi = {10.1093/jjfinec/nbab016},
+}
+
+% Models for spread options, other than copulas
+@article{Carmona_Spread_Options,
+author = {Carmona, Rene and Durrleman, Valdo},
 year = {2003},
-number = {YCS-2003-348}
-}
-
-
-
-@manual{Alvis2011,
-	organization = {AGH University of Science and Technology},
-	year = {2011},
-	title = {{On Line Alvis Manual}},
-	note = {\\\texttt{http://fm.ia.agh.edu.pl/alvis:manual}},
-	author = {Szpyrka, M.},
-
-	langid = {english},
+month = {06},
+pages = {},
+title = {Pricing and Hedging Spread Options},
+volume = {45},
+journal = {SIAM Review},
+doi = {10.1137/S0036144503424798}
 }
