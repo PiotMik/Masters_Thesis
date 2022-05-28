@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri May 17 07:14:52 CEST 2013
+markTmpDer=true
+builderNum=6
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=
+mainTexFile=Szablon.tex
+outputFile=Szablon.pdf
+langSpell=
+markDer=true
+srcDir=
