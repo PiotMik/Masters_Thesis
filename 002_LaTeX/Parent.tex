@@ -1,5 +1,5 @@
 \documentclass[mfu, pdftex]{mgrwms}
-\usepackage[utf8]{inputen
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \usepackage{amssymb} 
@@ -10,17 +10,19 @@
 \usepackage[polish]{babel}
 \usepackage[OT4]{fontenc}
 \usepackage{polski}
+\usepackage{graphicx}
+\graphicspath{{Figs}}
 \allowdisplaybreaks
 
 \begin{document}
 
-\title{\LARGE Zastosowanie modeli kopułowych do modelowania crush spreadu.}
+\title{\LARGE Zastosowanie modeli kopułowych do analizy spreadu aktywów}
 \author{Piotr Mikler}
 \promotor{dr inż. Jerzy Dzieża}
 \nralbumu{409145}
 \maketitle
-\slowakluczowe{crush spread, soja, opcje, copuła, vine copula}
-\keywords{crush spread, soybean, option, copula, vine copula}
+\slowakluczowe{spread, soja, opcje, copuła, vine copula}
+\keywords{spread, soybean, option, copula, vine copula}
 
 \newtheorem{thm}{\indent Twierdzenie}[chapter]
 \newtheorem{lemma}[thm]{\indent Lemat}
@@ -40,23 +42,13 @@
 \let\c@table\c@figure
 \makeatother
 
+
+%% --- BODY --- %%
+\input{streszczenie}
 \tableofcontents
-\begin{streszczenie}
-Streszczenie po polsku, max 1 str
-\end{streszczenie}
-
-\begin{abstract}
-Abstract in english, maximum of one page
-\end{abstract}
-
-
-\begin{wstep}    % ew. \begin{wstep}[Wprowadzenie]
-Wstep
-
-\end{wstep}
-
-\chapter{Rozdział 1}
-\mgrclosechapter
+\input{wstep}
+\input{modelowanie_wielowymiarowych_zmiennych_losowych}
+\input{spread_na_rynkach_finansowych}
 
 % \appendix
 % \chapter{----}
