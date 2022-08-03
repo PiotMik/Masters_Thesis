@@ -49,7 +49,7 @@ Warto wspomnieć, że istnieją również użyteczne rozkłady, które nie dają
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{01_Rozklady_1D}
+	\includegraphics[width=\linewidth]{01_Rozklady_1D}
 	\caption{Przykładowe gęstości zmiennych losowych z tabeli \ref{tab:przykladowe_zmienne_losowe}.\label{fig:przykladowe_zmienne_losowe}}
 \end{figure}
 
@@ -73,12 +73,12 @@ $$ f_{\mathcal{N}}(x, \mu, \Sigma) = k_d \vert\Sigma\vert^{-0.5}g\big((x-\mu)^T\
 
 W powyższej reprezentacji, $k_d \in\mathbb{R}$ jest stałą zależną od wymiaru, $\mu$ jest $d$-wymiarowym wektorem średnich, $\Sigma \in \mathbb{R}^{d \times d}$ to symetryczna, dodatnio zdefiniowana macierz, a $g \colon [0, \infty) \mapsto [0, \infty)$ jest pewną funkcją która nie zależy od wymiaru wektora.
 
-Dla odpowiednio dobranych $g$ i $k_d$ otrzymamy w tej rodzinie wielowymiarowy rozkład normalny, czy wielowymiarowy rozkład t. Powstają one przy odpowiednio $k_d=(2\pi)^{-0.5d}$ i $g(s) = \exp(-0.5 t)$, lub $k_d=\Gamma(\frac{\nu + d}{2})/\Gamma(\frac{\nu}{2})$ i $g(s) = \big(1 + \frac{t}{\nu})^{-(\nu + d)/2}$ (Rysunek \ref{fig:multivariate_gaussian_student}).
+Dla odpowiednio dobranych $g$ i $k_d$ otrzymamy w tej rodzinie wielowymiarowy rozkład normalny, czy wielowymiarowy rozkład t. Powstają one przy odpowiednio $k_d=(2\pi)^{-0.5d}$ i $g(s) = \exp(-0.5 t)$, lub $k_d=\Gamma(\frac{\nu + d}{2})/\Gamma(\frac{\nu}{2})$ i $g(s) = \big(1 + \frac{t}{\nu})^{-(\nu + d)/2}$.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{01_MultivariateGaussianStudent}
-	\caption{Rozkłady eliptyczne ($d=2, \mu=[0, 0], \Sigma = \big[\begin{smallmatrix}2&1\\1&2\end{smallmatrix}\big]$). Lewy panel: $2$-wymiarowy rozkład normalny. Prawy panel: $2$-wymiarowy rozkład t ($\nu = 0.5$).\label{fig:multivariate_gaussian_student}}
+	\includegraphics[width=0.45\linewidth]{01_MultivariateGaussian}	\includegraphics[width=0.45\linewidth]{01_MultivariateStudent}
+	\caption{Gęstości przykładowych rozkładów eliptycznych ($d=2, \mu=[0, 0], \Sigma = \big[\begin{smallmatrix}2&1\\1&2\end{smallmatrix}\big]$). Lewy panel: $2$-wymiarowy rozkład normalny. Prawy panel: $2$-wymiarowy rozkład t ($\nu = 0.5$).\label{fig:multivariate_gaussian_student}}
 \end{figure}
 
-W powyższych przykładach należy zaznaczyć, że użycie rodziny rozkładów eliptycznych implikuje rodziny wszystkich rozkładów brzegowych (wielowymiarowy rozkład normalny daje normalne rozkłady brzegowe, wielowymiarowy rozkład $t$ daje rozkłady brzegowe $t$, itd.). Manipulując rozkładami eliptycznymi możemy zamodelować szeroką gamę korelacji między zmiennymi, czy też modelować ich ciężkie ogony zachowując prostotę i analityczną postać modelu. \cite{Markovitz_MPT} i jego model bazują właśnie na rozkładzie multinormalnym, co można uznać za nierealistyczne i oderwane od rzeczywistości ze względu na ciężkoogonowy charakter zwrótów na rynku akcji. Nie mniej jednak nie da się odmówić, że ten prosty model jest wystarczający aby zilustrować jak istotny jest wpływ zależności komponentów na zachowanie całego systemu. \\
+Obserwując rysunek \ref{fig:multivariate_gaussian_student}, można rozpoznać charakterystyczne kształty rozkładów brzegowych. Przy wielowymiarowym rozkładzie normalnym obserwujemy gaussowski dzwon, a dla wielowymiarowego rozkładu $t$ otrzymujemy ciężkoogonowe rozkłady brzegowe $t$-studenta. Używając rozkładów eliptycznych, implikujemy bowiem model w którym rozkłady brzegowe pochodzą z tej samej rodziny. Manipulując różnymi rozkładami eliptycznymi możemy więc zamodelować szeroką gamę korelacji między zmiennymi, czy też ciężkie ogony, zachowując prostotę i analityczną postać modelu. Tracimy jednak swobodę wyboru rozkładów brzegowych. \cite{Markovitz_MPT} i jego model bazują na rozkładzie multinormalnym, zakładając że wektor średnich i macierz korelacji wystarczająco opisuje rozkład zwrotów aktywów rynkowych. Można to uznać za nierealistyczne i oderwane od rzeczywistości ze względu na empiryczne dowody ciężkoogonowego charakter zwrótów na rynku akcji \cite{Mandelbrot_NonGaussianity}, czy zjawiska silniejszej korelacji w lewym ogonie \cite{Kurowicka_Dependence_Modeling}. Nie mniej jednak nie da się odmówić, że ten prosty model jest wystarczający aby zilustrować jak istotny jest wpływ zależności komponentów na zachowanie całego systemu. \\
 Na szczęście dzięki \cite{Sklar_Theorem}, dostepne mamy narzędzia pozwalające uchwycić te zależności dużo dokładniej i \cite{Cherubini_Copula_Methods_in_Finance} czy \cite{Kurowicka_Dependence_Modeling} słusznie wymieniają wiele realnych przykładów gdzie taki wyższy poziom elastyczności modelu jest niezastąpiony. Kolejny rozdział rozpoczniemy od jednego z takich przykładów, w celu umotywowania popularności modeli kopułowych jako odpowiedzi na te potrzeby.
