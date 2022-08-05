@@ -1,62 +1,12 @@
-Zgodnie z drugim filarem Basel II instytucje finansowe zobowiązane są dokonywać regularnych ćwiczeń stress testowych, w której ich kondycja finansowa poddawana jest ekstremalnym negatywnym ruchom rynkowym. Ma to na celu zbadanie kondycji finansowej w obliczu potencjalnego kryzysu ekonomicznego, oraz zbadanie czy instytucja ma zgromadzoną wystarczającą ilość kapitału aby taki kryzys przetrwać. Podczas ćwiczeń stress testowych, regulator podaje instytucjom ogólny scenariusz rynkowy (trajektorie ogólnych zmiennych makroekonomicznych), który każda instytucja musi przekuć/rozszerzyć na zbiór trajektorii zmiennych które są istotne z punktu widzenia ich biznesu. Standardową praktyką w tym procesie \emph{shock expansion} były dotychczas modele ekonometryczne, dające zazwyczaj punktowe predykcje w zadanym momencie czasowym.\\
-Najnowszym trendem w stress testingu zdaje się być natomiast tzw. probabilistic stress testing (czyt. \cite{Aste_Probabilistic_Stress_Testing}), w którym ideą jest zamodelowanie systemu w taki sposób, by po zaaplikowaniu rynkowych szoków regulatora (ustaleniu niektórych komponentów wielowymiarowego losowego wektora P\&L, czy zwrotów), móc potraktować je jako zbiór warunkujący i odzyskać całe rozkłady warunkowe pozostałych komponentów systemu. Stoi to w kontraście do predykcji punktowych z obecnego podejścia ekonometrycznego. \cite{Aste_Probabilistic_Stress_Testing} w swojej pracy bada potencjalne zastosowanie rozkładów eliptycznych, wprowadzonych w rozdziale \ref{sec:rozklady_laczne}, do procesu \emph{shock expansion}. Wyniki które otrzymuje są zgodne z oczekiwaniami: mimo, że rozkłady eliptyczne dają intuicyjne wyniki, to nie są wystarczająco elastyczne aby poprawnie zamodelować cały system. Jako tego powód, Aste wymienia narzuconą \textit{symetrię} modelu, która przejawia się w konieczności wyboru tych samych rodzin rozkładów brzegowych.\\
+\subsection{Wprowadzenie i definicja}
+\input{dwuwymiarowe_kopuly_definicja}
+\label{subsec:dwuwymiarowe_kopuly_definicja}
 
-Powyższy przykład to jeden z długiego szeregu który ilustruje, że praktyczne problemy wymagają dowolności w specyfikacji rozkładów brzegowych (wiele innych interesujących przykładów podają \cite{Cherubini_Copula_Methods_in_Finance}, czy \cite{Cherubini_Dynamic_Copula_Methods_in_Finance}). Dlatego mimo, że istnieje wiele przykładów naturalnych, poprawnych matematycznie rozszerzeń zmiennych losowych z $d=1$ do $d>2$ (jak wielowymiarowy rozkład normalny, wielowymiarowy rozkład t, wielowymiarowy rozkład gamma, etc.), to nie posiadają one dużego zastosowania w praktyce. Odpowiedzią na ten problem są kopuły - modele wielowymiarowych zmiennych losowych, pozwalające na oddzielenie wpływu rozkładów brzegowych od wpływu struktury zależności na cały system.\\
+\subsection{Probabilistyczna interpretacja}
+\input{dwuwymiarowe_kopuly_probal}
+\label{subsec:dwuwymiarowe_kopuly_probal}
 
-Teorię kopuł zapoczątkował Abe Sklar w \cite{Sklar_Theorem}, podając następujące twierdzenie:
+\subsection{Popularne kopuły i ich własności}
+\input{dwuwymiarowe_kopuly_przyklady}
+\label{subsec:dwuwymiarowe_kopuly_przyklady}
 
-\begin{thm}[Twierdzenie Sklara]
-	Niech $X_1, X_2, \dots, X_d$ będą zmiennymi losowymi ciągłymi, o dystrybuantach $F_1, \dots, F_d$, i rozkładzie łącznym z dystrybuantą $F$. Wtedy istnieje unikalna \emph{kopuła} $C$, taka że dla wszystkich $\mathbf{x} = (x_1, \dots, x_d) \in \mathbb{R}^n$:
-	\begin{equation}
-		F(x_1, \dots, x_d) = C(F_1(x_1), \dots, F_d(x_d)).
-		\label{eq:sklar_theorem}
-	\end{equation}
-	
-	Zachodzi również twierdzenie odwrotne: Mając dowolne dystrybuanty $F_1, \dots, F_d$ i kopułę $C$, funkcja $F$ zdefiniowana według \ref{eq:sklar_theorem} jest d-wymiarową dystrybuantą, o rozkładach brzegowych $F_1, \dots, F_d$. 
-	\label{thm:sklar_theorem}
-\end{thm}
-
-Twierdzenie \ref{thm:sklar_theorem} przede wszystkim podaje więc algorytm postępowania mówiący w jaki sposób otrzymać wielowymiarowy rozkład o dowolnie wybranych, potencjalnie różnych rozkładach brzegowych. Dodatkowo, Sklar stwierdza istnienie pewnego obiektu, nazwanego kopułą/funkcją łączącą (łac.\emph{copulae}: łączyć) który jest jednoznacznie zdefiniowany dla dowolnego ciągłego rozkładu wielowymiarowego, w taki sposób, że rozkład łączny da się przedstawić jako tę funkcję zaaplikowaną do rozkładów brzegowych.\\
-
-Oczywistym jest, że nie wszystkie wielowymiarowe funkcje mogą pełnić taką rolę. Rozważymy więc jakie warunki musi spełniać $C$ z twierdzenia \ref{thm:sklar_theorem}, aby mogła być kopułą.
-\begin{df}[Grounded function]
-	Rozważmy $A_1$ i $A_2$ - dwa niepuste podzbiory $\mathbb{R}$, oraz funkcję $G\colon A_1\times A_2\mapsto\mathbb{R}$. Niech $a_i$ oznacza najmniejszy element $A_i$, dla $i=1, 2$. Funkcję $G$ będziemy nazywać uziemioną \emph{(eng. grounded)}, jeśli dla każdej pary $(v, z)$ z $A_1\times A_2$,
-	\begin{equation}
-		G(a_1, z) = 0 = G(v, a_2).
-	\end{equation}
-	\label{def:grounded_function}
-\end{df}
-
-\begin{df}[2-increasing function]
-	$G\colon A_1\times A_2\mapsto \mathbb{R}$ nazywamy dwu-rosnącą \emph{(eng. 2-increasing)}, jesli dla każdego prostokąta $[v_1, v_2]\times [z_1, z_2]$ $(v_1 \leqslant v_2$, $z_1\leqslant z_2)$ którego wierzchołki leżą w $A_1 \times A_2$ mamy
-	\begin{equation}
-		G(v_2, z_2) - G(v_2, z_1) - G(v_1, z_2) + G(v_1, z_1) \geqslant 0.
-	\end{equation}
-	\label{def:two_increasing_function}
-\end{df}
-
-Definicje \ref{def:grounded_function} oraz \ref{def:two_increasing_function} pozwalają na poprawne zdefiniowanie kopuły:
-\begin{df}[Dwuwymiarowa kopuła]
-	Dwuwymiarową kopułą $C$ nazwiemy funkcję rzeczywistą zdefiniowaną na kwadracie jednostkowym:
-	$$ C\colon [0, 1]\times[0, 1] \mapsto \mathbb{R},$$ o następujących własnościach:
-	\begin{itemize}
-		\item uziemiona $\big(C(v, 0) = 0 = C(0, z)\big)$
-		\item dwu-rosnąca
-		\item $C(v, 1) = v$ oraz $C(1, z) = z$ dla wszystkich $(v, z)\in [0,1]\times [0, 1].$
-	\end{itemize}
-	\label{def:bivariate_copula}
-\end{df}
-
-Definicja \ref{def:bivariate_copula} podaje własności jakie musi spełniać funkcja aby mogła być kopułą, jednak aby zrozumieć czym kopuła tak naprawdę jest warto wrócić do twierdzenia \ref{thm:sklar_theorem}. Obserwując równość \ref{eq:sklar_theorem}, zauważamy że kopuła musi być dystrybuantą pewnego wielowymiarowego rozkładu. Patrząc natomiast na definicję kopuły w \ref{def:bivariate_copula}, widzimy że jest zdefiniowana na \emph{kwadracie jednostkowym}. Wynikać by z tego miało, że kopułą jest niczym innym jak dystrybuantą wielowymiarowego rozkładu jednostajnego. Istotnie: można pokazać, że argumenty kopuli w równaniu \ref{eq:sklar_theorem} mają rozkład jednostajny.
-
-\begin{df}[Probability integral transform]
-	Jeśli $X\sim F$ jest ciągłą zmienną losową, a $x$ jest jej realizacją, to transformację $u\coloneqq F(x)$ nazywamy \emph{probability integral transform} (PIT) w punkcie $x$.
-\end{df}
-\begin{thm}[Probability integral transform]
-	Jeśli $X\sim F$ jest ciągłą zmienną losową, to $U\coloneqq F(X)$ ma rozkład jednostajny.
-\end{thm}
-\begin{proof}
-	$$P(U\leqslant u) = P(F(X) \leqslant u) = P(X\leqslant F^{-1}(u))=F(F^{-1}(u))=u.$$
-\end{proof}
-
-Zauważamy zatem dualizm kopuł - można patrzeć na nie zarówno jak na funkcje łączące ze sobą rozkłady brzegowe w spójny rozkład łączny, lub też jak na dystrybuanty wielowymiarowych rozkładów jednostajnych. Kończąc rozdział zwróćmy jeszcze uwagę na formułę \ref{eq:sklar_theorem} w twierdzeniu Sklara. Razem z twierdzeniem odwrotnym (\ref{thm:sklar_theorem}), pełni ona bardzo ważną z punktu praktycznego funkcję konstrukcyjną. Pozwala rozpocząć modelowanie systemu od dowolnych rozkładów brzegowych $F_1, \dots, F_d$, aplikować do nich różne kopuły ($C_1, C_2, \dots$), spełniające warunki z definicji \ref{def:bivariate_copula} i za każdym razem zagwarantowane mamy otrzymanie poprawnego rozkład łącznego $F(C_i) = C_i(F_1, \dots, F_d)$ o wybranych wcześniej rozkładach brzegowych $F_1, \dots, F_d$. Czym więc będzie się różnił efekty końcowy przy wyborze kopuły $C_i$, od efektu przy wyborze $C_j$? W kolejnym rozdziale wprowadzimy konkretne przykłady kopuł i przeanalizujemy odpowiedź na to pytanie.
