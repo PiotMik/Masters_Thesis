@@ -9,17 +9,15 @@ Przyjrzymy się więc jednej stronie powyższego dualizmu i przeanalizujmy kopu�
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.35\linewidth]{01_MaximumCopula_contour}
-	\includegraphics[width=0.4\linewidth]{01_MaximumCopula_surface}
-	\includegraphics[width=0.35\linewidth]{01_IndependenceCopula_contour}
-	\includegraphics[width=0.4\linewidth]{01_IndependenceCopula_surface}
-	\includegraphics[width=0.35\linewidth]{01_MinimumCopula_contour}
-	\includegraphics[width=0.4\linewidth]{01_MinimumCopula_surface}
+	\includegraphics[width=0.35\linewidth]{02_MaximumCopula_contour}
+	\includegraphics[width=0.4\linewidth]{02_MaximumCopula_surface}
+	\includegraphics[width=0.35\linewidth]{02_MinimumCopula_contour}
+	\includegraphics[width=0.4\linewidth]{02_MinimumCopula_surface}
 	
-	\caption{Dystrybuanty (po lewej) i kontury (po prawej) kopuł: maximum (górny panel), produktowej (panel środkowy) i minimum (dolny panel)\label{fig:minmaxprod_copula}}
+	\caption{Kontury (po lewej) i dystrybuanty (po prawej) kopuł: maximum (górny panel) i minimum (dolny panel)\label{fig:minmax_copula}}
 \end{figure}
 
-Powyższe kopuły stanowią horyzont osiągalnych kopuł, ponieważ jak mówi twierdzenie \ref{thm:frechet_hoeffding}, są one ograniczeniem dolnym i górnym dla dowolnej innej kopuli. Ich powierzchnie i kontury przedstawia rysunek \ref{fig:minmaxprod_copula}. 
+Powyższe kopuły stanowią horyzont osiągalnych kopuł, ponieważ jak mówi twierdzenie \ref{thm:frechet_hoeffding}, są one ograniczeniem dolnym i górnym dla dowolnej innej kopuli. Ich powierzchnie i kontury przedstawia rysunek \ref{fig:minmax_copula}. 
 
 \begin{thm}[Fréchet-Hoeffding bounds]
 	Niech $C$ będzie $2$-wymiarową kopułą. Wtedy dla każdego $(u, v)\in[0, 1]^2$ zachodzi
@@ -29,11 +27,19 @@ Powyższe kopuły stanowią horyzont osiągalnych kopuł, ponieważ jak mówi tw
 	\label{thm:frechet_hoeffding}
 \end{thm}
 
-Twierdzenie to, choć z pozoru teoretyczne, ciągnie za sobą bardzo praktyczne konsekwencje: pozwala otrzymać niezależne od modelu ogranicznia górne i dolne na dowolną kopułę. \cite{Cherubini_Copula_Methods_in_Finance} pokazuje przykład, gdzie twierdzenie Frécheta-Hoeffdinga pozwala na uzyskanie dolnego i górnego ograniczenia na pewne statystyki modelu, jak np. łączne prawdopodobieństwo bankructwa dwóch firm w strukturalnym modelu Mertona, czy cena opcji binarnej na dwa aktywa.
+Twierdzenie to, choć z pozoru teoretyczne, ciągnie za sobą bardzo praktyczne konsekwencje: pozwala otrzymać niezależne od modelu ogranicznia górne i dolne na dowolną kopułę. \cite{Cherubini_Copula_Methods_in_Finance} pokazuje przykład, gdzie twierdzenie Frécheta-Hoeffdinga pozwala na uzyskanie dolnego i górnego ograniczenia na pewne statystyki modelu, jak np. łączne prawdopodobieństwo bankructwa dwóch firm w strukturalnym modelu Mertona, czy cena opcji binarnej na dwa aktywa.\\
 
 \begin{df}[Kopuła produktowa]
 	Dwuwymiarowa kopuła produktowa $C^{\perp}$ to kopuła zadana wzorem $C^{\perp}(u, v) = uv.$
 \end{df}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.35\linewidth]{02_ProductCopula_contour}
+	\includegraphics[width=0.4\linewidth]{02_ProductCopula_surface}
+	
+	\caption{Kontury (po lewej) i dystrybuanty (po prawej) kopuły produktowej. \label{fig:prod_copula}}
+\end{figure}
 
 Kopuła produktowa jest trzecim istotnym punktem odniesienia w świecie kopuł, ponieważ posiada pewną unikalną właśność. Z jednej strony z definicji kopuły mamy:
 
@@ -54,5 +60,30 @@ Z równań \ref{eq:independence_copula1} i \ref{eq:independence_copula2}, dla pr
 	\label{eq:independence_copula}
 \end{equation}
 
-Równanie \ref{eq:independence_copula} mówi nam, że zmienne losowe $V$ i $U$ są od siebie niezależne. Model kopuły produktowej, implikuje więc niezależność jednostajnych rozkładów brzegowych.
-Co więcej, uzupełniając opis kopuł minimum i maksimum - te z kolei odpowiadają współmonotonicznej \emph{(eng. comonotone)} i przeciwmonotonicznej \emph{(eng. countermonotone)} zależności jednostajnych rozkładów brzegowych. Zgodnie z twierdzeniem \ref{thm:frechet_hoeffding} natomiast wszystkie inne kopuły modelują pozostałe rodzaje zależności istniejące pomiędzy tymi ekstremami. Widzimy więc, że kopuły potrafią modelować pełne spektrum możliwych zależności: od współmonotonicznych, przez niezależne, aż po przeciwmonotoniczne. 
+Równanie \ref{eq:independence_copula} mówi nam, że zmienne losowe $V$ i $U$ są od siebie niezależne. Model kopuły produktowej, implikuje więc niezależność jednostajnych rozkładów brzegowych.\\
+Co więcej, uzupełniając opis kopuł minimum i maksimum - te z kolei odpowiadają współmonotonicznej i przeciwmonotonicznej zależności jednostajnych rozkładów brzegowych. Rodzinę kopuł zawierającą w sobie $C^{-}, C^{\perp}$, oraz $C^{+}$ nazywać będziemy wyczerpującą \emph{(eng. comprehensive)}. Widzimy zatem, że kopuły potrafią modelować pełne spektrum możliwych zależności: od współmonotonicznych, przez niezależne, aż po przeciwmonotoniczne.\\
+
+\begin{prop}[$\rho$ Spearmana i $\tau$ Kendalla]
+	Dla $X$ i $Y$: ciągłych zmiennych losowych o kopule $C$ możemy przedstawić $\tau$ Kendalla jako:
+	
+	\begin{equation}
+		\tau = 4\int\int_{[0, 1]^2}C(u,v)dC(u,v) -1.
+		\label{eq:tau_from_copula}
+	\end{equation}
+	Współczynnik korelacji Spearmana $\rho$ można przedstawić natomiast w postaci:
+	\begin{equation}	
+		\rho = 12\int\int_{[0, 1]^2}uvdC(u,v) -3.
+		\label{eq:rho_from_copula}
+	\end{equation}
+	\label{thm:tau_from_copula}
+\end{prop}
+
+Przypomnijmy, że w rozdziale \ref{sec:miary_współzależności} połączyliśmy wspoł- i przeciwmonotoniczność z miarami zgodności. Istotnie, bezpośrednio ze wzorów \ref{eq:tau_from_copula} i \ref{eq:rho_from_copula} otrzymujemy teraz dla $C^{+}$: $\tau=1$ oraz $\rho=1$, dla $C^{\perp}$: $\tau=0$ i $\rho=0$, natomiast dla $C^{-}$ mamy $\tau=-1$ i $\rho=-1$. Wzory z twierdzenia \ref{thm:tau_from_copula} mają jednak głębsze znaczenie: zadają bijekcję między miarami zgodności a konkretną kopułą. Z tego powodu, estymacja $\tau$ jest równoważna estymacji parametrów kopuły, co jest wykorzystywane do kalibracji modeli kopułowych.
+
+Podobnie jest ze wspołczynnikami zależności ogonów, wprowadzonymi w rozdziale \ref{sec:miary_współzależności}. Wprost z definicji kopuły wynika, że można je przedstawić w języku kopuły, i uzyć do kalibracji modelu:
+\begin{prop}[Zależność ogonów]
+		Górny współczynnik zależności ogonów $(X_1, X_2)$ o rozkładach brzegowych $F_1$ i $F_2$ i kopuli $C$ możemy przedstawić jako:
+		$$ \lambda^{u} = \lim\limits_{t\to1^{-}}\Pra[X_2 > F_2^{-1}(t) \vert X_1 > F_1^{-1}(t) ] = \lim\limits_{t\to1^{-}}\frac{1-2t+C(t, t)}{1-t}.$$
+		Dolnym współczynnik możemy przedstawić natomiast w postaci:
+		$$ \lambda^{l} = \lim\limits_{t\to0^{+}}\Pra[X_2 \leqslant F_2^{-1}(t) \vert X_1 \leqslant F_1^{-1}(t) ] = \lim\limits_{t\to0^{+}}\frac{C(t, t)}{t}.$$
+\end{prop}

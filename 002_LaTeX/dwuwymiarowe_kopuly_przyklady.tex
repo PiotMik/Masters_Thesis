@@ -1,4 +1,4 @@
-Rozdział \ref{subsec:dwuwymiarowe_kopuly_probal} pokazał, że kopuły można intuicyjnie rozumieć jako modele zależności. W tej sekcji spojrzymy na nie z dualnej perspektywy, co pozwoli nam zdefiniować użyteczne narzędzia do analizy charakteru tej zależności.
+Rozdział \ref{subsec:dwuwymiarowe_kopuly_probal} pokazał, że kopuły można intuicyjnie rozumieć jako modele zależności. W tej sekcji spojrzymy na nie z dualnej perspektywy, jako na dystrybuanty, co pozwoli nam zdefiniować użyteczne narzędzia do analizy charakteru tej zależności.
 
 \begin{df}[Gęstość kopuły]
 	Niech $C$ będzie $d$-wymiarową (jednostajnie ciągłą) kopułą. Gęstością tej kopuły nazywamy funkcję
@@ -8,7 +8,8 @@ Rozdział \ref{subsec:dwuwymiarowe_kopuly_probal} pokazał, że kopuły można i
 	\end{equation}
 \end{df}
 
-Widzimy, że równanie \ref{eq:copula_density} jest jedynie przeniesieniem terminu gęstości rozkładu na grunt kopuł. Zanim zaczniemy wizualizować gęstości konkretnych kopuł, warto wspomnieć, że Sklar w \cite{Sklar_Theorem} podaje również alternatywną wersję swojego twierdzenia o istnieniu kopuły, tym razem w języku gęstości. Sens i zastosowania twierdzenia pozostają takie same jak przy \ref{thm:sklar_theorem}.
+
+Widzimy, że równanie \ref{eq:copula_density} jest jedynie przeniesieniem terminu gęstości wielowymiarowego rozkładu na grunt kopuł. Zanim zaczniemy wizualizować gęstości konkretnych kopuł, warto wspomnieć, że Sklar w \cite{Sklar_Theorem} podaje również alternatywną wersję swojego twierdzenia o istnieniu kopuły, tym razem w języku gęstości. Sens i zastosowania twierdzenia pozostają takie same jak dla twierdzenia \ref{thm:sklar_theorem}.
 \begin{thm}[Twierdzenie Sklara: gęstość kopuły]
 	Niech $X$ będzie $d$-wymiarowym wektorem losowym o dystrybuancie rozkładu łącznego $F$, oraz rozkładami brzegowymi $F_i$, $i=1, \dots, d$. Wtedy rozkład łączny może być wyrażony jako		$$F(x_1, \dots, x_d) = C(F_1(x_1), \dots, F_d(x_d)),$$
 	lub równoważnie w terminach gęstości poprzez:
@@ -21,21 +22,134 @@ Widzimy, że równanie \ref{eq:copula_density} jest jedynie przeniesieniem termi
 	\label{thm:sklar_theorem_density}
 \end{thm}
 
-Resztę rozdziału stanowić będzie opis rodzin kopuł o istotnych zastosowaniach w praktyce.\\
+Resztę rozdziału stanowić będzie omówienie różnych rodzin kopuł o istotnych zastosowaniach w praktyce. Będziemy prezentować ich gęstości, ponieważ w intuicyjny sposób przedstawiają one mapę osłabień i nasileń współzależności dla konkretnych kopuł. Informatywne w tym względzie są ich wykresy konturowe, przedstawiające izohipsy powierzchni gęstości. Standardowo przedstawia się je w naturalnej \emph{skali kopuły}, tzn. na kwadracie jednostkowym wizualizuje się bezpośrednio gęstość kopuły:
+$$ c(u, v)\text{, dla } (u, v) \in [0, 1]^2.$$
+Pomocna jest jednak również wizualizacja w \emph{skali brzegowo-znormalizowanej}, czyli po dokonaniu transformacji przez dystrybuantę $\Phi$ i gęstość $\phi$ standardowego rozkładu normalnego:
+ $$ g(x, y) = c(\Phi(x), \Phi(y))\phi(x)\phi(y)\textit{, dla }(x,y)\in\R^2.$$
+Powyższa transformacja nie wizualizuje już gęstości kopuły $c$, ale raczej gęstość rozkładu wielowymiarowego $g$, który powstałby gdybyśmy kopułą $c$ połączyli zmienne ze standardowego rozkładu normalnego, zgodnie z twierdzeniem \ref{thm:sklar_theorem}. Ta reprezentacja jest bardzo intuicyjna, ponieważ podstawowe kursy statystyki przyzwyczajają ludzkie oko do utożsamiania silnej/słabej korelacji z wydłużonymi/okrągłymi elipsami tworzonymi przez gęstość wielowymiarowego rozkładu normalnego. Reprezentacja w skali brzegowo-znormalizowanej jest intuicyjna, ponieważ dla kopuły gaussowskiej pokazuje dokładnie te same, znane elipsy. Natomiast w przypadku innych kopuł, obserwujemy rozbieżność izohips od eliptycznego kształtu co daje się łatwo zinterpretować. 
 
-\underline{Kopuła produktowa}\\
+W praktyce istnieją trzy główne nurty tworzenia kopuł. Można wykorzystać do tego twierdzenie Sklara \ref{thm:sklar_theorem} jako twierdzenie konstrukcyjne, tj. wziąć pewien istniejący, znany rozkład wielowymiarowy, zaaplikować \emph{PIT} (\ref{def:PIT}) do jego rozkładów brzegowych i odzyskać w ten sposób $C$ z twierdzenia Sklara. Drugą metodą konstrukcji kopuł jest zdefiniowanie ich przez tzw. \emph{generator} - powstają w ten sposób kopuły archimedejskie. Trzeci sposób natomiast to rozszerzenie \emph{extreme-value theory} z jedego do wielu wymiarów, co skutkuje powstaniem kopuł typu \emph{extreme-value}.\\
+\\
+\underline{Rodzina kopuł eliptycznych}\\
+\\
+Kopuły eliptyczne są przykładem konstrukcji kopuł poprzez bezpośrednią aplikację twierdzenia Sklara \ref{thm:sklar_theorem} do rozkładów eliptycznych, zdefiniowanych na początku rozdziału \ref{sec:rozklady_wielowymiarowe}. Można więc tę konstrukcję rozumieć jako implikowanie struktury zależności z wielowymiarowych rozkładów, poprzez wyeliminowanie wpływu rozkładów brzegowych. W tej rodzinie zobaczymy przede wszystkim kopuły reprezentujące zależności "implikowane" z wielowymiarowego rozkładu normalnego, czy wielowymiarowego rozkładu $t$.
 
-Gęstość kopuły produktowej otrzymujemy różniczkując jej dystrybuantę:
-$$ c(u, v) =\frac{\partial^2}{\partial u\partial v}C(u, v) = 1. $$ 
+\begin{df}[Kopuła produktowa]
+	Kopuła produktowa to kopuła o gęstości:
+	
+	$$ c(u_1, u_2) = 1.$$
+	
+\end{df}
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{02_IndependenceCopula_density}
+	\end{minipage}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.8\linewidth]{02_IndependenceCopula_contour}
+		\includegraphics[width=.8\linewidth]{02_IndependenceCopula_contour_norm}
+	\end{minipage}
+	\caption{Gęstość kopuły produktowej: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:product_copula_density}}
+\end{figure}
+
+Dystrybuantę tej kopuły przedstawiliśmy wcześniej na rysunku \ref{fig:prod_copula}, jednak w tym rozdziale pokazujemy ją w nieco innym świetle. Jednakowa gęstość widoczna na rysunku \ref{fig:product_copula_density} w każdym punkcie kwadratu jednostkowego mówi, że każda para $(u, v) \in [0,1]^2$ ma jednakową szansę na występienie, więc nie ma żadnej zależności między $U$ a $V$. Jest to zgodne z uwagą z rozdziału \ref{subsec:dwuwymiarowe_kopuly_probal}, mówiącą że ta kopuła odpowiada niezależnemu połączeniu zmiennych losowych. Zwróćmy uwagę na prawy dolny panel rysunku \ref{fig:product_copula_density}, który prezentuje izohipsy w skali brzegowo-znormalizowanej. Widzimy koncentryczne okręgi, kojarzące się z wielowymiarowym rozkładem normalnym o korelacji $0$. Istotnie, kopuła produktowa reprezentuje strukturę zależności w tym wielowymiarowym rozkładzie.
+
+\begin{df}[Kopuła gaussowska]
+	Kopuła gaussowska o korelacji $\rho$, to kopuła zadana wzorem:
+	
+	$$ C(u_1, u_2; \rho) = \Phi_2(\Phi^{-1}(u_1), \Phi^{-1}(u_2);\rho),$$
+	
+	gdzie $\Phi$ oraz $\phi$ to odpowiednio dystrybuanta i gęstość standardowego rozkładu normalnego. Gęstość kopuły gaussowskiej zadana jest wzorem:
+	$$ c(u_1, u_2; \rho) = \frac{1}{\phi(x_1)\phi(x_2)} \frac{1}{\sqrt{1-\rho^2}}\exp\bigg[-\frac{\rho^2(x_1^2+x_2^2) - 2\rho x_1 x_2}{2(1-\rho^2)}\bigg],$$
+	gdzie $x_i\coloneqq \Phi^{-1}(u_i)$.
+\end{df}
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{02_GaussianCopula_density}
+	\end{minipage}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.8\linewidth]{02_GaussianCopula_contour}
+		\includegraphics[width=.8\linewidth]{02_GaussianCopula_contour_norm}
+	\end{minipage}
+	\caption{Gęstość kopuły gaussowskiej, $\rho=0.6$: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:gaussian_copula_density}}
+\end{figure}
+
+Kopuła gaussowska modeluje strukturę zależności implikowaną przez wielowymiarowy rozkład normalny, tj. wielowymiarowy rozkład normalny jest równoważny modelowi o normalnych rozkładach brzegowych, połączonych kopułą gaussowską. Rodzina kopuł gaussowskich jest wyczerpująca.
+
+\begin{df}[Kopuła studenta]
+	Kopuła studenta to jednoparametryczna kopuła o $\nu$ stopniach swobody i korelacji $\rho$ zadana jest gęstością:
+	
+	$$ C(u_1, u_2;\nu,\rho) = \frac{t(T_{\nu}^{-1}(v_1), T_{\nu}^{-1}(v_2);\nu,\rho)}{t_{\nu}(T_{\nu}^{-1}(v_1))t_{\nu}(T_{\nu}^{-1}(v_2))}.$$
+\end{df}
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{02_StudentCopula_density}
+	\end{minipage}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.8\linewidth]{02_StudentCopula_contour}
+		\includegraphics[width=.8\linewidth]{02_StudentCopula_contour_norm}
+	\end{minipage}
+	\caption{Gęstość kopuły studenta, $\nu=3, \rho=0.5$: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:student_copula_density}}
+\end{figure}
+Kopuła studenta, podobnie do gaussowskiej, jest implikowana z rozkładu eliptycznego studenta. Oznacza to, że wielowymiarowy rozkład studenta jest równoważny modelowi o rozkładach brzegowych $t$ połączonych kopułą studenta. Wraz z rosnącą ilością stopni swobody kopuła studenta zbiega do gaussowskiej. Ta rodzina nie jest jednak wyczerpująca, ponieważ nawet przy $\rho=0$, dla żadnej skończonej liczby stopni swobody nie zawiera w sobie $C{\perp}$.\\
+
+Kopuły eliptyczne cieszą się dużą popularnością w instytucjach finansowych, ponieważ mają swoje naturalne $d$-wymiarowe rozszerzenia. Kopuły uważane są mimo wszystko za skomplikowane modele, i w obliczu szczegółowych regulacji nakładanych na wewnętrzne modele (np. w podejściu AMA do modelowania ryzyka operacyjnego) dużo łatwiej jest uzasadnić i utrzymać w produkcji model bazujący na kilku intuicyjnych parametrach (\cite{OpRisk}).
+
+\underline{Rodzina kopuł archimedejskich}\\
+\vspace{1cm}
+\begin{df}[Kopuły archimedejskie]
+		Niech $\mathcal{F}$ będzie zbiorem ciągłych, jednostajnie malejących i wypukłych funkcji $\phi \colon [0,1] \mapsto [0, \infty]$, takich, że $\phi(1) = 0$. Wtedy
+		
+		$$ C(u_1, u_2) = \phi^{[-1]}(\phi(u_1)+\phi(u_2))$$
+		jest kopułą. Uściślając, nazwiemy ją kopułą archimedejską o generatorze $\phi$. W powyższej definicji, przez $\phi^{[-1]}$ rozumiemy pseudoodwrotność $\phi$, czyli funkcję $\phi^{[-1]}\colon [0, \infty] \mapsto [0, 1]$ zadaną przez:
+		
+		$$ \phi^{[-1]}(t) \coloneqq \phi^{-1}(t) \1_{\{0\leqslant t \leqslant \phi(0)\}}. $$
+\end{df}
+
+Ta rodzina jest bardzo popularna wśród praktyków. Powodem jest to, że istnieje wiele generatorów o zaledwie jednym parametrze, które już pozwalają modelować szeroką gamę zależności. To powoduje, że są wystarczająco dobre dla większości zastosowań, a przy tym są stosunkowo proste w estymacji. Do tej klasy należą m.in kopuły Claytona, Gumbela czy Franka.
+
+\begin{df}[Kopuła Claytona]
+	Kopułą Claytona to jednoparametryczna kopuła zadana wzorem:
+	
+	$$ C(u_1, u_2) = (u_1 ^{-\delta} + u_2^{-\delta} - 1)^{-\frac{1}{\delta}} $$
+\end{df}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.4\linewidth]{01_IndependenceCopula_density}
-	\includegraphics[width=0.4\linewidth]{01_GaussianCopula_density}
-	\includegraphics[width=0.4\linewidth]{01_StudentCopula_density}
-	\includegraphics[width=0.4\linewidth]{01_ClaytonCopula_density}
-	\includegraphics[width=0.4\linewidth]{01_GumbelCopula_density}
-	\includegraphics[width=0.4\linewidth]{01_FrankCopula_density}
-	
-	\caption{Gęstości wybranych kopuł.\label{fig:copula_densities}}
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{02_ClaytonCopula_density}
+	\end{minipage}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.8\linewidth]{02_ClaytonCopula_contour}
+		\includegraphics[width=.8\linewidth]{02_ClaytonCopula_contour_norm}
+	\end{minipage}
+	\caption{Gęstość kopuły Claytona: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:clayton_copula_density}}
 \end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{02_GumbelCopula_density}
+	\end{minipage}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.8\linewidth]{02_GumbelCopula_contour}
+		\includegraphics[width=.8\linewidth]{02_GumbelCopula_contour_norm}
+	\end{minipage}
+	\caption{Gęstość kopuły Gumbela: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:gumbel_copula_density}}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{02_FrankCopula_density}
+	\end{minipage}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.8\linewidth]{02_FrankCopula_contour}
+		\includegraphics[width=.8\linewidth]{02_FrankCopula_contour_norm}
+	\end{minipage}
+	\caption{Gęstość kopuły Franka: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:frank_copula_density}}
+\end{figure}
+

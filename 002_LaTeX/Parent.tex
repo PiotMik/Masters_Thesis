@@ -1,8 +1,9 @@
-\documentclass[mfu, pdftex]{mgrwms}
+\documentclass[mf, pdftex]{mgrwms}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \usepackage{amssymb} 
+\usepackage{bbm}
 \usepackage{mathtools}
 \usepackage{latexsym}
 \usepackage{amsthm}
@@ -14,6 +15,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{placeins}
+
 \graphicspath{{Figs}}
 \bibliographystyle{apalike}
 
@@ -33,11 +35,16 @@
 \newtheorem{lemma}[thm]{\indent Lemat}
 \newtheorem{cor}[thm]{\indent Wniosek}
 \newtheorem{obs}[thm]{\indent Obserwacja}
+\newtheorem{prop}[thm]{\indent Własność}
 \newtheorem{uw}[thm]{\indent Uwaga}
 \newtheorem{df}[thm]{Definicja}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Pra}{\mathbb{P}}
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\Corr}{\text{Cor}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\Var}{\text{Var}}
 
 \makeatletter
 \newcommand*{\defeq}{\mathrel{\rlap{%
