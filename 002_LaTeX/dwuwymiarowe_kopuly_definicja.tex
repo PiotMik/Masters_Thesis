@@ -42,10 +42,11 @@ Definicje \ref{def:grounded_function} oraz \ref{def:two_increasing_function} poz
 	\label{def:bivariate_copula}
 \end{df}
 
-Aby zrozumieć czym kopuła tak naprawdę jest warto wrócić do twierdzenia \ref{thm:sklar_theorem}. Równość \ref{eq:sklar_theorem} implikuje, że kopuła musi być dystrybuantą pewnego wielowymiarowego rozkładu. Definicję kopuły w \ref{def:bivariate_copula} mówi natomiast widzimy, że ta dystrybuanta jest zdefiniowana na \emph{kwadracie jednostkowym}. Kopułą jest więc niczym innym jak dystrybuantą wielowymiarowego rozkładu jednostajnego. Istotnie: można pokazać, że argumenty kopuli w równaniu \ref{eq:sklar_theorem} mają rozkład jednostajny, co udowadniamy poniżej i ilustrujemy na rysunku \ref{fig:PIT}.
+Aby zrozumieć czym kopuła tak naprawdę jest warto wrócić do twierdzenia \ref{thm:sklar_theorem}. Równość \ref{eq:sklar_theorem} implikuje, że kopuła musi być dystrybuantą pewnego wielowymiarowego rozkładu. Definicja kopuły w \ref{def:bivariate_copula} mówi natomiast, że ta dystrybuanta jest zdefiniowana na \emph{kwadracie jednostkowym}. Kopuła jest więc niczym innym jak dystrybuantą wielowymiarowego rozkładu jednostajnego. Istotnie: można pokazać, że argumenty kopuli w równaniu \ref{eq:sklar_theorem} mają rozkład jednostajny, co udowadniamy poniżej i ilustrujemy na rysunku \ref{fig:PIT}.
 
 \begin{df}[Probability integral transform]
 	Jeśli $X\sim F$ jest ciągłą zmienną losową, a $x$ jest jej realizacją, to transformację $u\coloneqq F(x)$ nazywamy \emph{probability integral transform} (PIT) w punkcie $x$.
+	\label{def:PIT}
 \end{df}
 \begin{thm}[Probability integral transform]
 	Jeśli $X\sim F$ jest ciągłą zmienną losową, to $U\coloneqq F(X)$ ma rozkład jednostajny.
@@ -57,7 +58,7 @@ Aby zrozumieć czym kopuła tak naprawdę jest warto wrócić do twierdzenia \re
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{01_PIT}	
-	\caption{Ilustracja działania PIT. Zmienna losowa z rozkładu $
+	\caption{Ilustracja działania PIT. Zmienna losowa z rozkładu lognormalnego $
 		\mathcal{LN}(0.5, 1)$ (pozioma oś) przekształcana jest przez własną dystrybuantę do rozkładu jednostajnego $\mathcal{U}(0, 1)$ (pionowa oś).\label{fig:PIT}}
 \end{figure}
 

@@ -36,6 +36,7 @@
 \DeclareOption{oik}{\gdef\mgr@spec{oik}}
 \DeclareOption{pit}{\gdef\mgr@spec{pit}}
 \DeclareOption{opt}{\gdef\mgr@spec{opt}}
+\DeclareOption{mf}{\gdef\mgr@spec{mf}}
 \ProcessOptions
 %---------- Zaladowanie pakietow ---------------%
 \LoadClass[12pt,a4paper,oneside]{mwbk}
@@ -319,6 +320,9 @@
 \ifthenelse{\equal{\mgr@spec}{oik}}
   {\gdef\mgr@sklad@spec{%
 	 \mgr@otheri@font Matematyka obliczeniowa \\ &\mgr@otheri@font i komputerowa}}{}
+\ifthenelse{\equal{\mgr@spec}{mf}}
+  {\gdef\mgr@sklad@spec{%
+	 \mgr@otheri@font Matematyka finansowa}}{}
 \ifthenelse{\equal{\mgr@spec}{pit}}
   {\gdef\mgr@sklad@spec{%
 	 \mgr@otheri@font Matematyka w naukach technicznych \\ &\mgr@otheri@font i przyrodniczych}}{}
@@ -387,7 +391,7 @@
  {\mgr@other@font Wydzia{\m@l}\ Matematyki Stosowanej}\par\vspace{-\smallskipamount}
   \noindent\rule{\textwidth}{.4pt}\\[-2.85\smallskipamount]
   \noindent\rule{\textwidth}{1pt}\\[\smallskipamount]
- {\mgr@other@font Krak{\m@o}w 2019}
+ {\mgr@other@font Krak{\m@o}w 2022}
   \end{center} }
 %------- Oswiadczenie --------% 
   \newpage\thispagestyle{empty}
