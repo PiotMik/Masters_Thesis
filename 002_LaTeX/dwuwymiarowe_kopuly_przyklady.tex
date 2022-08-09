@@ -119,7 +119,7 @@ Ponadto, kopuły archimedejskie pozwalają wyrazić $\tau$ Kendalla, czy współ
 	
 	Współczynniki zależności ogonów wyrażają się natomiast przez:
 	
-	\begin{equation} \label{eq1}
+	\begin{equation}
 		\begin{split}
 		\lambda^{l}&=2\lim\limits_{s\to\infty}\frac{\phi'(s)}{\phi(2s)} \\
 		\lambda^{u}&=2-2\lim\limits_{s\to0^{+}}\frac{\phi'(s)}{\phi(2s)}
@@ -139,7 +139,7 @@ Powyższe uwagi powoduja, że rodzina kopuł archimedejskich jest zazwyczaj wyst
 	$$ \tau = 1 - \frac{1}{\delta}.$$
 	
 	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
-	\begin{equation} \label{eq1}
+	\begin{equation}
 		\begin{split}
 			\lambda^{l}&=2^{-\frac{1}{\delta}} \\
 			\lambda^{u}&=0.
@@ -171,7 +171,7 @@ Kopuła Claytona pozwala modelować niesymetryczne zależności zmiennych losowy
 	$$ \tau = \frac{\delta}{\delta + 2}.$$
 	
 	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
-	\begin{equation} \label{eq1}
+	\begin{equation}
 		\begin{split}
 			\lambda^{l}&=0\\
 			\lambda^{u}&=2 - 2^{\frac{1}{\delta}}.
@@ -196,7 +196,7 @@ Kopuły Gumbela mogą więc posługiwać do modelowania jedynie dodatnich zależ
 \begin{df}[Kopuła Franka]
 	Kopuła Franka to kopuła archimedejska o generatorze $\phi(t;\delta) = -\ln\frac{\exp(-\alpha t) - 1}{\exp(-\alpha)-1}$. Jest ona jednoparametryczną kopuła, wyrażoną poprzez dystrybuantę zadaną wzorem:
 	
-	$$ C(u_1, u_2; \delta) = -\frac{1}{\delta}\ln\big[ \frac{1}{1-e^{-\delta}}[(1-e^{-\delta}) - (1-e^{-\delta u_1})(1-e^{-\delta u_2})] \big],$$
+	$$ C(u_1, u_2; \delta) = -\frac{1}{\delta}\ln\bigg[ \frac{1}{1-e^{-\delta}}\big[(1-e^{-\delta}) - (1-e^{-\delta u_1})(1-e^{-\delta u_2})\big] \bigg],$$
 	dla $\delta \in (-\infty; 0) \cup (0; \infty).$
 \end{df}
 \begin{prop}
@@ -206,7 +206,7 @@ Kopuły Gumbela mogą więc posługiwać do modelowania jedynie dodatnich zależ
 	$$ D(\alpha) = \frac{1}{\alpha} \int_{0}^{\alpha} \frac{t}{\exp(t) - 1}dt.$$
 		
 	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
-	\begin{equation} \label{eq1}
+	\begin{equation}
 		\begin{split}
 			\lambda^{l}&=0\\
 			\lambda^{u}&=0.
@@ -214,7 +214,7 @@ Kopuły Gumbela mogą więc posługiwać do modelowania jedynie dodatnich zależ
 	\end{equation}
 \end{prop}
 Rodzina kopuł Franka jest rodziną wyczerpującą, bowiem $C(u,v;\delta = 0) = C^{\perp}$, $C(u,v;\delta \to \infty) \to C^{+}$, oraz $C(u,v;\delta \to -\infty) \to C^{-}$ . Kopuła Franka jako jedyna z wymienionych kopuł archimedejskich jest symetryczna. Rysunek \ref{fig:frank_copula_density} przedstawia powierzchnię gęstości i kontury w przypadku $\delta = 5$. \\
-Jedno z ciekawych jej zastosowań, przedstawia \cite{Jianwei2021}. W swojej pracy Jianwei rozważa problem optymalizacji częstości ładowania pojazdów elektrycznych. Kopuła Franka jest przez niego używana do modelowania zależności między siłą wiatru, a ilością energii z ogniw fotowoltaicznych, co wykorzystuje do wyznaczenia optymalnej strategii ładowania pojazdu, która stabilizuje popyt/podaż na energię w sieci energetycznej, skutkując w niższych kosztach utrzymania pojazdu. 
+Jedno z ciekawych jej zastosowań, przedstawia \cite{Jianwei2021}. W swojej pracy Jianwei rozważa problem optymalizacji częstości ładowania pojazdów elektrycznych. Kopuła Franka jest przez niego używana do modelowania zależności między siłą wiatru, a ilością energii z ogniw fotowoltaicznych, co wykorzystuje do wyznaczenia optymalnej strategii ładowania pojazdu, która stabilizuje popyt/podaż na energię w sieci energetycznej, skutkując niższymi kosztami utrzymania pojazdu. 
 
 \begin{figure}[h]
 	\centering
@@ -275,14 +275,14 @@ Przykładem kopuły \emph{extreme-value} z podanych już wcześniej jest kopuła
 	$$ \tau = \frac{mn}{m-mn+n}.$$
 	
 	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
-	\begin{equation} \label{eq1}
+	\begin{equation}
 		\begin{split}
 			\lambda^{l}&=0\\
 			\lambda^{u}&=min(m,n).
 		\end{split}
 	\end{equation}
 \end{prop}
-Kopuła Marshalla-Olkina jest nietypowa, bo posiada część ciągłą, o powyższej gęstości, jak i część singularną wzdłuz krzywej $u_1^m=u_2^n$. Ta rodzina nie jest wyczerpująca, ponieważ nie zawiera $C^{-}$. Natomiast dla $m=0 \vee n=0$ mamy $C^{\perp}$, a przy $m=1=n$ dostajemy $C^{+}$. \\
+Kopuła Marshalla-Olkina jest nietypowa, bo posiada część ciągłą, o powyższej gęstości, jak i część singularną wzdłuz krzywej $u_1^m=u_2^n$. Ta rodzina nie jest wyczerpująca, ponieważ nie zawiera $C^{-}$. Natomiast dla $m=0 \vee n=0$ mamy $C^{\perp}$, a przy $m=1=n$ dostajemy $C^{+}$. Wizualizację kopuli Marshalla-Olkina można zobaczyć na rysunku \ref{fig:marshall_olkin_copula_density}.\\
 Kopuły Marshalla-Olkina powstają naturalnie w teorii niezawodności systemów. Rozważając system o wielu komponentach, gdzie awaria dowolnego komponentu powoduje awarię całego systemu, w klasycznym podejściu zakłada się rozkład wykładniczy dla czasu życia każdego z komponentów (z powodu braku pamięci), oraz niezależność między komponentami. W praktyce jednak, czasy do awarii poszczególnych komponentów nie są niezależne: do modelowania tej zależności dużo lepiej służy właśnie kopuła Marshalla-Olkina \cite{Matus2019}.\\
 
 \begin{figure}[h]
