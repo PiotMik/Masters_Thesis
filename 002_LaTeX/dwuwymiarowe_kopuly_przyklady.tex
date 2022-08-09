@@ -29,9 +29,10 @@ Pomocna jest jednak również wizualizacja w \emph{skali brzegowo-znormalizowane
 Powyższa transformacja nie wizualizuje już gęstości kopuły $c$, ale raczej gęstość rozkładu wielowymiarowego $g$, który powstałby gdybyśmy kopułą $c$ połączyli zmienne ze standardowego rozkładu normalnego, zgodnie z twierdzeniem \ref{thm:sklar_theorem}. Ta reprezentacja jest bardzo intuicyjna, ponieważ podstawowe kursy statystyki przyzwyczajają ludzkie oko do utożsamiania silnej/słabej korelacji z wydłużonymi/okrągłymi elipsami tworzonymi przez gęstość wielowymiarowego rozkładu normalnego. Reprezentacja w skali brzegowo-znormalizowanej jest intuicyjna, ponieważ dla kopuły gaussowskiej pokazuje dokładnie te same, znane elipsy. Natomiast w przypadku innych kopuł, obserwujemy rozbieżność izohips od eliptycznego kształtu co daje się łatwo zinterpretować. 
 
 W praktyce istnieją trzy główne nurty tworzenia kopuł. Można wykorzystać do tego twierdzenie Sklara \ref{thm:sklar_theorem} jako twierdzenie konstrukcyjne, tj. wziąć pewien istniejący, znany rozkład wielowymiarowy, zaaplikować \emph{PIT} (\ref{def:PIT}) do jego rozkładów brzegowych i odzyskać w ten sposób $C$ z twierdzenia Sklara. Drugą metodą konstrukcji kopuł jest zdefiniowanie ich przez tzw. \emph{generator} - powstają w ten sposób kopuły archimedejskie. Trzeci sposób natomiast to rozszerzenie \emph{extreme-value theory} z jedego do wielu wymiarów, co skutkuje powstaniem kopuł typu \emph{extreme-value}.\\
-\\
-\underline{Rodzina kopuł eliptycznych}\\
-\\
+
+\underline{Rodzina kopuł eliptycznych}
+\vspace{0.5cm}
+
 Kopuły eliptyczne są przykładem konstrukcji kopuł poprzez bezpośrednią aplikację twierdzenia Sklara \ref{thm:sklar_theorem} do rozkładów eliptycznych, zdefiniowanych na początku rozdziału \ref{sec:rozklady_wielowymiarowe}. Można więc tę konstrukcję rozumieć jako implikowanie struktury zależności z wielowymiarowych rozkładów, poprzez wyeliminowanie wpływu rozkładów brzegowych. W tej rodzinie zobaczymy przede wszystkim kopuły reprezentujące zależności "implikowane" z wielowymiarowego rozkładu normalnego, czy wielowymiarowego rozkładu $t$.
 
 \begin{df}[Kopuła produktowa]
@@ -75,7 +76,7 @@ Dystrybuantę tej kopuły przedstawiliśmy wcześniej na rysunku \ref{fig:prod_c
 	\caption{Gęstość kopuły gaussowskiej, $\rho=0.6$: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:gaussian_copula_density}}
 \end{figure}
 
-Kopuła gaussowska modeluje strukturę zależności implikowaną przez wielowymiarowy rozkład normalny, tj. wielowymiarowy rozkład normalny jest równoważny modelowi o normalnych rozkładach brzegowych, połączonych kopułą gaussowską. Rodzina kopuł gaussowskich jest wyczerpująca.
+Kopuła gaussowska modeluje strukturę zależności implikowaną przez wielowymiarowy rozkład normalny, tj. wielowymiarowy rozkład normalny jest równoważny modelowi o normalnych rozkładach brzegowych, połączonych kopułą gaussowską. Rodzina kopuł gaussowskich jest wyczerpująca. Przykładowa powierzchnia gęstości oraz kontury kopuły gaussowskiej przedstawione są na rysunku \ref{fig:gaussian_copula_density}.
 
 \begin{df}[Kopuła studenta]
 	Kopuła studenta to jednoparametryczna kopuła o $\nu$ stopniach swobody i korelacji $\rho$ zadana jest gęstością:
@@ -93,12 +94,12 @@ Kopuła gaussowska modeluje strukturę zależności implikowaną przez wielowymi
 	\end{minipage}
 	\caption{Gęstość kopuły studenta, $\nu=3, \rho=0.5$: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:student_copula_density}}
 \end{figure}
-Kopuła studenta, podobnie do gaussowskiej, jest implikowana z rozkładu eliptycznego studenta. Oznacza to, że wielowymiarowy rozkład studenta jest równoważny modelowi o rozkładach brzegowych $t$ połączonych kopułą studenta. Wraz z rosnącą ilością stopni swobody kopuła studenta zbiega do gaussowskiej. Ta rodzina nie jest jednak wyczerpująca, ponieważ nawet przy $\rho=0$, dla żadnej skończonej liczby stopni swobody nie zawiera w sobie $C{\perp}$.\\
+Kopuła studenta, podobnie do gaussowskiej, jest implikowana z rozkładu eliptycznego studenta. Oznacza to, że wielowymiarowy rozkład studenta jest równoważny modelowi o rozkładach brzegowych $t$ połączonych kopułą studenta. Wraz z rosnącą ilością stopni swobody kopuła studenta zbiega do gaussowskiej. Ta rodzina nie jest jednak wyczerpująca, ponieważ nawet przy $\rho=0$, dla żadnej skończonej liczby stopni swobody nie zawiera w sobie $C^{\perp}$.\\
 
-Kopuły eliptyczne cieszą się dużą popularnością w instytucjach finansowych, ponieważ mają swoje naturalne $d$-wymiarowe rozszerzenia. Kopuły uważane są mimo wszystko za skomplikowane modele, i w obliczu szczegółowych regulacji nakładanych na wewnętrzne modele (np. w podejściu AMA do modelowania ryzyka operacyjnego \cite{BaselII}) dużo łatwiej jest uzasadnić i utrzymać w produkcji model bazujący na kilku intuicyjnych parametrach (\cite{OpRisk}).
+Kopuły eliptyczne cieszą się dużą popularnością w instytucjach finansowych, ponieważ mają swoje naturalne $d$-wymiarowe rozszerzenia. Kopuły uważane są mimo wszystko za skomplikowane modele, i w obliczu szczegółowych regulacji nakładanych na wewnętrzne modele (np. w podejściu AMA do modelowania ryzyka operacyjnego \cite{BaselII}) dużo łatwiej jest uzasadnić i utrzymać w produkcji model bazujący na kilku intuicyjnych parametrach. Z tego powodu, kopuła $t$ studenta jest najczęściej wybieraną w praktyce - pozwala bowiem na modelowanie ciężkich ogonów i korelacji, a jednocześnie jest zaledwie dwuparametryczna (\cite{OpRisk}).\\
 
-\underline{Rodzina kopuł archimedejskich}\\
-\vspace{1cm}
+\underline{Rodzina kopuł archimedejskich}
+\vspace{0.5cm}
 \begin{df}[Kopuły archimedejskie]
 		Niech $\mathcal{F}$ będzie zbiorem ciągłych, jednostajnie malejących i wypukłych funkcji $\phi \colon [0,1] \mapsto [0, \infty]$, takich, że $\phi(1) = 0$. Wtedy
 		
@@ -108,13 +109,44 @@ Kopuły eliptyczne cieszą się dużą popularnością w instytucjach finansowyc
 		$$ \phi^{[-1]}(t) \coloneqq \phi^{-1}(t) \1_{\{0\leqslant t \leqslant \phi(0)\}}. $$
 \end{df}
 
-Ta rodzina jest bardzo popularna wśród praktyków. Powodem jest to, że istnieje wiele generatorów o zaledwie jednym parametrze, które już pozwalają modelować szeroką gamę zależności. To powoduje, że są wystarczająco dobre dla większości zastosowań, a przy tym są stosunkowo proste w estymacji. Do tej klasy należą m.in kopuły Claytona, Gumbela czy Franka.
+Ta rodzina została wprowadzona została przez Claytona w \cite{Clayton1972} w kontekście modelowania zapadalności na choroby przewlekłe, gdzie posłużyła do opisania zależności w aktuarialnych tabelach średniego dalszego trwania życia. Dziś kopuły archimedejskie wymieniane są pośród najczęściej wykorzystywanych do analizy zależności dwuwymiarowych. W przeciwieńswie do rodziny eliptycznej, kopuły z rodziny archimedejskiej potrafią modelować asymetryczne zależności. Oznacza to, że osiągalne są w nich struktury, w których dolne ogony zmiennych losowych są bardziej od siebie zależne niż ogony prawe i \emph{vice versa}. Najprostsze tego zastosowanie to model zwrotów na rynku akcji, które przejawiają silniejszą korelację w lewym ogonie niż w prawym (\cite{AssymetricEquityDependency}). \\
+Ponadto, kopuły archimedejskie pozwalają wyrazić $\tau$ Kendalla, czy współczynnik zależności ogonów w języku generatora, co powoduje, że są łatwe w estymacji.
+
+\begin{prop}
+	Dla dwóch zmiennych losowych połączonych kopułą archimedejską o generatorze $\phi$, współczynnik $\tau$ Kendalla ma reprezentację:
+	
+	$$ \tau = 4\int_{[0, 1]}\frac{\phi(v)}{\phi'(v)}dv + 1.$$
+	
+	Współczynniki zależności ogonów wyrażają się natomiast przez:
+	
+	\begin{equation} \label{eq1}
+		\begin{split}
+		\lambda^{l}&=2\lim\limits_{s\to\infty}\frac{\phi'(s)}{\phi(2s)} \\
+		\lambda^{u}&=2-2\lim\limits_{s\to0^{+}}\frac{\phi'(s)}{\phi(2s)}
+		\end{split}
+	\end{equation}
+\end{prop}
+Powyższe uwagi powoduja, że rodzina kopuł archimedejskich jest zazwyczaj wystarczająco dobra dla większości praktycznych zastosowań. Do tej klasy należą m.in kopuły Claytona, Gumbela czy Franka.
 
 \begin{df}[Kopuła Claytona]
-	Kopułą Claytona to jednoparametryczna kopuła zadana wzorem:
+	Kopuła Claytona to kopuła archimedejska o generatorze $\phi(t;\delta) = \frac{1}{\delta}(t^{-\delta}-1)$. Jest ona jednoparametryczną kopułą, wyrażoną poprzez dystrybuantę zadaną wzorem:
 	
-	$$ C(u_1, u_2) = (u_1 ^{-\delta} + u_2^{-\delta} - 1)^{-\frac{1}{\delta}} $$
+	$$ C(u_1, u_2; \delta) = (u_1 ^{-\delta} + u_2^{-\delta} - 1)^{-\frac{1}{\delta}},$$
+	dla $\delta \in [-1, 0) \cup (0, \infty).$
 \end{df}
+\begin{prop}
+	Dla kopuły Claytona o parametrze $\delta$, współczynnik Kendalla wynosi:
+	$$ \tau = 1 - \frac{1}{\delta}.$$
+	
+	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
+	\begin{equation} \label{eq1}
+		\begin{split}
+			\lambda^{l}&=2^{-\frac{1}{\delta}} \\
+			\lambda^{u}&=0.
+		\end{split}
+	\end{equation}
+\end{prop}
+Kopuła Claytona pozwala modelować niesymetryczne zależności zmiennych losowych. Jest rodziną wyczerpującą, mamy bowiem: $C(u,v;\delta = 1) = C^{\perp}$, $C(u,v;\delta = -1) = C^{-}$, oraz $C(u,v;\delta \to \infty) \to C^{+}$. Rysunek \ref{fig:clayton_copula_density} przedstawia powierzchnię gęstości i kontury w przypadku $\delta = 1.2$. Na rysunku widoczny jest dobrze wpływ istnienia dolnego współczynnika zależności ogonów na kształt konturów i gęstości.
 
 \begin{figure}[h]
 	\centering
@@ -125,9 +157,29 @@ Ta rodzina jest bardzo popularna wśród praktyków. Powodem jest to, że istnie
 		\includegraphics[width=.8\linewidth]{02_ClaytonCopula_contour}
 		\includegraphics[width=.8\linewidth]{02_ClaytonCopula_contour_norm}
 	\end{minipage}
-	\caption{Gęstość kopuły Claytona: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:clayton_copula_density}}
+	\caption{Gęstość kopuły Claytona, $\delta = 1.2$: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:clayton_copula_density}}
 \end{figure}
 
+\begin{df}[Kopuła Gumbela]
+	Kopuła Gumbela to kopuła archimedejska o generatorze $\phi(t;\delta) = (-\ln t)^{\delta}$. Jest ona jednoparametryczną kopuła, wyrażoną poprzez dystrybuantę zadaną wzorem:
+	
+	$$ C(u_1, u_2; \delta) = \exp\big[-[(-\ln u_1)^\delta+(-\ln u_2)^\delta]^{\frac{1}{\delta}}\big],$$
+	dla $\delta \geqslant 1.$
+\end{df}
+\begin{prop}
+	Dla kopuły Gumbela o parametrze $\delta$, współczynnik Kendalla wynosi:
+	$$ \tau = \frac{\delta}{\delta + 2}.$$
+	
+	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
+	\begin{equation} \label{eq1}
+		\begin{split}
+			\lambda^{l}&=0\\
+			\lambda^{u}&=2 - 2^{\frac{1}{\delta}}.
+		\end{split}
+	\end{equation}
+\end{prop}
+Kopuła Gumbela również pozwala modelować niesymetryczne zależności zmiennych losowych.  Rysunek \ref{fig:gumbel_copula_density} przedstawia powierzchnię gęstości i kontury w przypadku $\delta = 1.8$, gdzie widzimy powyższą niesymetryczność. Ta rodzina nie jest jednak wyczerpującą, ponieważ mamy jedynie $C(u,v;\delta = 1) = C^{\perp}$, oraz $C(u,v;\delta \to \infty) \to C^{+}$, natomiast kopuła $C^{-}$ nie jest częścią tej rodziny. \\
+Kopuły Gumbela mogą więc posługiwać do modelowania jedynie dodatnich zależności, lub w granicznym przypadku niezależności. Nie przeszkodziło to jednak w skutecznej aplikacji tych kopuł do badań klinicznych, gdzie spopularyzował je Hougaard, w \cite{Hougaard1986} wykorzystując do testowania hipotez o pozytywnym wpływie leku przeciw guzom na długość życia szczurów w grupie leczenia.
 
 \begin{figure}[h]
 	\centering
@@ -138,8 +190,31 @@ Ta rodzina jest bardzo popularna wśród praktyków. Powodem jest to, że istnie
 		\includegraphics[width=.8\linewidth]{02_GumbelCopula_contour}
 		\includegraphics[width=.8\linewidth]{02_GumbelCopula_contour_norm}
 	\end{minipage}
-	\caption{Gęstość kopuły Gumbela: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:gumbel_copula_density}}
+	\caption{Gęstość kopuły Gumbela, $\delta = 1.8$: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:gumbel_copula_density}}
 \end{figure}
+
+\begin{df}[Kopuła Franka]
+	Kopuła Franka to kopuła archimedejska o generatorze $\phi(t;\delta) = -\ln\frac{\exp(-\alpha t) - 1}{\exp(-\alpha)-1}$. Jest ona jednoparametryczną kopuła, wyrażoną poprzez dystrybuantę zadaną wzorem:
+	
+	$$ C(u_1, u_2; \delta) = -\frac{1}{\delta}\ln\big[ \frac{1}{1-e^{-\delta}}[(1-e^{-\delta}) - (1-e^{-\delta u_1})(1-e^{-\delta u_2})] \big],$$
+	dla $\delta \in (-\infty; 0) \cup (0; \infty).$
+\end{df}
+\begin{prop}
+	Dla kopuły Franka o parametrze $\delta$, współczynnik Kendalla wynosi:
+	$$ \tau = 1 + 4[D(\delta) - 1]/\delta,$$
+	gdzie $D(\alpha)$ to:
+	$$ D(\alpha) = \frac{1}{\alpha} \int_{0}^{\alpha} \frac{t}{\exp(t) - 1}dt.$$
+		
+	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
+	\begin{equation} \label{eq1}
+		\begin{split}
+			\lambda^{l}&=0\\
+			\lambda^{u}&=0.
+		\end{split}
+	\end{equation}
+\end{prop}
+Rodzina kopuł Franka jest rodziną wyczerpującą, bowiem $C(u,v;\delta = 0) = C^{\perp}$, $C(u,v;\delta \to \infty) \to C^{+}$, oraz $C(u,v;\delta \to -\infty) \to C^{-}$ . Kopuła Franka jako jedyna z wymienionych kopuł archimedejskich jest symetryczna. Rysunek \ref{fig:frank_copula_density} przedstawia powierzchnię gęstości i kontury w przypadku $\delta = 5$. \\
+Jedno z ciekawych jej zastosowań, przedstawia \cite{Jianwei2021}. W swojej pracy Jianwei rozważa problem optymalizacji częstości ładowania pojazdów elektrycznych. Kopuła Franka jest przez niego używana do modelowania zależności między siłą wiatru, a ilością energii z ogniw fotowoltaicznych, co wykorzystuje do wyznaczenia optymalnej strategii ładowania pojazdu, która stabilizuje popyt/podaż na energię w sieci energetycznej, skutkując w niższych kosztach utrzymania pojazdu. 
 
 \begin{figure}[h]
 	\centering
@@ -152,4 +227,75 @@ Ta rodzina jest bardzo popularna wśród praktyków. Powodem jest to, że istnie
 	\end{minipage}
 	\caption{Gęstość kopuły Franka: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:frank_copula_density}}
 \end{figure}
+
+\underline{Rodzina kopuł \emph{extreme-value}}
+\vspace{0.5cm}
+
+Ostatnią z prezentowanych metod konstrukcji kopuł jest konstrukcja asymptotyczna, poprzez teorię wartości ekstremalnych.\\
+Zakładając, że $X_1$ i $X_2$ są dwoma zmiennymi losowymi o rozkładach $F_1$, $F_2$, zdefiniujemy kopułę \emph{extreme-value} jako kopułę odpowiadającą za zależność pomiędzy maksimum z $n$ realizacji $X_1$ a maksimum z $n$ realizacji $X_2$. 
+
+\begin{df}[Kopuła \emph{extreme-value}]
+	Dwuwymiarowa kopuła $C$ nazywana jest kopułą \emph{extreme-value}, jeżeli istnieje dwuwymiarowa kopuła $C_X$, taka że dla $n\to\infty$ mamy:
+	
+	$$ [C_X(u_1^{\frac{1}{n}}, u_2^{\frac{1}{n}})]^n \to C(u_1, u_2) \forall_{(u_1, u_2)}\in [0,1]^2.$$
+	
+	Mówimy wówczas, że kopuła $C_X$ jest w obszarze przyciągania kopuły $C$.
+\end{df}
+
+To samo można zdefiniować posługując się pojęciem kopuł \emph{max-stabilnych}
+\begin{df}[Kopuła max-stabilna]
+	Dwuwymiarowa kopuła $C$ nazywana jest kopułą max-stabilną, jeśli spełnia warunek:
+	
+	$$ C(u_1, u_2) = [C(u_1^{\frac{1}{n}}, u_2^{\frac{1}{n}})]^n,$$
+	Dla każdej liczby całkowitej $n\geqslant 1$, oraz dla każdej pary ${(u_1, u_2)}\in [0,1]^2.$
+	
+\end{df}
+\begin{thm}
+	Dwuwymiarowa kopuła $C$ jest kopułą \emph{extreme-value}, tylko i tylko wtedy gdy jest max-stabilna.
+\end{thm}
+
+Przykładem kopuły \emph{extreme-value} z podanych już wcześniej jest kopuła Gumbela. Inną, nietypową, ale często spotykaną kopułą z tej rodziny jest kopuła Marshalla-Olkina.
+
+\begin{df}[Kopuła Marshalla-Olkina]
+	Dwuwymiarową kopułą Marshalla-Olkina o parametrach $m$ i $n$ nazwiemy kopułę o dystrybuancie:
+	
+	$$ C(u_1, u_2; m,n) = \min[u_1^{1-m}u_2; u_1u_2^{1-n}].$$
+	Gęstość tej kopuły zadana jest przez:
+	
+	$$
+	c(u_1, u_2;m,n)=
+	\begin{cases}
+		(1-m)u_1^{-m},\text{ dla }u_1^m>u_2^n\\
+		(1-n)u_2^{-n},\text{ dla }u_1^m<u_2^n
+	\end{cases}
+	$$	
+\end{df}
+\begin{prop}
+	Dla kopuły Marshalla-Olkina o parametrach $m,n$, współczynnik Kendalla wynosi:
+	$$ \tau = \frac{mn}{m-mn+n}.$$
+	
+	Współczynniki zależności ogonów wynoszą zaś odpowiednio:
+	\begin{equation} \label{eq1}
+		\begin{split}
+			\lambda^{l}&=0\\
+			\lambda^{u}&=min(m,n).
+		\end{split}
+	\end{equation}
+\end{prop}
+Kopuła Marshalla-Olkina jest nietypowa, bo posiada część ciągłą, o powyższej gęstości, jak i część singularną wzdłuz krzywej $u_1^m=u_2^n$. Ta rodzina nie jest wyczerpująca, ponieważ nie zawiera $C^{-}$. Natomiast dla $m=0 \vee n=0$ mamy $C^{\perp}$, a przy $m=1=n$ dostajemy $C^{+}$. \\
+Kopuły Marshalla-Olkina powstają naturalnie w teorii niezawodności systemów. Rozważając system o wielu komponentach, gdzie awaria dowolnego komponentu powoduje awarię całego systemu, w klasycznym podejściu zakłada się rozkład wykładniczy dla czasu życia każdego z komponentów (z powodu braku pamięci), oraz niezależność między komponentami. W praktyce jednak, czasy do awarii poszczególnych komponentów nie są niezależne: do modelowania tej zależności dużo lepiej służy właśnie kopuła Marshalla-Olkina \cite{Matus2019}.\\
+
+\begin{figure}[h]
+	\centering
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{02_MarshallOlkinCopula_density}
+	\end{minipage}
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.8\linewidth]{02_MarshallOlkinCopula_contour}
+		\includegraphics[width=.8\linewidth]{02_MarshallOlkinCopula_contour_norm}
+	\end{minipage}
+	\caption{Gęstość kopuły Marshalla-Olkina, $m=0.35,n=0.75$: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:marshall_olkin_copula_density}}
+\end{figure}
+
+
 
