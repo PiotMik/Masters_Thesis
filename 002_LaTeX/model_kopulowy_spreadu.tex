@@ -1,0 +1,8 @@
+Dla skupienia uwagi rozważymy model bazujący na rozszerzeniu idei z \cite{Herath_Copula_Crack_Spread}. Używać będziemy procesów ARMA-GARCH do opisu dynamiki rozkładów brzegowych, po czym zastosujemy kopuły do modelowania zależności w reziduach. Należy zaznaczyć, że jest to algorytm o wielu "podmienialnych" elementach, który daje się łatwo rozszerzać poprzez uwzględnianie innych procesów brzegowych, czy dynamicznej struktury zależności. Przykłady takich rozszerzeń znaleźć można w \cite{Espen_Crack_Spread_Copula}, \cite{Bernard_Pricing_Multivariate_Options_with_copulae} czy \cite{Cherubini_Dynamic_Copula_Methods_in_Finance}.\\
+
+\subsubsection{ARMA-GARCH-copula model}
+Niech $S_1(t), S_2(t)$ będą cenami dwóch aktywów. Rozważać będziemy proces ich log-zwrotów:
+
+$$ r_{i, t+1} = \log[S_i(t+1)] - \log[S_i(t)],$$
+
+gdzie $i\in\{1,2\}$. Niech $\mathcal{F}_t = \sigma(r_{1,s}, r_{2,s}, s\leqslant t)$ będzie filtracją reprezentującą całą wiedzę o procesie cen aktywów do momentu $t$. Zakładać będziemy, że aktywa poruszają się zgodnie z pewnym modelem klasy ARMA-GARCH, oraz że struktura zależności między ustandaryzowanymi reziduami zadana jest poprzez kopułę $C$.\\

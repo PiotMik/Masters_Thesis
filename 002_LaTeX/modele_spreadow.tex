@@ -1,0 +1,32 @@
+Jak pokazał rozdział \ref{sec:popularne_spready}, spready mogą powstawać w naturalny sposób pomiędzy różnymi rodzajamy aktywów co powoduje, że ich modelowanie nie jest proste. Możemy podać prosty przykład ilustrujący problem, rozważając dwa spready: \emph{spark spread}, oraz \emph{LIBOR-OIS} spread. Pierwszy jest różnicą między ceną sprzedanej energii a ceną gazu ziemnego z którego została wyprodukowana. Komponent "energetyczny" spreadu porusza się zgodnie z dynamiką obowiązującą na rynkach energii - charakteryzują go niegaussowskość, ostre piki cenowe jak i równie szybkie powroty do średniej, regularna sezonowość spowodowana zmianami popytu na elektryczność w trakcie dnia. Gaz ziemny natomiast wykazuje sezonowość w obrębie roku, mniej agresywne piki cenowe, choć podobne jak dla cen energii \emph{mean-reversion} oraz ciężkie ogony przejawiają się w jego dynamice \cite{Espen_Crack_Spread_Copula}. Crack spread, będąc ich różnicą jest ciężkoogonowy, asymetryczny, potrafiący osiągać zarówno dodatnie jak i ujemne wartości. LIBOR-OIS spread z drugiej strony jest różnicą między dwoma stopami procentowymi - w porównaniu z crack spreadem jest względnie stabilny, dodatni, i nie wykazuje sezonowości. W momentach kryzysów o podłożu kredytowym, potrafi jednak wykazać bardzo ciężki prawy ogon i zwielokrotnić swoje wartości w bardzo krótkim okresie czasu \cite{Libor_OIS_model}.\\
+
+Ponieważ dynamika spreadu jest wypadkową dynamiki jego komponentów, widzimy że model przystosowany dla jednego spreadu może nie uchwycać \emph{stylized facts} dotyczących dynamiki innego spreadu. Z tego powodu modele specyfikowane są raczej do konkretnej klasy spreadów i nie da się wskazać jednego, dominującego modelu odpowiedniego do każdej sytuacji. Podejście kopułowe opisane niżej próbuje zaadresować ten problem, generalizując modelowanie do stopnia pozwalającego na tworzenie jednowymiarowych modeli szeregów czasowych dla komponentów spreadu i swobodne łączenie ich dzięki elastyczności kopuł w spójny model dla spreadu.\\
+
+W tym rozdziale naszkicujemy popularne sposoby modelowania spreadu i wskażemy drogę generalizowania od najprostszej idei modelu Blacka-Scholesa do modelu kopułowego omawiając dziedzinę ich poprawnego działania, oraz potencjalne niedoskonałości.
+
+\subsubsection{Modele Blacka-Scholesa oraz Bacheliera}
+
+Najprostszą ideą jest zaadaptowanie dobrze znanego i zbadanego modelu Blacka-Scholesa \cite{Black_Scholes} do modelowania komponentów spreadu. Takie podejście zaprezentowane jest w \cite{Bjerksund_Spread_Options_Lognormal}. Dynamika komponentów wyrażana jest poprzez stochastyczne równanie różniczkowe:
+
+$$ dS_i(t) = \mu_i S_i(t)dt + \sigma_i S_i(t)dW_i(t),$$
+
+dla $\mu_i \in \R$, $\sigma_i >0$, gdzie $\{W_1(t)\}_t$ i $\{W_2(t)\}_t$ są dwoma procesami Wienera o korelacji $\rho$.\\
+
+Podejście to powoduje, że ceny aktywów $S_1(t)$ i $S_2(t)$ są nieujemne, o znanym rozkładzie lognormalnym, oraz mamy dostępną dobrze wypracowaną teorię dotyczącą zachowania modelu. Są to istotne zalety modelu lognormalnego, lecz mimo tego nie zyskał on jednak popularności. Powodem był fakt, że nie daje on jawnych wzorów na ceny instruentów pochodnych na spread, oraz to, że w realnych warunkach geometryczny ruch browna nie nadaje się do modelowania wszystkich klas aktywów kryjących się pod $S_i(t)$. Zauważono jednak, że w sporej ilości przypadków histogramy spreadu pozwalają się dość dobrze modelować przy pomocy rozkładu normalnego \cite{Carmona_Spread_Options}.\\
+Ta obserwacja doprowadziła do zastosowania modelu Bacheliera jako bezpośredniego modelu dla spreadu. Taki pomysł pokazuje \cite{Poitras_Spread_Options_Arithmetic}, stosując model o dynamice:
+
+$$ ds(t) = \mu s(t) dt + \sigma dW(t),$$
+
+pozwalającej spreadom osiągnąć zarówno dodatnie jak i ujemne wartości. Dodatkową zaletą takiego podejścia jest otrzymanie analitycznych wzorów na europejskie opcje na spread (\cite{Poitras_Spread_Options_Arithmetic}). \cite{Carmona_Spread_Options} w swojej pracy dodatkowo pokazują, że ten model choć prosty, zaskakująco dobrze  dopasowuje się do rynkowych cen europejskich opcji na spark spread - w szczególności dla krótkich terminów wykonania opcji.\\
+Mimo tych zalet \cite{Herath_Copula_Crack_Spread}, \cite{Carmona_Spread_Options}, czy \cite{Kim_NonNormal_Spread} wyliczają wiele wad tego modelu: brak struktury autokorelacji, gaussowskość komponentów spreadu, czy sztywną strukturę zależności między nimi. W realnych danych na porządku dziennym znaleźć można empiryczne dowody na powyższe stwierdzenia (\cite{Kim_NonNormal_Spread}, \cite{Schwartz_Ornstein}).
+
+\subsubsection{Model Ornstein'a-Uhlenbecka i szeregi czasowe}
+
+Próbą uwzględnienia autokorelacji w modelach komponentów spreadu jest użycie procesu Ornsteina-Uhlenbecka do modelowania ich dynamiki:
+
+$$ dS_i(t) =S_i(t)[-\lambda (\log S_i(t) - \mu_i)dt + \sigma_i dW_i(t)],$$
+gdzie $\lambda_i>0$,  $\mu_i \in \R$, $\sigma_i >0$, oraz $\{W_1(t)\}_t$ i $\{W_2(t)\}_t$ są dwoma procesami Wienera o korelacji $\rho$.\\
+
+Spread jest modelowany wtedy jako różnica tych dwóch procesów. Nie poprawia to problemu gaussowskości procesu czy struktury korelacji między komponentami, oraz zmuszeni jesteśmy do numerycznej analizy rozwiązani. Lecz jest to pierwszy krok w stronę bardziej poprawnych modeli dla komponentów spreadu. Wychodząc od tej idei pojawiła się ogromna lista prac w których analityczność modelu jest porzucona w dążeniu do poprawniejszego modelu opisującego zarówno modele brzegowe komponentów, jak i model zależności miedzy nimi. \cite{Herath_Copula_Crack_Spread}, \cite{Eyigungor_Markov_Spreads}, \cite{Espen_Crack_Spread_Copula}, czy \cite{Bernard_Pricing_Multivariate_Options_with_copulae} pokazują różne techniki, od modeli ARMA-GARCH, przez procesy Levy'ego, po modele \emph{Markov switching regime} do opisu dynamiki komponentów spreadu, które radzą sobie z empiryczną ciężkoogonowością i rozwiązują problem gaussowskości.\\
+
+Wciąż pozostaje jednak problem połączenia ich w spójny model dla spreadu, w sposób który uchwyci ich strukturę zależności. Tę problematykę poruszymy w kolejnym rozdziale opisując podejście kopułowe.
