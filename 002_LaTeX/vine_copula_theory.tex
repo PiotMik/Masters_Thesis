@@ -1,0 +1,39 @@
+Ideę rozbijania rozkładu na dwuwymiarowe bloki da się rozszerzyć na $d$-wymiarów. Podobnie jednak jak w przykładzie 3-wymiarowym z sekcji \ref{subsub:przyklad_3_wymiary}, nie mamy jedyności tej reprezentacji - istnieje wiele różnych dróg do osiągnięcia tego samego celu. 
+
+\begin{thm}[$d$-wymiarowa PCC]
+	Niech $f_{1,2,\dots,d}$ będzie gęstością łączną $d$-wymiarowego rozkładu. Możemy ją wyrazić poprzez:
+	
+	\begin{equation}
+		f_{1,\dots, d}(x_1, \dots, x_d) = \bigg[ \prod_{j=1}^{d-1} \prod_{i=1}^{d-j} c_{i, (i+j); (i+1)\dots(i+j-1)} \bigg] \cdot \bigg[ \prod_{k=1}^{d}f_k(x_k)\bigg].
+	\end{equation}
+\end{thm}
+\begin{proof}
+	Zacznijmy od rozważenia rozkładu łącznego i jego ogólnej dekompozycji:
+\begin{equation}
+	\begin{split}
+		f_{1, \dots, d}(x_1, \dots, x_d) &= f_{d|1 , \dots, d-1}(x_d|x_1, \dots, x_{d-1})f_{1,\dots,d-1}(x_1, \dots, x_{d-1})\\
+		&=\dots= \bigg[\prod_{t=2}^{d}f_{t|1,\dots,t-1}(x_t|x_1, \dots, x_{t-1})\bigg]\cdot f_1(x_1)
+	\end{split}
+	\label{eq:d-dimensional_decomp}
+\end{equation}
+
+Teraz użyjemy lematu \ref{lem:copula_representation_of_conditional_density} do rozkładu warunkowego $(X_1, X_t) | (X_2, \dots, X_{t-1})$ żeby rekursywnie wyrazić $f_{t|1,\dots,t-1}(x_t|x_1,\dots,x_{t-1})$.
+	\begin{equation}
+	\begin{split}
+	f_{t|1,\dots,t-1}(x_t|x_1,\dots,x_{t-1})&= c_{1,t|2,\dots,t-1}\cdot f_{t|2,\dots,t-1}(x_t|x_2,\dots,x_{t-1})  \\
+	& = \bigg[ \prod_{s=1}^{t-2} c_{s,t;s+1,\dots,t-1} \bigg] c_{(t-1), t} f_t(x_t).	
+	\end{split}
+	\label{eq:recursive_pcc}
+	\end{equation}
+
+Aplikując \ref{eq:recursive_pcc} do równania \ref{eq:d-dimensional_decomp}, oraz oznaczając $s=i, t=i+j$ możemy zapisać:
+
+\begin{equation*}
+	\begin{split}
+		f_{1, \dots, d}(x_1, \dots, x_d) &= \bigg[\prod_{t=2}^{d}\prod_{s=1}^{t-2} c_{s,t;s+1,\dots,t-1}\bigg] \cdot \bigg[ \prod_{t=2}^{d}c_{(t-1), t} \bigg] \cdot \bigg[ \prod_{k=1}^{d}f_{k}(x_k) \bigg] = \\
+		& = \bigg[\prod_{j=1}^{d-1}\prod_{i=1}^{d-j}c_{i,(i+j);(i+1)\dots(i+j-1)}\ \bigg] \cdot \bigg[\prod_{k=1}^{d}f_k(x_k)\bigg].
+	\end{split}
+\end{equation*}
+\end{proof}
+
+Jak widać z równania \ref{eq:d-dimensional_decomp}, dekompozycje te potrafią być zawiłe i mało interpretowalne. Dlatego poniżej wprowadzimy fragmenty teorii grafów, która pozwoli nam lepiej komunikować te dekompozycje.
