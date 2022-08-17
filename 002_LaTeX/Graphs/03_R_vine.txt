@@ -1,0 +1,55 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		
+		\node [] at (-6.5, 8.5) {$T_1:$};
+		\node [style={mgr_circle}] (0) at (-4, 10) {1};
+		\node [style={mgr_circle}] (1) at (-4, 7) {2};
+		\node [style={mgr_circle}] (2) at (0, 10) {3};
+		\node [style={mgr_circle}] (3) at (0, 7) {5};
+		\node [style={mgr_circle}] (4) at (4, 10) {4};
+		\node [style={mgr_circle}] (5) at (4, 7) {6};
+
+		\node[] at (-6.5, 2.5) {$T_2:$};
+		\node [style={mgr_style}] (6) at (-4, 4) {1,2};
+		\node [style={mgr_style}] (7) at (0, 4) {1,3};
+		\node [style={mgr_style}] (8) at (4, 4) {3,4};
+		\node [style={mgr_style}] (9) at (0, 1) {1,5};
+		\node [style={mgr_style}] (10) at (4, 1) {5,6};
+
+		\node[] at (-9.5, -2) {$T_3:$};
+		\node [style={mgr_style}] (11) at (-7, -2) {2,3;1};
+		\node [style={mgr_style}] (12) at (-2.5, -2) {1,4;3};
+		\node [style={mgr_style}] (13) at (2.5, -2) {3,5;1};
+		\node [style={mgr_style}] (14) at (7, -2) {1,6;5};
+
+		\node[] at (-8.75, -5) {$T_4:$};
+		\node [style={mgr_style}] (15) at (-6, -5) {2,4;1,3};
+		\node [style={mgr_style}] (16) at (0, -5) {4,5;1,3};
+		\node [style={mgr_style}] (17) at (6, -5) {3,6;1,4};
+
+		\node[] at (-6.5, -8) {$T_5:$};
+		\node [style={mgr_style}] (18) at (-3.5, -8) {2,4;1,3,4};
+		\node [style={mgr_style}] (19) at (3.5, -8) {4,6;1,3,5};
+	\end{pgfonlayer}
+
+	\draw (0) -- (1) node[pos=0.5, left]{1,2};
+	\draw (0) -- (2) node[pos=0.5, above]{1,3};
+	\draw (2) -- (4) node[pos=0.5, above]{3,4};
+	\draw (0) -- (3) node[pos=0.75, above]{1,5};
+	\draw (3) -- (5) node[pos=0.5, above]{5,6};
+
+
+	\draw (6) -- (7) node[pos=0.5, above]{2,3;1};
+	\draw (7) -- (8) node[pos=0.5, above]{1,4;3};
+	\draw (7) -- (9) node[pos=0.5, left]{3,5;1};
+	\draw (9) -- (10) node[pos=0.5, above]{1,6;5};
+
+	\draw (11) -- (12) node[pos=0.5, above]{2,4;1,3};
+	\draw (12) -- (13) node[pos=0.5, above]{4,5;1,3};
+	\draw (13) -- (14) node[pos=0.5, above]{3,6;1,5};
+	\draw (15) -- (16) node[pos=0.5, above]{2,5;1,3,4};
+	\draw (16) -- (17) node[pos=0.5, above]{4,6;1,3,5};
+	\draw (18) -- (19) node[pos=0.5, above]{2,6;1,3,4,5};
+
+
+\end{tikzpicture}
