@@ -30,8 +30,7 @@ Powyższa transformacja nie wizualizuje już gęstości kopuły $c$, ale raczej 
 
 W praktyce istnieją trzy główne nurty tworzenia kopuł. Można wykorzystać do tego twierdzenie Sklara \ref{thm:sklar_theorem} jako twierdzenie konstrukcyjne, tj. wziąć pewien istniejący, znany rozkład wielowymiarowy, zaaplikować \emph{PIT} (\ref{def:PIT}) do jego rozkładów brzegowych i odzyskać w ten sposób $C$ z twierdzenia Sklara. Drugą metodą konstrukcji kopuł jest zdefiniowanie ich przez tzw. \emph{generator} - powstają w ten sposób kopuły archimedejskie. Trzeci sposób natomiast to rozszerzenie \emph{extreme-value theory} z jedego do wielu wymiarów, co skutkuje powstaniem kopuł typu \emph{extreme-value}.\\
 
-\underline{Rodzina kopuł eliptycznych}
-\vspace{0.5cm}
+\subsubsection{Rodzina kopuł eliptycznych}
 
 Kopuły eliptyczne są przykładem konstrukcji kopuł poprzez bezpośrednią aplikację twierdzenia Sklara \ref{thm:sklar_theorem} do rozkładów eliptycznych, zdefiniowanych na początku rozdziału \ref{sec:rozklady_wielowymiarowe}. Można więc tę konstrukcję rozumieć jako implikowanie struktury zależności z wielowymiarowych rozkładów, poprzez wyeliminowanie wpływu rozkładów brzegowych. W tej rodzinie zobaczymy przede wszystkim kopuły reprezentujące zależności "implikowane" z wielowymiarowego rozkładu normalnego, czy wielowymiarowego rozkładu $t$.
 
@@ -98,8 +97,8 @@ Kopuła studenta, podobnie do gaussowskiej, jest implikowana z rozkładu eliptyc
 
 Kopuły eliptyczne cieszą się dużą popularnością w instytucjach finansowych, ponieważ mają swoje naturalne $d$-wymiarowe rozszerzenia. Kopuły uważane są mimo wszystko za skomplikowane modele, i w obliczu szczegółowych regulacji nakładanych na wewnętrzne modele (np. w podejściu AMA do modelowania ryzyka operacyjnego \cite{BaselII}) dużo łatwiej jest uzasadnić i utrzymać w produkcji model bazujący na kilku intuicyjnych parametrach. Z tego powodu, kopuła $t$ studenta jest najczęściej wybieraną w praktyce - pozwala bowiem na modelowanie ciężkich ogonów i korelacji, a jednocześnie jest zaledwie dwuparametryczna (\cite{OpRisk}).\\
 
-\underline{Rodzina kopuł archimedejskich}
-\vspace{0.5cm}
+\subsubsection{Rodzina kopuł archimedejskich}
+
 \begin{df}[Kopuły archimedejskie]
 		Niech $\mathcal{F}$ będzie zbiorem ciągłych, jednostajnie malejących i wypukłych funkcji $\phi \colon [0,1] \mapsto [0, \infty]$, takich, że $\phi(1) = 0$. Wtedy
 		
@@ -216,20 +215,7 @@ Kopuły Gumbela mogą więc posługiwać do modelowania jedynie dodatnich zależ
 Rodzina kopuł Franka jest rodziną wyczerpującą, bowiem $C(u,v;\delta = 0) = C^{\perp}$, $C(u,v;\delta \to \infty) \to C^{+}$, oraz $C(u,v;\delta \to -\infty) \to C^{-}$ . Kopuła Franka jako jedyna z wymienionych kopuł archimedejskich jest symetryczna. Rysunek \ref{fig:frank_copula_density} przedstawia powierzchnię gęstości i kontury w przypadku $\delta = 5$. \\
 Jedno z ciekawych jej zastosowań, przedstawia \cite{Jianwei2021}. W swojej pracy Jianwei rozważa problem optymalizacji częstości ładowania pojazdów elektrycznych. Kopuła Franka jest przez niego używana do modelowania zależności między siłą wiatru, a ilością energii z ogniw fotowoltaicznych, co wykorzystuje do wyznaczenia optymalnej strategii ładowania pojazdu, która stabilizuje popyt/podaż na energię w sieci energetycznej, skutkując niższymi kosztami utrzymania pojazdu. 
 
-\begin{figure}[h]
-	\centering
-	\begin{minipage}{0.5\linewidth}
-		\includegraphics[width=\linewidth]{02_FrankCopula_density}
-	\end{minipage}
-	\begin{minipage}{0.45\linewidth}
-		\includegraphics[width=.8\linewidth]{02_FrankCopula_contour}
-		\includegraphics[width=.8\linewidth]{02_FrankCopula_contour_norm}
-	\end{minipage}
-	\caption{Gęstość kopuły Franka: powierzchnia (lewy panel), kontur w skali kopuły (prawy górny panel), kontur w skali brzegowo-znormalizowanej (prawy dolny panel). \label{fig:frank_copula_density}}
-\end{figure}
-
-\underline{Rodzina kopuł \emph{extreme-value}}
-\vspace{0.5cm}
+\subsubsection{Rodzina kopuł \emph{extreme-value}}
 
 Ostatnią z prezentowanych metod konstrukcji kopuł jest konstrukcja asymptotyczna, poprzez teorię wartości ekstremalnych.\\
 Zakładając, że $X_1$ i $X_2$ są dwoma zmiennymi losowymi o rozkładach $F_1$, $F_2$, zdefiniujemy kopułę \emph{extreme-value} jako kopułę odpowiadającą za zależność pomiędzy maksimum z $n$ realizacji $X_1$ a maksimum z $n$ realizacji $X_2$. 

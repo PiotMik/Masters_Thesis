@@ -1,0 +1,55 @@
+Dla skupienia uwagi rozważymy model bazujący na rozszerzeniu idei z \cite{Herath_Copula_Crack_Spread}. Używać będziemy procesów ARIMA-GARCH do opisu dynamiki rozkładów brzegowych, po czym zastosujemy kopuły do modelowania zależności w reziduach. Należy zaznaczyć, że jest to algorytm o dużej dowolności "podmiany" elementów, który daje się łatwo rozszerzać poprzez uwzględnianie innych procesów brzegowych, czy dynamicznej struktury zależności. Przykłady takich rozszerzeń znaleźć można w \cite{Espen_Crack_Spread_Copula}, \cite{Bernard_Pricing_Multivariate_Options_with_copulae} czy \cite{Cherubini_Dynamic_Copula_Methods_in_Finance}.\\
+
+\subsubsection{Model ARIMA-GARCH copula}
+Niech $S_1(t), S_2(t)$ będą cenami dwóch aktywów. Rozważać będziemy proces ich log-zwrotów:
+
+$$ r_{i, t+1} = \log[S_i(t+1)] - \log[S_i(t)],$$
+
+gdzie $i\in\{1,2\}$. Niech $\mathcal{F}_t = \sigma(r_{1,s}, r_{2,s}, s\leqslant t)$ będzie filtracją reprezentującą całą wiedzę o procesie cen aktywów do momentu $t$.\\
+
+Celem jest otrzymanie spójnego modelu łącznego dla $S_1$ i $S_2$, pozwalającego na symulację i obliczenie spreadu. Model składać się będzie kilku komponentów: indywidualnych modeli szeregów czasowych dla komponentów spreadu, oraz modelu struktury zależności między nimi. Uściślając: zakładać będziemy, że aktywa poruszają się zgodnie z pewnym procesem klasy ARIMA(p,d,q)-GARCH(m,n), oraz że struktura zależności między reziduami zadana jest poprzez kopułę $C^{\Pra}(u, v; \Theta)$ o wektorze parametrów $\Theta$, zdefiniowaną względem fizycznej miary probabilistycznej $\Pra$.\\
+
+Najpierw, w celu uchwycenia struktury zależności czasowej każdego z aktywów osobno, modelujemy \emph{warunkową wartość oczekiwaną} ich logzwrotów poprzez proces ARIMA(p,d,q):
+
+\begin{equation}
+	\phi(B)(1-B)^d r_{i, t} = c + \theta(B)\varepsilon_{i, t},
+	\label{eq:arima_part}
+\end{equation}
+
+gdzie $B$ to operator \emph{backshift} ($B^kr_{i, t} = r_{i, t-k}$), a $\phi(z)$ i $\theta(z)$ to wielomiany odpowiadające za strukturę zależności w czasie: $\theta(z) = 1 + \theta_1z + \dots + \theta_qz^q$, i $\phi(z) = 1 - \phi_1z - \dots - \phi_pz^p$ gdzie $\theta_j\in\R, \phi_j\in\R$, oraz $\phi(z) \not=0 \forall_{\vert z \vert \leqslant 1}$.
+
+Losowość/zmienność tego procesu zależy więc od rozkładu innowacji $\varepsilon_{i, t}$. Ponieważ empiryczne dane rynkowe często wykazują heteroskedastyczność i \emph{volatility clustering} (\cite{Herath_Copula_Crack_Spread}), będziemy szli o krok dalej i modelowali \emph{warunkową wariancję} procesu za pomoca modelu GARCH(m, n):
+
+\begin{equation}
+	\begin{cases}
+		$$ \varepsilon_{i, t} = \sigma_{i, t}e_{i, t},\\
+		\sigma^2_{i, t} = \omega_i + \sum_{j=1}^{m}\alpha_i\varepsilon^2_{i, t-j}+ \sum_{k=1}^{n}\beta_k\sigma^2_{i, t-k},\\
+		e_{i, t} \sim IID(0, 1),
+		$$
+	\end{cases}
+	\label{eq:garch_part}
+\end{equation}
+gdzie $\omega_i > 0, \alpha_i,\beta_i \geqslant 0$
+
+Równania \ref{eq:arima_part} oraz \ref{eq:garch_part} zapewnić mają uchwycenie \emph{temporal dependency structure} w szeregach czasowych komponentów, i wyłuskanie innowacji $e_{i, t}$, które są w wymiarze czasowym $t$ niezależne i o jednakowych ustandaryzowanych rozkładach $F_{e_{i, t}}$. W oryginalnym modelu GARCH zakłada się tu standardowy rozkład normalny - jednak w praktyce często osłabia się to założenie do rozkładów scentrowanych, aby pozwolić na obecność cięższych ogonów. Tak też robimy w tym przypadku.\\
+Mimo wyeliminowania zależności czasowej, rezidua aktywów wciąż jednak posiadać będą strukturę zależności między sobą, tzn. $e_{1, t} \not\perp e_{2, t}$. Do jej modelowania posłuży nam parametryczna, dwuwymiarowa kopuła $C^{\Pra}(u, v, \Theta)$:
+
+\begin{equation}
+	F_{e_{1,t}, e_{2,t}}(x, y) = C^{\Pra}(F_{e_{1, t}}(x),F_{e_{2, t}}(y); \Theta).
+	\label{eq:copula_part}
+\end{equation}
+
+Wobec tego w mierze fizycznej $\Pra$, log-zwroty komponentów spreadu w modelu ARIMA-GARCH copula zadajemy dynamiką:
+
+\begin{equation}
+	\begin{cases}
+		\phi(B)(1-B)^d r_{i, t} = \theta(B)\varepsilon_{i, t},\\
+		\varepsilon_{i, t} = \sqrt{\sigma^2_{i, t}}e_{i, t},\\
+		\sigma^2_{i, t} = \omega_i + \sum_{j=1}^{m}\alpha_i\varepsilon^2_{i, t-j}+ \sum_{k=1}^{n}\beta_i\sigma^2_{i, t-k},\\
+		e_{i, t} \sim_{\Pra} IID_i(0,1),\\
+		F_{e_{1,t}, e_{2,t}}(x, y) = C^{\Pra}(F_{e_{1, t}}(x),F_{e_{2, t}}(y); \Theta).
+	\end{cases}
+	\label{eq:model_armagarch}
+\end{equation}
+
+gdzie poszczególne oznaczenia opisane zostały w równaniach \ref{eq:arima_part}-\ref{eq:copula_part} powyżej.

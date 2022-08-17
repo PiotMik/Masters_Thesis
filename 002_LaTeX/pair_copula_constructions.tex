@@ -1,0 +1,75 @@
+Zaczniemy od przykładu w trzech wymiarach, aby zilustrować czym jest \emph{Pair copula construction} (PCC). Ogólną ideą jest to, aby wielowymiarowy rozkład zmiennej losowej rozbić na dwuwymiarowe komponenty modelowane za pomocą dwuwymiarowych kopuł.\\
+
+W poniższych rozważaniach przydadzą nam się następujący lemat dotyczący relacji między gęstością kopuły a rozkładami warunkowymi:
+
+\begin{lemma}
+	Rozkład warunkowy dwuwymiarowej zmiennej losowej można przedstawić w języku kopuły:	
+	$$ f_{1|2}(x_1|x_2) =c_{12}(F_1(x_1), F_2(x_2))f_2(x_2).$$
+	\label{lem:copula_representation_of_conditional_density}
+\end{lemma}
+\begin{proof}
+	Posługując się twierdzeniem Sklara \ref{thm:sklar_theorem_density} mamy:
+	\begin{equation*}
+		\begin{split}
+			f_{1|2}(x_1, x_2) & = \frac{f_{12}(x_1, x_2)}{f_2(x_2)} \\
+			& = \frac{c_{12}(F_1(x_1), F_2(x_2))f_1(x_1)f_2(x_2)}{f_2(x_2)}\\
+			& = c_{12}(F_1(x_1), F_2(x_2))f_1(x_1)
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\subsubsection{Przykład ilustrujący}
+\label{subsub:przyklad_3_wymiary}
+Aby zilustrować PCC, rozpatrzmy rozkład $3$-wymiarowy o gęstości $f(x_1, x_2, x_3)$. Tę gęstość można przedstawić w postaci:
+
+$$ f(x_1, x_2, x_3) = f_{3|12}(x_3|x_1, x_2)f_{2|1}(x_2|x_1)f_1(x_1).$$
+
+Celem jest sfaktoryzowanie tego wyrażenia do postaci wykorzystującej co najwyżej dwuwymiarowe kopuły lub jednowymiarowe rozkłady brzegowe. Widzimy, że w tym celu należy rozwinąć $f_{3|12}$ oraz $f_{2|1}$. \\
+Korzystając z lematu \ref{lem:copula_representation_of_conditional_density} otrzymujemy bezpośrednio $f_{2|1}$ oraz $f_{3|1}$ (które przyda się za chwilę) jako:
+\begin{equation*}
+	\begin{split}
+		f_{1|2}(x_1|x_2) &= c_{12}(F_1(x_1), F_2(x_2))f_2(x_2),\\
+		f_{3|2}(x_3|x_2) &= c_{32}(F_3(x_3), F_2(x_2))f_2(x_2)
+	\end{split}
+\end{equation*}
+
+Natomiast w celu otrzymania $f_{3|12}$ będziemy musieli przejść przez dwuwymiarowy rozkład $f_{13|2}(x_1, x_3|x_2)$. Ma on rozkłady brzegowe $F_{1|2}(x_1|x_2)$ oraz $F_{3|2}(x_3|x_2)$ i kopułę warunkową $c_{13;2}$~-~czyli kopułę rozkładu $(X_1, X_3) | X_2=x_2$. Zaaplikujemy do niego twierdzenie Sklara \ref{thm:sklar_theorem_density}:
+
+\begin{equation*}
+	\begin{split}
+		f_{3|12}(x_3|x_1,x_2)  & = \frac{f_{13|2}(x_1, x_3|x_2)}{f_{1|2}(x_1|x_2)} \\
+		& = \frac{c_{13;2}(F_{1|2}(x_1|x_2), F_{3|2}(x_3|x_2); x_2)f_{1|2}(x_1|x_2)f_{3|2}(x_3|x_2)}{f_{1|2}(x_1|x_2)}\\
+		& = c_{13;2}(F_{1|2}(x_1|x_2), F_{3|2}(x_3|x_2); x_2)f_{3|2}(x_3|x_2) \\
+		& = c_{13;2}(F_{1|2}(x_1|x_2), F_{3|2}(x_3|x_2); x_2)c_{32}(F_3(x_3), F_2(x_2))f_2(x_2)
+	\end{split}
+\end{equation*}
+
+Finalnie otrzymujemy dekompozycję $f(x_1, x_2, x_3)$ do postaci:
+
+\begin{equation}
+	\begin{split}
+	f(x_1, x_2, x_3) = &c_{13;2}(F_{1|2}(x_1|x_2), F_{3|2}(x_3|x_2); x_2) \cdot \\
+	& c_{23}(F_2(x_2), F_3(x_3)) \cdot c_{12}(F_1(x_1), F_2(x_2)) \cdot \\
+	& f_3(x_3)f_2(x_2)f_1(x_1).
+	\end{split}
+	\label{eq:PCC}
+\end{equation}
+
+Powyższe czynniki są jedynie dwuwymiarowymi kopułami oraz rozkładami warunkowymi lub brzegowymi. Taką dekompozycję nazwiemy Pair Copula Construction (PCC). Zaletą takiej reprezentacji nad wielowymiarową kopułą jest to, że ma większą liczbę niżej-wymiarowych komponentów, przez co pozwala lepiej dopasować model do danych. Realne dane rzadko mają regularną strukturę zależności która może być dobrze opisana jedną, wielowymiarową kopułą (\cite{Czado_Vine_Copulas}), dlatego też PCC radzi sobie z tym lepiej.\\
+Zwróćmy jednak uwagę na fakt, że nie jest to jedyna PCC która opisuje rozkład $f(x_1, x_2, x_3)$. Istnieją poniższe, równoważne reprezentacje - do których wrócimy pod koniec sekcji \ref{subsec:vine_copula}.
+
+\begin{equation}
+	\begin{split}
+		f(x_1, x_2, x_3) = &c_{12;3}(F_{1|3}(x_1|x_3), F_{2|3}(x_2|x_3); x_3) \cdot \\
+		& c_{13}(F_1(x_1), F_3(x_3)) \cdot c_{23}(F_2(x_2), F_3(x_3)) \cdot \\
+		& f_3(x_3)f_2(x_2)f_1(x_1).
+	\end{split}
+\end{equation}
+
+\begin{equation*}
+	\begin{split}
+		f(x_1, x_2, x_3) = &c_{23;1}(F_{2|1}(x_2|x_1), F_{3|1}(x_3|x_1); x_1) \cdot \\
+		& c_{13}(F_1(x_1), F_3(x_3)) \cdot c_{12}(F_1(x_1), F_2(x_2)) \cdot \\
+		& f_3(x_3)f_2(x_2)f_1(x_1).
+	\end{split}
+\end{equation*}
