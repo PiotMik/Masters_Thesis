@@ -1,0 +1,4 @@
+,Test statistic,p-value,Test statistic,p-value,Test statistic,p-value
+Ljung-Box,10.002,0.169,0.664,0.088,21.439,0.544
+t,1.01,0.313,0.657,0.511,1.583,0.114
+$\chi^2$,519.909,0.507,520.627,0.516,518.438,0.489

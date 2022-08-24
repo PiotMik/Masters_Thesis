@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style={mgr_circle}] (0) at (-8, 1) {O};
+		\node [style={mgr_circle}] (1) at (0, 1) {S};
+		\node [style={mgr_circle}] (2) at (8, 1) {M};
+		\node [style={mgr_circle}, ellipse] (3) at (-7, -3) {S,O};
+		\node [style={mgr_circle}, ellipse] (4) at (7, -3) {S,M};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (1);
+		\draw (1) to (2);
+		\draw [in=180, out=0] (3) to (4);
+	\end{pgfonlayer}
+\end{tikzpicture}

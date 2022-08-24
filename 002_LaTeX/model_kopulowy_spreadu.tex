@@ -1,13 +1,15 @@
-Dla skupienia uwagi rozważymy model bazujący na rozszerzeniu idei z \cite{Herath_Copula_Crack_Spread}. Używać będziemy procesów ARIMA-GARCH do opisu dynamiki rozkładów brzegowych, po czym zastosujemy kopuły do modelowania zależności w reziduach. Należy zaznaczyć, że jest to algorytm o dużej dowolności "podmiany" elementów, który daje się łatwo rozszerzać poprzez uwzględnianie innych procesów brzegowych, czy dynamicznej struktury zależności. Przykłady takich rozszerzeń znaleźć można w \cite{Espen_Crack_Spread_Copula}, \cite{Bernard_Pricing_Multivariate_Options_with_copulae} czy \cite{Cherubini_Dynamic_Copula_Methods_in_Finance}.\\
+Dla skupienia uwagi rozważymy model bazujący na rozszerzeniu idei z \cite{Herath_Copula_Crack_Spread}. Używać będziemy procesów ARIMA-GARCH do opisu dynamiki rozkładów brzegowych, po czym zastosujemy kopuły do modelowania zależności w reziduach. Należy zaznaczyć, że jest to algorytm o dużej dowolności "podmiany" elementów, który daje się łatwo rozszerzać poprzez uwzględnianie innych procesów brzegowych, czy dynamicznej struktury zależności. Przykłady takich rozszerzeń znaleźć można w \cite{Espen_Crack_Spread_Copula}, \cite{Herath_Copula_Crack_Spread}, \cite{Sukcharoen2017} czy  \cite{Bernard_Pricing_Multivariate_Options_with_copulae}.\\
 
-\subsubsection{Model ARIMA-GARCH copula}
-Niech $S_1(t), S_2(t)$ będą cenami dwóch aktywów. Rozważać będziemy proces ich log-zwrotów:
+\subsubsection{Model ARIMA-GARCH Vine Copula}
+Niech $S_1(t), S_2(t), \dots, S_d(t)$ będą cenami $d$ aktywów. Rozważać będziemy proces ich log-zwrotów:
 
-$$ r_{i, t+1} = \log[S_i(t+1)] - \log[S_i(t)],$$
+\begin{equation}
+	r_{i, t+1} = \log[S_i(t+1)] - \log[S_i(t)],
+	\label{eq:logreturn}
+\end{equation}
+gdzie $i\in\{1,\dots, d\}$. Niech $\mathcal{F}_t = \sigma(r_{1,s}, \dots, r_{d,s}, s\leqslant t)$ będzie filtracją reprezentującą całą wiedzę o procesie cen aktywów do momentu $t$.\\
 
-gdzie $i\in\{1,2\}$. Niech $\mathcal{F}_t = \sigma(r_{1,s}, r_{2,s}, s\leqslant t)$ będzie filtracją reprezentującą całą wiedzę o procesie cen aktywów do momentu $t$.\\
-
-Celem jest otrzymanie spójnego modelu łącznego dla $S_1$ i $S_2$, pozwalającego na symulację i obliczenie spreadu. Model składać się będzie kilku komponentów: indywidualnych modeli szeregów czasowych dla komponentów spreadu, oraz modelu struktury zależności między nimi. Uściślając: zakładać będziemy, że aktywa poruszają się zgodnie z pewnym procesem klasy ARIMA(p,d,q)-GARCH(m,n), oraz że struktura zależności między reziduami zadana jest poprzez kopułę $C^{\Pra}(u, v; \Theta)$ o wektorze parametrów $\Theta$, zdefiniowaną względem fizycznej miary probabilistycznej $\Pra$.\\
+Celem jest otrzymanie spójnego modelu łącznego dla $(S_1, \dots, S_d)$, pozwalającego na symulację i obliczenie spreadu. Model składać się będzie kilku komponentów: indywidualnych modeli szeregów czasowych dla komponentów spreadu, oraz modelu struktury zależności między nimi. Uściślając: zakładać będziemy, że aktywa poruszają się zgodnie z pewnym procesem klasy ARIMA(p,d,q)-GARCH(m,n), oraz że struktura zależności między reziduami zadana jest poprzez strukturę Vine Copula $\Nu$ względem miary probabilistycznej $\Pra$.\\
 
 Najpierw, w celu uchwycenia struktury zależności czasowej każdego z aktywów osobno, modelujemy \emph{warunkową wartość oczekiwaną} ich logzwrotów poprzez proces ARIMA(p,d,q):
 
@@ -32,10 +34,10 @@ Losowość/zmienność tego procesu zależy więc od rozkładu innowacji $\varep
 gdzie $\omega_i > 0, \alpha_i,\beta_i \geqslant 0$
 
 Równania \ref{eq:arima_part} oraz \ref{eq:garch_part} zapewnić mają uchwycenie \emph{temporal dependency structure} w szeregach czasowych komponentów, i wyłuskanie innowacji $e_{i, t}$, które są w wymiarze czasowym $t$ niezależne i o jednakowych ustandaryzowanych rozkładach $F_{e_{i, t}}$. W oryginalnym modelu GARCH zakłada się tu standardowy rozkład normalny - jednak w praktyce często osłabia się to założenie do rozkładów scentrowanych, aby pozwolić na obecność cięższych ogonów. Tak też robimy w tym przypadku.\\
-Mimo wyeliminowania zależności czasowej, rezidua aktywów wciąż jednak posiadać będą strukturę zależności między sobą, tzn. $e_{1, t} \not\perp e_{2, t}$. Do jej modelowania posłuży nam parametryczna, dwuwymiarowa kopuła $C^{\Pra}(u, v, \Theta)$:
+Mimo wyeliminowania zależności czasowej, rezidua aktywów wciąż jednak posiadać będą strukturę zależności między sobą. Do jej modelowania posłuży nam $d$-wymiarowa struktura Vine Copula $\Nu$:
 
 \begin{equation}
-	F_{e_{1,t}, e_{2,t}}(x, y) = C^{\Pra}(F_{e_{1, t}}(x),F_{e_{2, t}}(y); \Theta).
+	F_{e_{1,t}, \dots, e_{d, t}}(x_1, \dots, x_d) = \Nu^{\Pra}(F_{e_{1, t}}(x_1), \dots, F_{e_{d, t}}(x_d)).
 	\label{eq:copula_part}
 \end{equation}
 
@@ -47,7 +49,7 @@ Wobec tego w mierze fizycznej $\Pra$, log-zwroty komponentów spreadu w modelu A
 		\varepsilon_{i, t} = \sqrt{\sigma^2_{i, t}}e_{i, t},\\
 		\sigma^2_{i, t} = \omega_i + \sum_{j=1}^{m}\alpha_i\varepsilon^2_{i, t-j}+ \sum_{k=1}^{n}\beta_i\sigma^2_{i, t-k},\\
 		e_{i, t} \sim_{\Pra} IID_i(0,1),\\
-		F_{e_{1,t}, e_{2,t}}(x, y) = C^{\Pra}(F_{e_{1, t}}(x),F_{e_{2, t}}(y); \Theta).
+			F_{e_{1,t}, \dots, e_{d, t}}(x_1, \dots, x_d) = \Nu^{\Pra}(F_{e_{1, t}}(x_1), \dots, F_{e_{d, t}}(x_d)).
 	\end{cases}
 	\label{eq:model_armagarch}
 \end{equation}

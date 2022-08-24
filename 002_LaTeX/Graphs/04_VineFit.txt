@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style={mgr_circle}] (0) at (-8, 1) {O};
+		\node [style={mgr_circle}] (1) at (0, 1) {S};
+		\node [style={mgr_circle}] (2) at (8, 1) {M};
+		\node [style={mgr_circle}, ellipse] (3) at (-4, -3) {S,O};
+		\node [style={mgr_circle}, ellipse] (4) at (4, -3) {S,M};
+	\end{pgfonlayer}
+
+		\node[] at (-9.5, 1) {$T_1:$};
+		\draw (0) -- (1) node[midway, above] {$C_{O,S}$};
+		\draw (0) -- (1) node[midway, below] {Gaussian($\rho = 0.59$)};
+
+		\node[] at (-6, -3) {$T_2:$};
+		\draw (1) -- (2) node[midway, above] {$C_{S,M}$};
+		\draw (1) -- (2) node[midway, below] {Frank($\delta = 8.30$)};
+
+		\draw (3) -- (4) node[midway, above] {$C_{O,M ; S}$};
+		\draw (3) -- (4) node[midway, below] {Frank($\delta = -4.28$)};
+\end{tikzpicture}
