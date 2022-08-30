@@ -17,7 +17,7 @@ Przyjrzymy się więc jednej stronie powyższego dualizmu i przeanalizujmy kopu�
 	\caption{\textbf{Kopuły minimum i maksimum.} Kontury (po lewej) i dystrybuanty (po prawej) kopuł: maximum (górny panel) i minimum (dolny panel)\label{fig:minmax_copula}}
 \end{figure}
 
-Powyższe kopuły stanowią horyzont osiągalnych kopuł, ponieważ jak mówi twierdzenie \ref{thm:frechet_hoeffding}, są one ograniczeniem dolnym i górnym dla dowolnej innej kopuli. Ich powierzchnie i kontury przedstawia rysunek \ref{fig:minmax_copula}. 
+Kopuły minimum i maximum stanowią horyzont osiągalnych kopuł, ponieważ jak mówi twierdzenie \ref{thm:frechet_hoeffding}, są one ograniczeniem dolnym i górnym dla dowolnej innej kopuli. Ich powierzchnie i kontury przedstawia rysunek \ref{fig:minmax_copula}. 
 
 \begin{thm}[Fréchet-Hoeffding bounds]
 	Niech $C$ będzie $2$-wymiarową kopułą. Wtedy dla każdego $(u, v)\in[0, 1]^2$ zachodzi
@@ -78,9 +78,9 @@ Co więcej, uzupełniając opis kopuł minimum i maksimum - te z kolei odpowiada
 	\label{thm:tau_from_copula}
 \end{prop}
 
-Przypomnijmy, że w rozdziale \ref{sec:miary_współzależności} połączyliśmy wspoł- i przeciwmonotoniczność z miarami zgodności. Istotnie, bezpośrednio ze wzorów \ref{eq:tau_from_copula} i \ref{eq:rho_from_copula} otrzymujemy teraz dla $C^{+}$: $\tau=1$ oraz $\rho=1$, dla $C^{\perp}$: $\tau=0$ i $\rho=0$, natomiast dla $C^{-}$ mamy $\tau=-1$ i $\rho=-1$. Wzory z twierdzenia \ref{thm:tau_from_copula} mają jednak głębsze znaczenie: zadają bijekcję między miarami zgodności a konkretną kopułą. Z tego powodu, estymacja $\tau$ jest równoważna estymacji parametrów kopuły, co jest wykorzystywane do kalibracji modeli kopułowych.
+Przypomnijmy, że w rozdziale \ref{sec:miary_współzależności} połączyliśmy wspoł- i przeciwmonotoniczność z miarami zgodności. Istotnie, bezpośrednio ze wzorów \ref{eq:tau_from_copula} i \ref{eq:rho_from_copula} otrzymujemy teraz dla $C^{+}$: $\tau=1$ oraz $\rho=1$, dla $C^{\perp}$: $\tau=0$ i $\rho=0$, natomiast dla $C^{-}$ mamy $\tau=-1$ i $\rho=-1$. Wzory z własności \ref{thm:tau_from_copula} mają jednak głębsze znaczenie: zadają bijekcję (niezależną od rozkładów brzegowych) między miarami zgodności a konkretną kopułą. Z tego powodu, estymacja $\tau$ jest równoważna estymacji parametrów kopuły, co jest wykorzystywane do kalibracji.
 
-Podobnie jest ze wspołczynnikami zależności ogonów, wprowadzonymi w rozdziale \ref{sec:miary_współzależności}. Wprost z definicji kopuły wynika, że można je przedstawić w języku kopuły, i uzyć do kalibracji modelu:
+Podobnie jest ze wspołczynnikami zależności ogonów, wprowadzonymi w rozdziale \ref{sec:miary_współzależności}. Wprost z definicji kopuły wynika, że można je przedstawić używając jedynie kopuły:
 \begin{prop}[Zależność ogonów]
 		Górny współczynnik zależności ogonów $(X_1, X_2)$ o rozkładach brzegowych $F_1$ i $F_2$ i kopuli $C$ możemy przedstawić jako:
 		$$ \lambda^{u} = \lim\limits_{t\to1^{-}}\Pra[X_2 > F_2^{-1}(t) \vert X_1 > F_1^{-1}(t) ] = \lim\limits_{t\to1^{-}}\frac{1-2t+C(t, t)}{1-t}.$$

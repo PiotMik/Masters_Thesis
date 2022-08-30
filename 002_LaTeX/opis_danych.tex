@@ -1,6 +1,6 @@
 Do analizy użyliśmy danych pochodzących z giełdy \emph{Nasdaq} - powszechnie dostępna jest tam historia cen spot \href{https://www.nasdaq.com/market-activity/commodities/zs/historical}{ziaren soi},  \href{https://www.nasdaq.com/market-activity/commodities/zm/historical}{śruty sojowej} oraz \href{https://www.nasdaq.com/market-activity/commodities/zl/historical}{oleju sojowego}. Dostępne mamy 3650 dziennych kwotowań OHCL (open/high/close/low), czyli 10 lat obserwacji od sierpnia 2012 do sierpnia 2022 roku. Do analizy użyliśmy wartości z zamknięcia.\\
 
-Analizę rozpoczęliśmy od sprawdzenia jakości danych. Zauważone negatywne wartości dla szeregu czasowego śruty sojowej zostały sprawdzone do alternatywnego źródła kwotowań (\href{https://www.investing.com/commodities/us-soybean-meal-historical-data}{Investing.com}) i jako że to zjawisko nie zostało tam zaobserwowane, usunęliśmy 3 obserwacje w połowie sierpnia 2018. Ze względu jednostki użyte przez źródło danych (ceny w centach), przeskalowaliśmy je tak, aby odpowiadały opisowi w \cite{CME_soybean} - w celu weryfikacji czy przyjmują sensowne wartości. Finalny zbiór danych można obserwować na wykresie \ref{fig:original_time_series}.\\
+Analizę rozpoczęliśmy od sprawdzenia jakości danych. Zauważone negatywne wartości dla szeregu czasowego śruty sojowej zostały sprawdzone do alternatywnego źródła kwotowań (\href{https://www.investing.com/commodities/us-soybean-meal-historical-data}{Investing.com}) i jako że to zjawisko nie zostało tam zaobserwowane, usunęliśmy 3 obserwacje w połowie sierpnia 2018. Ze względu jednostki użyte przez źródło danych (ceny w centach), przeskalowaliśmy szeregi czasowe tak, aby odpowiadały opisowi w dokumencie technicznym \cite{CME_soybean} - w celu weryfikacji czy przyjmują sensowne wartości. Finalny zbiór danych można obserwować na wykresie \ref{fig:original_time_series}.\\
 
 Zgodnie z \cite{CME_soybean}, soybean crush spread - a dokładniej $1\colon1\colon1$ soybean crush spread definiujemy jako:
 
@@ -22,40 +22,24 @@ gdzie $O_t$, $M_t$ i $S_t$ to ceny odpowiednio: jednostki oleju, jednostki śrut
 	\caption{\textbf{Szeregi czasowe cen spot}. Lewy panel od góry: soja, olej sojowy, śruta sojowa. Prawy panel: 1-1-1 crush spread. \label{fig:original_time_series}}
 \end{figure}
 
-Szeregi czasowe były kompletne, poza wyjątkiem trzech obserwacji usuniętych manualnie z szeregu śruty sojowej. Użyliśmy strategii \emph{forward-fill}, aby zalepić tę lukę za pomocą ostatniej dostepnej wartości przed początkiem luki. Ponieważ soybean crush spreadem najczęściej handluje się w horyzontach miesięcy, zdecydowaliśmy, że modelowanie na dziennych przyrostach wartości nie będzie dobrym wyborem. Wszystkie szeregi zostały przekształcone do częstotliwości tygodniowej, poprzez wzięcie ostatniej dostępnej wartości w danym tygodniu, na podstawie czego policzyliśmy następnie log-zwroty zgodnie z równaniem \ref{eq:logreturn}.
+Szeregi czasowe były kompletne, poza wyjątkiem trzech obserwacji usuniętych manualnie z szeregu śruty sojowej. Użyliśmy strategii \emph{forward-fill}, aby uzupełnić tę lukę w danych przy pomocą ostatniej dostepnej wartości. Ponieważ soybean crush spreadem najczęściej handluje się w horyzontach miesięcy, zdecydowaliśmy, że modelowanie na dziennych przyrostach wartości nie będzie dobrym wyborem. Wszystkie szeregi zostały przekształcone do częstotliwości tygodniowej, poprzez wzięcie ostatniej dostępnej wartości w danym tygodniu, na podstawie czego policzyliśmy następnie log-zwroty zgodnie z równaniem \ref{eq:logreturn}.
 
-Exploratory data analysis rozpoczęliśmy od struktury zależności logzwrotów, rysując wykresy punktowe widoczne na rysunku \ref{fig:pairplot_original_scale}. Widzimy na nich wysoki stopień zależności między komponentami spreadu, chociaż relacja samego spreadu z poszczególnymi z nich nie wydaje się być oczywista.
+\emph{Exploratory data analysis} (EDA) rozpoczęliśmy od struktury zależności logzwrotów, rysując wykresy punktowe widoczne na rysunku \ref{fig:pairplot_original_scale}. Widzimy na nich wysoki stopień zależności między komponentami spreadu, chociaż relacja samego spreadu z poszczególnymi z nich nie wydaje się być oczywista.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\linewidth]{04_PairPlot}
+	\includegraphics[width=0.9\linewidth]{04_PairPlot}
 	\caption{\textbf{Wykresy zależności log-zwrotów.} Wykresy punktowe każdy-z-każdym, oraz histogramy wszystkich zmiennych. \label{fig:pairplot_original_scale}}
 \end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\linewidth]{04_TailAnalysis_1}
-	\caption{\textbf{Ogony log-zwrotów (1/2).} Histogramy oraz \emph{kde} gęstości logzwrotów dla każdego aktywa, wraz z dopasowaną gęstością rozkładu normalnego (lewy panel). Empiryczny ogon danych w skali logarytmicznej, wraz z ogonem dopasowanego rozkładu normalnego (prawy panel). \label{fig:tail_analysis_01}}
-\end{figure}
+Następnie zbadaliśmy ogony rozkładów logzwrotów, kalibrując do nich rozkład normalny i porównując gęstości, oraz wykres ogonu w skali logarytmicznej. Rysunek \ref{fig:tail_analysis}, a szczególnie ich prawe panele wskazują na ciężkoogonowość logzwrotów, która uwydatniona jest najbardziej dla samego crush spreadu.\\
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\linewidth]{04_TailAnalysis_2}
-	\caption{\textbf{Analiza ciężkoogonowości log-zwrotów (2/2).} Histogramy oraz \emph{kde} gęstości logzwrotów dla każdego aktywa, wraz z dopasowaną gęstością rozkładu normalnego (lewy panel). Empiryczny ogon danych w skali logarytmicznej, wraz z ogonem dopasowanego rozkładu normalnego (prawy panel). \label{fig:tail_analysis_02}}
-\end{figure}
-
-Następnie zbadaliśmy ogony rozkładów logzwrotów, kalibrując do nich rozkład normalny i porównując gęstości, oraz wykres ogonu w skali logarytmicznej. Rysunki \ref{fig:tail_analysis_01}-\ref{fig:tail_analysis_02}, a szczególnie ich prawe panele wskazują na ciężkoogonowość logzwrotów, która uwydatniona jest najbardziej dla samego crush spreadu.\\
-
-\begin{table}
-	\centering
-	\csvreader[
-	tabular=lcc,
-	table head=\toprule \bfseries{Asset} & \bfseries{ADF~Test~Statistic} & \bfseries{p-value} \\\midrule,
-	late after last line=\\\bottomrule % horizontal line at the end of the table
-	]{
-		Tables/Stationarity.csv
-	}{}{\csvlinetotablerow}
+	\includegraphics[width=0.7\linewidth]{04_TailAnalysis_1}
+	\includegraphics[width=0.7\linewidth]{04_TailAnalysis_2}
 	
-	\caption{\textbf{Test stacjonarności szeregów czasowych.} Tabela przedstawia statystyki testowe i p-wartości testu \emph{Augmented Dickey-Fuller}. W każdym przypadku odrzucamy hipotezę zerową o niestacjonarności szeregów.
-		\label{tab:adf_test}}
-\end{table}
+	\caption{\textbf{Ogony log-zwrotów.} Histogramy oraz \emph{kde} gęstości logzwrotów dla każdego aktywa, wraz z dopasowaną gęstością rozkładu normalnego (lewy panel). Empiryczny ogon danych w skali logarytmicznej, wraz z ogonem dopasowanego rozkładu normalnego (prawy panel). \label{fig:tail_analysis}}
+\end{figure}
+
+\FloatBarrier

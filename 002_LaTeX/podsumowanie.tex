@@ -1,3 +1,8 @@
 \begin{wstep}[Wnioski]    % ew. \begin{wstep}[Wprowadzenie]
+	W pracy omówiliśmy model ARIMA-GARCH-VineCopula w kontekście symulacji spreadu wielu aktywów. Podaliśmy teorię kopuł, oraz struktur Vine Copula z wyszczególnieniem ich zastosowań w praktyce, oraz omówiliśmy ich związek z rodzajami struktur zależności alternatywnymi dla najprostszej liniowej korelację Pearsona.\\
+	Przedstawiliśmy wyniki kalibracji modelu do tygodniowych cen zamknięcia komponentów \emph{soybean crush spreadu}. W trakcie analizy udowodniliśmy ciężkoogonowość logzwrotów, oraz brak istotnej struktury autokorelacji czy częściowej autokorelacji w komponentach spreadu. Dane przejawiają heteroskedastyczność, dającą się skutecznie zamodelować przy pomocy modelu GARCH(2, 3).\\
+	Zbadana została struktura zależności reziduów modeli GARCH, do których dopasowany został model Vine Copula bazujący na kopułach: Gaussowskiej i Franka. Model ukazał istotność soi jako wiodącego szeregu czasowego o największym wpływie na pozostałe komponenty, oraz wskazał na brak istotnej zależności w ogonach reziduów co przejawiło się w dopasowaniu kopuł o braku współczynnika zależności ogonów.\\
+	Porównaliśmy model Vine Copula z modelem wielowymiarowej kopuły gaussowskiej dochodząc do wniosku, że oba modele uchwycają ciężkoogonowość spreadu, oraz dają podobne rozkłady logzwrotów dla większości kwantyli - jednak Vine Copula przejawia cięższe ogony w kwantylach ekstremalnych ($0.01$, $0.99$).\\
+	Finalny symulacyjny model potrafi produkować realistyczne realizacje trajektorii spreadu, co pozwala wykorzystywać go do wyceny instrumentów pochodnych na spread metodą Monte Carlo - co zaprezentowane zostało dla przypadku europejskich opcji.
 	
 \end{wstep}

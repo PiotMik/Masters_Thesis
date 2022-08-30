@@ -2,8 +2,7 @@ W dalszej części rozdziału skupimy się już tylko na komponentach spreadu, p
 
 \subsubsection{Część ARIMA modelu}
 W celu przetestowania stacjonarności wykorzystaliśmy \emph{Augmented Dickey-Fuller test}, którego wyniki widoczne są w tabeli \ref{tab:adf_test}. Test ADF bada stacjonarność szeregu czasowego, a jego hipotezą zerową jest brak stacjonarności. Widzimy, że w przypadku każdego aktywa p-wartość jest poniżej poziomu istotności $0.05$, w związku z czym odrzucamy hipotezę zerową i wnioskuemy, że szeregi są stacjonarne i nadają się do modelowania technikami ARIMA.\\
-
-Przeanalizowaliśmy więc wykresy funkcji autokorelacji, oraz częściowej autokorelacji dla komponentów spreadu. Rysunki odpowiedni: \ref{fig:acf} i \ref{fig:pacf} przedstawiają ich wygląd. Widzimy kilka wartości \emph{lagu} dla których funkcje te wystają poza przedziały ufności. Nie dzieje się to jednak w sposób znaczący, w związku z czym możemy wnioskować o braku struktury korelacji czy autokorelacji w szeregach czasowych komponentów. Sprawdziliśmy tę hipotezę próbując dopasować modele ARIMA(p,d,q) dla $p,d,q \leqslant 5$, jednak dla każdego aktywa najniższe AIC miał model ARIMA(0,0,0). Nie będziemy zatem używać w naszym modelu części ARIMA z równania \ref{eq:model_armagarch}. Dla każdego aktywa pozwolimy jedynie na dopasowanie pewnej niezerowej średniej $\mu_i$, tak że równanie \ref{eq:arima_part}
+Przeanalizowaliśmy następnie wykresy funkcji autokorelacji, oraz częściowej autokorelacji dla komponentów spreadu. Rysunki odpowiednio: \ref{fig:acf} i \ref{fig:pacf} przedstawiają ich wygląd. Widzimy kilka wartości \emph{lagu} dla których funkcje te wystają poza przedziały ufności. Nie dzieje się to jednak w sposób znaczący, w związku z czym możemy wnioskować o braku struktury korelacji czy autokorelacji w szeregach czasowych komponentów. Hipotezę tę sprawdziliśmy próbując dopasować modele ARIMA(p,d,q) dla $p,d,q \leqslant 5$, jednak dla każdego aktywa najniższe AIC miał model ARIMA(0,0,0). Nie będziemy zatem używać w naszym modelu części ARIMA z równania \ref{eq:model_armagarch}. Dla każdego aktywa pozwolimy jedynie na dopasowanie pewnej niezerowej średniej $\mu_i$, tak że równanie \ref{eq:arima_part}
 przyjmie postać:
 
 $$ r_{i, t} = \mu_i + \varepsilon_{i, t}.$$
@@ -22,7 +21,21 @@ $$ r_{i, t} = \mu_i + \varepsilon_{i, t}.$$
 	\caption{\textbf{Analiza szeregów czasowych (2/2).} Funkcje częściowej autokorelacji dla każdego aktywa. \label{fig:pacf}}
 \end{figure}
 
+\begin{table}
+	\centering
+	\csvreader[
+	tabular=lcc,
+	table head=\toprule \bfseries{Asset} & \bfseries{ADF~Test~Statistic} & \bfseries{p-value} \\\midrule,
+	late after last line=\\\bottomrule % horizontal line at the end of the table
+	]{
+		Tables/Stationarity.csv
+	}{}{\csvlinetotablerow}
+	
+	\caption{\textbf{Test stacjonarności szeregów czasowych.} Tabela przedstawia statystyki testowe i p-wartości testu \emph{Augmented Dickey-Fuller}. W każdym przypadku odrzucamy hipotezę zerową o niestacjonarności szeregów.
+		\label{tab:adf_test}}
+\end{table}
 
+\FloatBarrier
 \subsubsection{Część GARCH modelu}
 W kolejnym kroku sprawdziliśmy homoskedastyczność szeregów czasowych. Dokonaliśmy wizualnej inspekcji wykresów odchylenia standardowego logzwrotów dla każdego aktywa przy pomocy ruchomego okna o długości $8$ tygodni. Rysunek \ref{fig:homoskedasticity} prezentuje przykład takiego wykresu dla cen soi. Widać na nim, że zmienność nie jest stała, lecz ma oscylujący okresowy charakter. Aby uchwycić tę informację użyliśmy modelu GARCH(m, n) opisanego równaniem \ref{eq:garch_part}. Modele były dopasowywane dla każdego aktywa osobno, za pomocą metody SLSQP (sequential least squares programming) wbudowanej w pakiet \emph{arch}, a następnie porównywane zostały pod względem kryterium informacyjnego AIC. Finalny model GARCH(2,3) został wybrany na podstawie najniższego średniego AIC ze względu na wszystkie aktywa. Wartości AIC, oraz wyniki kalibracji GARCH(2,3) zawarte są w tabelach odpowiednio: \ref{tab:garch_choice} oraz \ref{tab:garch_fit}.
 
@@ -78,13 +91,14 @@ Finalnie, otrzymaliśmy szeregi czasowe reziduów $e_{i,t}$, które według czwa
 	\caption{\textbf{Testy IID(0,1) reziduów.} Tabela przedstawia statystyki testowe i p-wartości testów: \emph{Ljunga-Boxa} (na niezależność), \emph{t testu} (średnia próbki równa 0) oraz $\chi^2$ (wariancja próbki równa 1) dla reziduów modeli GARCH(2,3).  W przypadku testu Ljunga-Boxa podano wartości dla lagu o najmniejszej p-wartości.\label{tab:iid_01_test}}
 \end{table}
 
+\FloatBarrier
 \subsubsection{Część Vine Copula modelu}
 
 Mając szeregi czasowe reziduów będące $IID(0,1)$, możemy dopasować kopułę do struktury zależności między nimi. Rezidua najpierw zostały przetransformowane poprzez transformację PIT (\ref{def:PIT}) opartą o ich empiryczne dystrubuanty, co przedstawia rysunek \ref{fig:ecdf_pit}. Rysunek \ref{fig:pair_copulas} ukazuje natomiast zależności pomiędzy poszczególnymi ujednostajnionymi reziduami do której będziemy dopasowywać rozkład Vine Copula.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{04_ECDFs}
+	\includegraphics[width=\linewidth]{04_ECDFs}
 	\caption{\textbf{Transformacja PIT.} Histogramy rezidów (górny panel), empiryczne dystrybuanty (środkowy panel) i rezidua przetransformowane poprzez PIT (dolny panel). \label{fig:ecdf_pit}}
 \end{figure}
 
@@ -96,7 +110,7 @@ Mając szeregi czasowe reziduów będące $IID(0,1)$, możemy dopasować kopuł�
 
 Wybór odpowiedniej Vine Copula oznacza wybór rodzaju struktury (R-vine, D-vine, C-vine, $\dots$), wybór dwuwymiarowych kopuł wewnątrz struktury, oraz estymację ich parametrów. Jak pokazaliśmy w przykładzie \ref{subsub:przyklad_3_wymiary}, w przypadku $3$-wymiarowych danych R-vine jest w stanie przyjąć jedynie jednen rodzaj struktury, który jednocześnie spełnia warunki na C-vine oraz D-vine. Dodatkowo widzieliśmy, że cała struktura zależy jedynie od kolejności zmiennych w pierwszym drzewie $T_1$.  Problem redukuje się tu więc do wyboru odpowiedniej kolejności, oraz estymacji dwuwymiarowych kopuł w takiej strukturze.\\
 Używamy tu algorytmu podanego w \cite{Dissmann_Vines}, który dobiera strukturę w sposób krokowy: zaczyna od pary najsilniej związanych ze sobą zmiennych i rozszerza strukturę w każdym kroku, wykorzystując $\tau$ Kendalla w celu dokonywania lokalnie optymalnych decyzji. Tabela \ref{tab:vine_selection} prezentuje wyniki tej estymacji dla różnych kolejności drzewa $T_1$ - algorytm Dissmanna wskazuje na wybór struktury o kolejności zmiennych $132$. Zwracamy uwagę na obserwację, że struktury o odwrotnych kolejnościach (jak $132$ i $231$) mają tę samą wartość AIC oraz log-likelihood. Wynika to z faktu, że gdy algorytm Dissmanna poszukuje optymalnej decyzji w danym kroku (czyli poszukuje odpowiednich dwuwymiarowych kopuł), pozwalamy mu na poruszanie się w dziedzinie kopuł przedstawionych w rozdziale \ref{subsec:dwuwymiarowe_kopuly_przyklady} które są (radialnie) symetryczne. Z tego powodu grafy struktury D-vine nie są grafami skierowanymi i kolejność w drzewach można bez konsekwencji odwracać. Skupienie na kopułach radialnie symetrycznych jest popularnym podejściem w praktyce (\cite{Cherubini_Copula_Methods_in_Finance}, \cite{Czado_Vine_Copulas}), a rysunek \ref{fig:pair_copulas} pokazuje że w przypadku naszych danych nie ma przesłanek do podejrzewania asymetrycznych zależności (obrót wykresów punktowych względem osi $x=y$ nie powoduje zmiany charakteru zależności - są one radialnie symetryczne). O asymetrycznych kopułach przeczytać można więcej w \cite{BedfordCooke2002}.\\
-Dodatkowo ponieważ poruszamy się w dziedzinie kopuł \emph{parametrycznych}, możemy przyspieszyć algorytm Dissmanna wykorzystując $\tau$ Kendalla do dopasowania dwuwymiarowych kopuł. Ta statystyka i tak jest obliczana w każdym kroku dla każdej pary zmiennych w celu wybrania "najsilniej związanych" zmiennych, więc algorytm może o razu użyć zależności wymienionych w \ref{subsec:dwuwymiarowe_kopuly_przyklady} do przełożenia $\hat{\tau}$ na $\hat{\Theta}$, czyli parametry konkretnej rodziny kopuł. Klasyczną alternatywą do estymacji parametrów byłaby metoda największej wiarogodności (\cite{BedfordCooke2002}, \cite{Czado_Vine_Copulas}).\\
+Dodatkowo ponieważ poruszamy się w dziedzinie kopuł \emph{parametrycznych}, możemy przyspieszyć algorytm Dissmanna wykorzystując $\tau$ Kendalla do dopasowania dwuwymiarowych kopuł. Ta statystyka i tak jest obliczana w każdym kroku dla każdej pary zmiennych w celu wybrania najsilniej związanych zmiennych, więc algorytm może o razu użyć zależności wymienionych w \ref{subsec:dwuwymiarowe_kopuly_przyklady} do przełożenia $\hat{\tau}$ na $\hat{\Theta}$, czyli parametry konkretnej rodziny kopuł. Klasyczną alternatywą do estymacji parametrów byłaby metoda największej wiarogodności (\cite{BedfordCooke2002}, \cite{Czado_Vine_Copulas}).\\
 
 \begin{table}
 	\centering
@@ -127,3 +141,4 @@ Dopasowana w ten sposób struktura zaprezentowana jest na rysunku \ref{fig:vine_
 	\end{minipage}
 	\caption{\textbf{Model struktury zależności.} R-vine dopasowana do danych przy pomocy algorytmu Dissmanna. Graf struktury (górny panel) i kontury kopuł w skali brzegowo-znormalizowanej (dolny panel). \label{fig:vine_fit}}
 \end{figure}
+\FloatBarrier
