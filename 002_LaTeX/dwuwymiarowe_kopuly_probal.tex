@@ -27,7 +27,7 @@ Kopuły minimum i maximum stanowią horyzont osiągalnych kopuł, ponieważ jak 
 	\label{thm:frechet_hoeffding}
 \end{thm}
 
-Twierdzenie to, choć z pozoru teoretyczne, ciągnie za sobą bardzo praktyczne konsekwencje: pozwala otrzymać niezależne od modelu ogranicznia górne i dolne na dowolną kopułę. \cite{Cherubini_Copula_Methods_in_Finance} pokazuje przykład, gdzie twierdzenie Frécheta-Hoeffdinga pozwala na uzyskanie dolnego i górnego ograniczenia na pewne statystyki modelu, jak np. łączne prawdopodobieństwo bankructwa dwóch firm w strukturalnym modelu Mertona, czy cena opcji binarnej na dwa aktywa.\\
+Twierdzenie to, choć z pozoru teoretyczne, ciągnie za sobą bardzo praktyczne konsekwencje: pozwala otrzymać niezależne od modelu ogranicznia górne i dolne na dowolną kopułę. \cite{Cherubini_Copula_Methods_in_Finance} pokazuje przykład, w którym twierdzenie \newline Frécheta-Hoeffdinga pozwala na uzyskanie dolnego i górnego ograniczenia na pewne statystyki modelu, jak np. łączne prawdopodobieństwo bankructwa dwóch firm w strukturalnym modelu Mertona, czy cena opcji binarnej na dwa aktywa.\\
 
 \begin{df}[Kopuła produktowa]
 	Dwuwymiarowa kopuła produktowa $C^{\perp}$ to kopuła zadana wzorem $C^{\perp}(u, v) = uv.$
@@ -44,24 +44,24 @@ Twierdzenie to, choć z pozoru teoretyczne, ciągnie za sobą bardzo praktyczne 
 Kopuła produktowa jest trzecim istotnym punktem odniesienia w świecie kopuł, ponieważ posiada pewną unikalną właśność. Z jednej strony z definicji kopuły mamy:
 
 \begin{equation}
-C(u, v) = P(U \leqslant u, V \leqslant v )
+C(u, v) = \Pra(U \leqslant u, V \leqslant v )
 \label{eq:independence_copula1}
 \end{equation}
 
 Z drugiej jednak strony, wiemy że $U$ i $V$ mają rozkłady jednostajne - więc:
 \begin{equation}
-	F_U(u) = P(U \leqslant u) = u\text{, oraz } F_V(v) = P(V \leqslant v) = v.
+	F_U(u) = \Pra(U \leqslant u) = u\text{, oraz } F_V(v) = \Pra(V \leqslant v) = v.
 \label{eq:independence_copula2}
 \end{equation}
 
 Z równań \ref{eq:independence_copula1} i \ref{eq:independence_copula2}, dla przypadku kopuły produktowej mamy zatem:
 \begin{equation}
-	P(U \leqslant u, V \leqslant v ) \equiv C^{\perp}(u, v) = uv = P(U \leqslant u) P(V \leqslant v).
+	\Pra(U \leqslant u, V \leqslant v ) \equiv C^{\perp}(u, v) = uv = \Pra(U \leqslant u) \Pra(V \leqslant v).
 	\label{eq:independence_copula}
 \end{equation}
 
 Równanie \ref{eq:independence_copula} mówi nam, że zmienne losowe $V$ i $U$ są od siebie niezależne. Model kopuły produktowej, implikuje więc niezależność jednostajnych rozkładów brzegowych.\\
-Co więcej, uzupełniając opis kopuł minimum i maksimum - te z kolei odpowiadają współmonotonicznej i przeciwmonotonicznej zależności jednostajnych rozkładów brzegowych. Rodzinę kopuł zawierającą w sobie $C^{-}, C^{\perp}$, oraz $C^{+}$ nazywać będziemy wyczerpującą \emph{(eng. comprehensive)}. Widzimy zatem, że kopuły potrafią modelować pełne spektrum możliwych zależności: od współmonotonicznych, przez niezależne, aż po przeciwmonotoniczne.\\
+Co więcej, uzupełniając opis kopuł minimum i maksimum - te z kolei odpowiadają współmonotonicznej i przeciwmonotonicznej zależności jednostajnych rozkładów brzegowych. Rodzinę kopuł zawierającą w sobie $C^{-}, C^{\perp}$, oraz $C^{+}$ nazywać będziemy kompletną \emph{(eng. comprehensive)}. Widzimy zatem, że kopuły potrafią modelować pełne spektrum możliwych zależności: od współmonotonicznych, przez niezależne, aż po przeciwmonotoniczne.\\
 
 \begin{prop}[$\rho$ Spearmana i $\tau$ Kendalla]
 	Dla $X$ i $Y$: ciągłych zmiennych losowych o kopule $C$ możemy przedstawić $\tau$ Kendalla jako:
@@ -84,6 +84,6 @@ Podobnie jest ze wspołczynnikami zależności ogonów, wprowadzonymi w rozdzial
 \begin{prop}[Zależność ogonów]
 		Górny współczynnik zależności ogonów $(X_1, X_2)$ o rozkładach brzegowych $F_1$ i $F_2$ i kopuli $C$ możemy przedstawić jako:
 		$$ \lambda^{u} = \lim\limits_{t\to1^{-}}\Pra[X_2 > F_2^{-1}(t) \vert X_1 > F_1^{-1}(t) ] = \lim\limits_{t\to1^{-}}\frac{1-2t+C(t, t)}{1-t}.$$
-		Dolnym współczynnik możemy przedstawić natomiast w postaci:
+		Dolny współczynnik możemy przedstawić natomiast w postaci:
 		$$ \lambda^{l} = \lim\limits_{t\to0^{+}}\Pra[X_2 \leqslant F_2^{-1}(t) \vert X_1 \leqslant F_1^{-1}(t) ] = \lim\limits_{t\to0^{+}}\frac{C(t, t)}{t}.$$
 \end{prop}

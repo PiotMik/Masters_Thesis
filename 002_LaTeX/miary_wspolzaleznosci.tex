@@ -1,32 +1,32 @@
 Problemem w poprawnym opisie zależności między zmiennymi losowymi jest fakt, że dostępnych mamy wiele statystyk które ją mierzą. Każda z nich uchwyca pewien konkretny aspekt współzależności, i nie da się jasno wyróżnić konkretnej jako ,,najlepszej". W tej sekcji pracy zaprezentujemy wybrane narzędzia służące do badania struktury zależności zmiennych losowych.
 
-\subsubsection{$\rho$ Pearsona}
-Podstawową i najbardziej znaną miarą współzależności zmiennych losowych jest korelacja Pearsona.
+\subsubsection{Współczynnik $\rho$ Pearsona}
+Podstawową i najbardziej znaną miarą współzależności zmiennych losowych jest współczynnik korelacji liniowej Pearsona.
 
-\begin{df}[Korelacja Pearsona]
-	Niech $X$ i $Y$ będą zmiennymi losowymi o skończonych drugich momentach. Współczynnikiem korelacji pearsona $\rho$ nazywamy
+\begin{df}[Współczynnik korelacja liniowej Pearsona]
+	Niech $X$ i $Y$ będą zmiennymi losowymi o skończonych drugich momentach. Współczynnikiem korelacji liniowej Pearsona $\rho$ nazywamy
 	
 	$$ \rho(X, Y) \coloneqq \Corr(X,Y) = \frac{\Cov(X,Y)}{\sqrt{\Var(X)}\sqrt{\Var(Y)}}.$$
 \end{df}
 
-Ten współczynnik korelacji przyjmuje wartości z zakresu $[-1, 1]$, gdzie $\vert\rho\vert=1$ oznacza idealną liniową relację. Korelacja pearsona jest podstawową miarą zależności podawaną w każdym podręczniku do statystyki. Ma jednak szereg wad: nie jest zdefiniowana dla ciężkoogonowych rozkładów (przez nieokreśloną wariancję), oraz jest wrażliwa na monotonicznie rosnące przekształcenia $X$ i $Y$. Te i wiele innych ograniczeń korelacji pearsona stoi w sprzeczności z aksjomatycznym podejściem do miar zgodności (czyt. \ref{def:miara_zgodnosci}). \\
-Gdy w rozdziale \ref{subsec:dwuwymiarowe_kopuly_definicja} zdefiniujemy czym jest główny obiekt tej pracy, czyli kopuła, zależeć nam będzie, żeby móc opisać zależność zmiennych losowych $X$, $Y$ w terminach łączącej je kopuły $C$. Z tego powodu, interesujące dla nas będą miary zależności, które są niezmiennicze na monotonicznie rosnące przekształcenia (ze względu na transformację PIT \ref{def:PIT}, czyt. rozdział \ref{subsec:dwuwymiarowe_kopuly_definicja}). Korelacja pearsona nam tego nie zapewni, ale możemy zdefiniować inne miary: zgodności zmiennych losowych, które posiadają lepsze własności z punktu widzenia teorii kopuł.\\
+Ten współczynnik korelacji przyjmuje wartości z zakresu $[-1, 1]$, gdzie $\vert\rho\vert=1$ oznacza idealną liniową relację. Jest on podstawową miarą zależności podawaną w każdym podręczniku do statystyki. Ma jednak szereg wad: nie jest zdefiniowany dla ciężkoogonowych rozkładów (przez nieokreśloną wariancję), oraz jest wrażliwy na monotonicznie rosnące przekształcenia $X$ i $Y$. Te i wiele innych ograniczeń współczynnika korelacji Pearsona stoi w sprzeczności z aksjomatycznym podejściem do miar zgodności (czyt. \ref{def:miara_zgodnosci}). \\
+Gdy w rozdziale \ref{subsec:dwuwymiarowe_kopuly_definicja} zdefiniujemy czym jest główny obiekt tej pracy, czyli kopuła, zależeć nam będzie, żeby móc opisać zależność zmiennych losowych $X$, $Y$ w terminach łączącej je kopuły $C$. Z tego powodu, interesujące dla nas będą miary zależności, które są niezmiennicze na monotonicznie rosnące przekształcenia (ze względu na transformację PIT \ref{def:PIT}, czyt. rozdział \ref{subsec:dwuwymiarowe_kopuly_definicja}). Współczynnik korelacji Pearsona nam tego nie zapewni, ale możemy zdefiniować inne miary: zgodności zmiennych losowych, które posiadają lepsze własności z punktu widzenia teorii kopuł.\\
 
-Aby w pełni zdefiniować aksjomatyczne podejście do miar zgodności jak wprowadził to Scarsini w \cite{Scarsini1984}, potrzebujemy mieć dostępne pojęcie kopuły. W tej pracy formalnie zostaną one wprowadzone dopiero w definicji \ref{def:bivariate_copula}, w związku z czym na ten moment powiemy jedynie (nieformalnie), że kopuła jest funkcją która opisuje charakter i siłę zależności między zmiennymi losowymi. Pełną definicję i opis czym są kopuły można przeczytać w rozdziale \ref{sec:dwuwymiarowe_kopuly}.
+Aby w pełni zdefiniować aksjomatyczne podejście do miar zgodności jak wprowadził to Scarsini w \cite{Scarsini1984}, potrzebujemy mieć dostępne pojęcie kopuły. W niniejszej pracy formalnie zostaną one wprowadzone dopiero w definicji \ref{def:bivariate_copula}, w związku z czym na ten moment powiemy jedynie (nieformalnie), że kopuła jest funkcją która opisuje charakter i siłę zależności między zmiennymi losowymi. Pełną definicję i opis czym są kopuły można przeczytać w rozdziale \ref{sec:dwuwymiarowe_kopuly}.
 
 \begin{df}[Miara zgodności]
-	Rozpatrzmy zmienne losowe $X$ i $Y$ powiązane kopułą $C$. $M_{X,Y}=M_C$ nazwiemy miarą zgodności, wtedy i tylko wtedy gdy:
+	Niech $\mathcal{R}$ będzie przestrzenią ciągłych rozkładów łącznych, oraz $(X, Y) \in \mathcal{R}$ wektorem losowym z tej przestrzeni. Niech $C$ oznacza kopułę łączącą rozkłady brzegowe $X$ i $Y$. Miarą zgodności $M_{X,Y}$ (alternatywnie: $M_C$) między $X$ a $Y$ nazwiemy funkcję $M_{X,Y}\colon \mathcal{R}\mapsto A\subset\R$ wtedy i tylko wtedy gdy spełnia aksjomaty:
 	\begin{enumerate}
-		\item jest zdefiniowana dla dowolnych zmiennych $X$, $Y$
-		\item jest relatywna, lub znormalizowana: $M_{X,Y}\in[-1,1]$
-		\item jest symetryczna: $M_{X,Y}=M_{Y,X}$
-		\item jeśli $X$ i $Y$ są niezależne, to $M_{X,Y}=0$
-		\item $M_{-X,Y}=M_{X,-Y}=-M_{Y,X}$
-		\item jest zbieżna, gdy kopuła jest punktowo zbieżna, tzn. jeśli $\{(X_n,Y_n)\}$ jest ciągiem ciągłych zmiennych losowych o kopułach $\{C_n\}$, oraz 
+		\item Dziedziny: jest zdefiniowana dla dowolnego wektora zmiennych losowych $(X, Y) \in \mathcal{R}$
+		\item Symetrii: $M_{X,Y}=M_{Y,X}$
+		\item Zgodności: jeśli $C_1(u,v) \leqslant C_2(u,v)$ dla wszystkich $(u, v)\in[0,1]^2$, to $M_{C_1} \leqslant M_{C_2}.$
+		\item Zbioru wartości: $M_{X,Y}\in[-1,1]$
+		\item Niezależności: $X$ i $Y$ są niezależne, to $M_{X,Y}=0$
+		\item Zmiany znaku: $M_{-X,Y}=M_{X,-Y}=-M_{Y,X}$
+		\item Ciągłości: jeśli $\{(X_n,Y_n)\}$ jest ciągiem ciągłych zmiennych losowych o kopułach $\{C_n\}$, oraz 
 		$$ \lim\limits_{n\to\infty} C_n(u, v) =C(u, v)\text{, dla każdych }(u, v)\in[0,1]^2,$$
 		to wtedy
 		$$ \lim\limits_{n\to\infty}M_{X_n,Y_n}=M_{X,Y}.$$
-		\item przestrzega relacji zgodności: jeśli $C_1(u,v) \leqslant C_2(u,v)$ dla wszystkich $(u, v)\in[0,1]^2$, to $M_{C_1} \leqslant M_{C_2}.$
 	\end{enumerate}
 	\label{def:miara_zgodnosci}		
 \end{df}
@@ -57,16 +57,16 @@ Współmonotoniczność i przeciwmonotoniczność to szczególne przypadki zale�
 	$$ \Pra[(X,Y)\in A]=1.$$
 \end{df}
 
-Współmonotoniczność i przeciwmonotoniczność zmiennych losowych jest ważnym konceptem w teorii kopuł, ponieważ definiuje najsilniejszy rodzaj zależności jakie kopuły mogą reprezentować (czyt. twierdzenie \ref{thm:frechet_hoeffding}).
+Współmonotoniczność i przeciwmonotoniczność zmiennych losowych jest ważnym pojęciem w teorii kopuł, ponieważ definiuje najsilniejszy rodzaj zależności jakie kopuły mogą reprezentować (czyt. twierdzenie \ref{thm:frechet_hoeffding}).
 
-\subsubsection{$\tau$ Kendalla i $\rho$ Spearmana}
+\subsubsection{Współczyniki $\tau$ Kendalla i $\rho$ Spearmana}
 
 Współczynniki $\tau$ Kendalla i $\rho$ Spearmana oba spełniają aksjomaty miar zgodności z \cite{Scarsini1984}. Są współczynnikami rangowymi, więc nie zależą od monotonicznych przekształceń rozkładów brzegowych $X$ czy $Y$. Ich zaletą jest to, że mogą być przez to jednoznacznie przedstawione w języku kopuły - co znajduje zastosowanie przy estymacji parametrów modeli kopułowych. Ta własność zazwyczaj nie zachodzi w przypadku korelacji Pearsona.
 
-\begin{df}[$\tau$ Kendalla]
-	Współczynnik $\tau$ Kendalla między ciągłymi zmiennymi losowymi $X$ i $Y$ o kopule definiujemy jako:
+\begin{df}[Współczynnik $\tau$ Kendalla]
+	Współczynnik $\tau$ Kendalla między ciągłymi zmiennymi losowymi $X$ i $Y$ definiujemy jako:
 	$$ \tau = \Pra[(X_1-X_2)(Y_1-Y_2)>0] - \Pra[(X_1-X_2)(Y_1-Y_2) <0], $$
-	gdzie $(X_1, Y_1)$ i $(X_2, Y_2)$ są kopiami iid wektora $(X, Y)$.
+	gdzie $(X_1, Y_1)$ i $(X_2, Y_2)$ są niezależnymi od siebie wektorami o tym samym rozkładzie co $(X, Y)$.
 \end{df}
 
 \begin{df}[$\rho$ Spearmana]
