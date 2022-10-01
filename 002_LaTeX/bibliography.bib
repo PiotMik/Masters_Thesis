@@ -70,7 +70,6 @@ URL = {https://www.pnas.org/doi/abs/10.1073/pnas.1113330108}
 }
 
 
-% Sklar's Theorem
 @article{Sklar_Theorem,
 title={Fonctions de repartition an dimensions et leurs marges},
 author={Sklar, Abe},
@@ -80,48 +79,6 @@ pages={229--231},
 year={1959}
 }
 
-% Base citation for most of the mathematical theorems
-@book{Cherubini_Copula_Methods_in_Finance,
-author = {Cherubini, Umberto and Luciano, Elisa and Vecchiato, Walter},
-year = {2004},
-month = {06},
-pages = {},
-title = {Copula Methods in Finance},
-isbn = {9780470863442},
-doi = {10.1002/9781118673331}
-}
-
-% For copula-martingale processes and constructions
-@book{Cherubini_Dynamic_Copula_Methods_in_Finance,
-author = {Cherubini, Umberto and Gobbi, F. and Mulinacci, S. and Romagnoli, Silvia},
-year = {2012},
-month = {05},
-pages = {},
-title = {Dynamic Copula Methods in Finance},
-isbn={9780470683071},
-doi = {10.1002/9781118467404}
-}
-
-% Main citation for Vine Copulas, Pair Copula Constructions
-@book{Czado_Vine_Copulas,
-author = {Czado, Claudia},
-year = {2019},
-pages = {},
-title = {Analyzing Dependent Data with Vine Copulas},
-isbn = {9783030137847},
-}
-
-% More advanced Vine Copula use-cases, methods and concepts
-@book{Kurowicka_Dependence_Modeling,
-author = {Kurowicka, Dorota and Joe, Harry},
-year = {2010},
-month = {12},
-title = {Dependence Modeling: Vine Copula Handbook},
-isbn = {978-981-4299-87-9},
-doi = {10.1142/7699}
-}
-
-% Theory of bi-/multi- variate option pricing in Pair Copula Construction framework
 @article{Bernard_Pricing_Multivariate_Options_with_copulae,
 author = {Bernard, Carole and Czado, Claudia},
 year = {2012},
@@ -133,9 +90,6 @@ journal = {Applied Stochastic Models in Business and Industry},
 doi = {10.1002/asmb.1934}
 }
 
-%% Applications
-
-% Vine Copulas for German Credit Spread Data
 @article{Pan_Conditional_Inference,
     author = {Pan, Shenyi and Joe, Harry and Li, Guofu},
     title = {Conditional Inferences Based on Vine Copulas with Applications to Credit Spread Data of Corporate Bonds},
@@ -146,19 +100,20 @@ doi = {10.1002/asmb.1934}
     doi = {10.1093/jjfinec/nbab016},
 }
 
-% Models for spread options, other than copulas
 @article{Carmona_Spread_Options,
 author = {Carmona, Rene and Durrleman, Valdo},
-year = {2003},
-month = {06},
-pages = {},
-title = {Pricing and Hedging Spread Options},
-volume = {45},
+ISSN = {00361445},
+URL = {http://www.jstor.org/stable/25054458},
 journal = {SIAM Review},
-doi = {10.1137/S0036144503424798}
+number = {4},
+pages = {627--685},
+publisher = {Society for Industrial and Applied Mathematics},
+title = {Pricing and Hedging Spread Options},
+urldate = {2022-09-06},
+volume = {45},
+year = {2003}
 }
 
-% Non-Gaussianity of markets
 @Inbook{Mandelbrot_NonGaussianity,
 author="Mandelbrot, Benoit B.",
 title="The variation of certain speculative prices",
@@ -172,64 +127,46 @@ doi="10.1007/978-1-4757-2763-0_14",
 url="https://doi.org/10.1007/978-1-4757-2763-0_14"
 }
 
-@article{Taleb_BS_is_BS,
-	author = {Haug, Espen and Taleb, Nassim},
-	year = {2007},
-	month = {01},
-	pages = {},
-	title = {{Why We Have Never Used the Black-Scholes-Merton Option Pricing Formula}}
+@article {CDS_Copula,
+	author = {Li, David X.},
+	title = {On Default Correlation},
+	volume = {9},
+	number = {4},
+	pages = {43--54},
+	year = {2000},
+	doi = {10.3905/jfi.2000.319253},
+	publisher = {Institutional Investor Journals Umbrella},
+	abstract = {This article studies the problem of default correlation. It introduces a random variable called {\textquotedblleft}time-until-default{\textquotedblright} to denote the survival time of each defaultable entity or financial instrument, and defines the default correlation between two credit risks as the correlation coefficient between their survival times. The author explains why a copula function approach should be used to specify the joint distribution of survival times after marginal distributions of survival times are derived from market information, such as risky bond prices or asset swap spreads. He shows that the current approach to default correlation through asset correlation is equivalent to using a normal copula function. Numerical examples illustrate the use of copula functions in the valuation of some credit derivatives, such as credit default swaps and first-to-default contracts.},
+	issn = {1059-8596},
+	URL = {https://jfi.pm-research.com/content/9/4/43},
+	eprint = {https://jfi.pm-research.com/content/9/4/43.full.pdf},
+	journal = {The Journal of Fixed Income}
 }
 
-@article{CDS_Copula,
-	author = {Li, David Xianglin},
-	title = {On Default Correlation: A Copula Function Approach},
-	journaltitle = {RiskMetrics},
-	year = {1999},
-}
+@article{Genest_Discrete_Copulas, 
+	title={A Primer on Copulas for Count Data},
+	volume={37}, 
+	DOI={10.1017/S0515036100014963}, 
+	number={2}, 
+	journal={ASTIN Bulletin}, 
+	publisher={Cambridge University Press}, 
+	author={Genest, Christian and Nešlehová, Johanna}, 
+	year={2007}, 
+	pages={475–515}}
 
-@book{MultivariateDistributions,
-	author = {Anderson, Theodore W.},
-	title = {An Introduction to Multivariate Statistical Analysis},
-	year = {2003},
-}
-
-@book{Joe_Multivariate_Models,
-	author = {Joe, Harry},
-	title = {Multivariate Models and Multivariate Dependence Concepts},
-	year = {1997},
-}
-
-@article{Genest_Discrete_Copulas,
-	author = {Genest, Christian and Nešlehová, Johanna},
-	year = {2007},
-	month = {11},
-	title = {A Primer on Copulas for Count Data},
-	volume = {37},
-	journal = {Astin Bulletin},
-	doi = {10.2143/AST.37.2.2024077}
-}
 
 @article{Koopman_DiscreteCopula_HTF,
-	author = {Koopman, Siem Jan and Lit, Rutger and Lucas, Andre and Opschoor, Anne},
-	year = {2018},
-	month = {08},
+	author = {Koopman, Siem Jan and Lit, Rutger and Lucas, André and Opschoor, Anne},
 	title = {Dynamic discrete copula models for high-frequency stock price changes},
-	volume = {33},
 	journal = {Journal of Applied Econometrics},
-	doi = {10.1002/jae.2645}
-}
-
-@article{Shefzik_Weather,
-	author       = {Schefzik, R.},
-	title        = {Multivariate discrete copulas, with applications in probabilistic weather forecasting},
-	journal      = {Publications de l'Institut de Statistique de l'Université de Paris},
-	year         = {2015},
-}
-
-@book{Siddique_Stress_testing,
-	author = {Hasan, Iftekhar and Lynch, David and Siddique Akhtar},
-	title = {Stress Testing. Approaches, Methods and Applications},
-	year = {2019},
+	volume = {33},
+	number = {7},
+	pages = {966-985},
+	doi = {https://doi.org/10.1002/jae.2645},
+	url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/jae.2645},
+	eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/jae.2645},
+	abstract = {Summary We develop a dynamic model for the intraday dependence between discrete stock price changes. The conditional copula mass function for the integer tick-size price changes has time-varying parameters that are driven by the score of the predictive likelihood function. The marginal distributions are Skellam and also have score-driven time-varying parameters. We show that the integration steps in the copula mass function for large dimensions can be accurately approximated via numerical integration. The resulting computational gains lead to a methodology that can treat high-dimensional applications. Its accuracy is shown by an extensive simulation study. In our empirical application of 10 US bank stocks, we reveal strong evidence of time-varying intraday dependence patterns: Dependence starts at a low level but generally rises during the day. Based on one-step-ahead out-of-sample density forecasting, we find that our new model outperforms benchmarks for intraday dependence such as the cubic spline model, the fixed correlation model, or the rolling average realized correlation.},
+	year = {2018}
 }
 
 @article{Scarsini1984,
@@ -242,67 +179,75 @@ url="https://doi.org/10.1007/978-1-4757-2763-0_14"
 	year = {1984},
 }
 
-@book{OpRisk,
-	author = {Peters, Gareth and Shevchenko, Pavel},
-	title = {Advances in Heavy Tailed Risk Modeling: A Handbook of Operational Risk},
-	year = {2015},
-}
-
 @article{BedfordCooke2002,
-	author = {Bedford, Tim and Cooke, Roger M.},
-	journal = {The Annals of Statistics},
-	publisher = {Institute of Mathematical Statistics},
-	title = {Vines: A New Graphical Model for Dependent Random Variables},
-	volume = {30},
-	year = {2002}
-}
-
-@manual{BaselII,
-	author = {{The Basel Committee on Banking Supervision}},
-	title = {Revisions to the Basel II Market Risk Framework},
-	year = {2010},
+	title={Vines: A new graphical model for dependent random variables},
+	author={Tim Bedford and Roger M. Cooke},
+	journal={Annals of Statistics},
+	year={2002},
+	volume={30},
+	pages={1031-1068}
 }
 
 @article{AssymetricEquityDependency,
 	author = {Vaz de Melo Mendes, Beatriz},
 	title = {Asymmetric extreme interdependence in emerging equity markets},
-	journaltitle = {Applied Stochastic Models in Business and Industry},
-	year = {2005},
+	journal = {Applied Stochastic Models in Business and Industry},
+	volume = {21},
+	number = {6},
+	pages = {483-498},
+	keywords = {copulas, extreme events, tail dependence, asymmetry, non-exchangeability},
+	doi = {https://doi.org/10.1002/asmb.602},
+	url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/asmb.602},
+	eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/asmb.602},
+	abstract = {Abstract We assess the extent of integration between stock markets during stressful periods using the concept of copulas. Our methodology consists of fitting copulas to simultaneous exceedances of high thresholds, and computing copula-based measures of interdependence and contagion. Using 21 pairs of emerging stock markets daily returns, we investigate if dependence increases with crisis, and analyse the chances of both markets crashing together. Dependence at joint positive and negative extreme returns levels may differ. This type of asymmetry is captured by the upper and lower tail dependence coefficients. Propagation of crisis may be faster in one direction, and this feature is captured by asymmetric copulas. Copyright © 2005 John Wiley \& Sons, Ltd.},
+	year = {2005}
 }
 
-@article{Frees1998,
-	title={Understanding relationships using copulas},
-	author={Frees, Edward W. and Valdez, Emiliano A.},
-	year={1998}
-}
 
 @article{Clayton1972,
-	author = {Clayton, D. G.},
+	ISSN = {00063444},
+	URL = {http://www.jstor.org/stable/2335289},
+	abstract = {The application of Cox's (1972) regression model for censored survival data to epidemiological studies of chronic disease incidence is discussed. A related model for association in bivariate survivorship time distributions is proposed for the analysis of familial tendency in disease incidence. The possible extension of the model to general multivariate survivorship distributions is indicated.},
+	author = {D. G. Clayton},
 	journal = {Biometrika},
+	number = {1},
+	pages = {141--151},
+	publisher = {[Oxford University Press, Biometrika Trust]},
 	title = {A Model for Association in Bivariate Life Tables and Its Application in Epidemiological Studies of Familial Tendency in Chronic Disease Incidence},
+	urldate = {2022-09-07},
 	volume = {65},
 	year = {1978}
 }
 
 @article{Hougaard1986,
-	author = {Hougaard, Philip},
-	title = "{A class of multivariate failure time distributions}",
+	ISSN = {00063444},
+	URL = {http://www.jstor.org/stable/2336531},
+	abstract = {A class of continuous multivariate lifetime distributions is proposed. The dependence between individuals in a group is modelled by a group specific quantity, which can be interpreted as an unobserved covariate common to the individuals in the group and assumed to follow a positive stable distribution. It is possible to include covariates in the model and discuss whether the dependence is still present after specific covariates are taken into account. If the conditional hazards are proportional, then the hazards in the marginal distributions are also proportional, but with different constants of proportionality. Also the hazard for the minimum in a group is proportional to the marginal hazards. If the conditional distributions given the group quantity are Weibull then the marginal distributions are also Weibull. This class can be used to test the hypothesis of independence of litter mates in the proportional hazards model.},
+	author = {Philip Hougaard},
 	journal = {Biometrika},
-	volume = {73},
 	number = {3},
-	year = {1986},
-	month = {12},
+	pages = {671--678},
+	publisher = {[Oxford University Press, Biometrika Trust]},
+	title = {A Class of Multivariate Failure Time Distributions},
+	urldate = {2022-09-07},
+	volume = {73},
+	year = {1986}
 }
 
-
-@article{Jianwei2021,
-	author = {Gao, Jianwei and Yang, Yu and Gao, Fangjie and Liang, Pengcheng},
-	title = {Optimization of Electric Vehicles Based on Frank-Copula-GlueCVaR Combined Wind and Photovoltaic Output Scheduling Research},
-	journal = {Energies},
-	volume = {14},
-	year = {2021},
-	number = {19}
+@Article{Jianwei2021,
+	AUTHOR = {Gao, Jianwei and Yang, Yu and Gao, Fangjie and Liang, Pengcheng},
+	TITLE = {Optimization of Electric Vehicles Based on Frank-Copula-GlueCVaR Combined Wind and Photovoltaic Output Scheduling Research},
+	JOURNAL = {Energies},
+	VOLUME = {14},
+	YEAR = {2021},
+	NUMBER = {19},
+	ARTICLE-NUMBER = {6080},
+	URL = {https://www.mdpi.com/1996-1073/14/19/6080},
+	ISSN = {1996-1073},
+	ABSTRACT = {Improving the efficiency of renewable energy and electricity utilization is an urgent problem for China under the objectives of carbon peaking and carbon neutralization. This paper proposes an optimization scheduling method of electric vehicles (EV) combined with wind and photovoltaic power based on the Frank-Copula-GlueCVaR. First, a joint output model based on copula theory was built to describe the correlation between wind and photovoltaic power output. Second, the Frank-Copula-GlueCVaR index was introduced in a novel way. Operators can now predetermine the future wind-photovoltaic joint output range based on this index and according to their risk preferences. Third, an optimal scheduling model aimed at reducing the group charging cost of EVs was proposed, thereby encouraging EV owners to participate in the demand response. Fourth, this paper: proposes the application of a Variant Roth–Serve algorithm; regards the EV group as a multi-intelligent group; and finds the Pareto optimal strategy of the EV group through continuous learning. Finally, case study results are shown to effectively absorb more renewable energy, reduce the consumption cost of the EV group, and suppress the load fluctuation of the whole EV group, which has a practical significance and theoretical value.},
+	DOI = {10.3390/en14196080}
 }
+
 
 @article{Matus2019,
 	author={Matus, Omar and Barrera, Javiera and Moreno, Eduardo and Rubino, Gerardo},
@@ -313,16 +258,6 @@ url="https://doi.org/10.1007/978-1-4757-2763-0_14"
 	number={2},
 	pages={451-461},
 	doi={10.1109/TR.2018.2865707}}
-
-@online{PetroleumForecasts,
-	author = {{U.S. Energy Information Administration}},
-	title = {Short-Term Energy Outlook},
-	year={2022},
-	month={08},
-	date = {12/08/2022},
-	url = {https://www.eia.gov/outlooks/steo/report/global_oil.php},
-}
-
 
 @article{spread_hedging,
 	AUTHOR = {Halkos, George E. and Tsirivis, Apostolos S.},
@@ -346,12 +281,6 @@ url="https://doi.org/10.1007/978-1-4757-2763-0_14"
 	volume = {12},
 	journal = {Quantitative Finance},
 	doi = {10.1080/14697688.2012.750733}
-}
-
-@book{Fixed_Income,
-	author = {Choudhry, Moorad},
-	title = {Fixed-income securities and derivatives handbook},
-	year = {2005},
 }
 
 @article{Agro_Spreads,
@@ -380,7 +309,7 @@ url="https://doi.org/10.1007/978-1-4757-2763-0_14"
 }
 
 @article{Libor_OIS_model,
-	title = {What drives the Libor–OIS spread? Evidence from five major currency Libor–OIS spreads},
+	title = {{What drives the Libor–OIS spread? Evidence from five major currency Libor–OIS spreads}},
 	journal = {{International Review of Economics \& Finance}},
 	volume = {45},
 	pages = {358-375},
@@ -482,19 +411,6 @@ url="https://doi.org/10.1007/978-1-4757-2763-0_14"
 	year = {1997}
 }
 
-@article{Eyigungor_Markov_Spreads,
-	title={Sovereign Debt Spreads in a Markov Switching Regime},
-	author={Eyigungor, Burcu},
-	journal={Manuscript, UCLA},
-	year={2006},
-	publisher={Citeseer}
-}
-
-@article{KGHM,
-author = {{KGHM Polska Miedź S.A. Group}},
-title = {{The management board's report on the activities of KGHM Polska Miedź S.A. and of the KGHM Polska Miedź S.A. Group in 2021}},
-year = {2021},
-}
 
 @article{Sukcharoen2017,
 	title = {{Hedging downside risk of oil refineries: A vine copula approach}},
@@ -544,4 +460,115 @@ year = {2015},
 	author = {J. Dissmann and E.C. Brechmann and C. Czado and D. Kurowicka},
 	keywords = {Minimum spanning tree, Model selection, Multivariate copula, Regular vines},
 	abstract = {Regular vine distributions which constitute a flexible class of multivariate dependence models are discussed. Since multivariate copulae constructed through pair-copula decompositions were introduced to the statistical community, interest in these models has been growing steadily and they are finding successful applications in various fields. Research so far has however been concentrating on so-called canonical and D-vine copulae, which are more restrictive cases of regular vine copulae. It is shown how to evaluate the density of arbitrary regular vine specifications. This opens the vine copula methodology to the flexible modeling of complex dependencies even in larger dimensions. In this regard, a new automated model selection and estimation technique based on graph theoretical considerations is presented. This comprehensive search strategy is evaluated in a large simulation study and applied to a 16-dimensional financial data set of international equity, fixed income and commodity indices which were observed over the last decade, in particular during the recent financial crisis. The analysis provides economically well interpretable results and interesting insights into the dependence structure among these indices.}
+}
+
+@book{Cherubini_Copula_Methods_in_Finance,
+	author = {Cherubini, Umberto and Luciano, Elisa and Vecchiato, Walter},
+	year = {2004},
+	month = {06},
+	pages = {},
+	title = {Copula Methods in Finance},
+	isbn = {9780470863442},
+	doi = {10.1002/9781118673331}
+}
+
+@book{Cherubini_Dynamic_Copula_Methods_in_Finance,
+	author = {Cherubini, Umberto and Gobbi, F. and Mulinacci, S. and Romagnoli, Silvia},
+	year = {2012},
+	month = {05},
+	pages = {},
+	title = {Dynamic Copula Methods in Finance},
+	isbn={9780470683071},
+	doi = {10.1002/9781118467404}
+}
+
+@book{Czado_Vine_Copulas,
+	author = {Czado, Claudia},
+	year = {2019},
+	pages = {},
+	title = {Analyzing Dependent Data with Vine Copulas},
+	isbn = {9783030137847},
+}
+
+@book{Kurowicka_Dependence_Modeling,
+	author = {Kurowicka, Dorota and Joe, Harry},
+	year = {2010},
+	month = {12},
+	title = {Dependence Modeling: Vine Copula Handbook},
+	isbn = {978-981-4299-87-9},
+	doi = {10.1142/7699}
+}
+
+@article{Taleb_BS_is_BS,
+	author = {Haug, Espen and Taleb, Nassim},
+	year = {2007},
+	month = {01},
+	pages = {},
+	title = {{Why We Have Never Used the Black-Scholes-Merton Option Pricing Formula}}
+}
+
+@book{MultivariateDistributions,
+	author = {Anderson, Theodore W.},
+	title = {An Introduction to Multivariate Statistical Analysis},
+	year = {2003},
+}
+
+@book{Joe_Multivariate_Models,
+	author = {Joe, Harry},
+	title = {Multivariate Models and Multivariate Dependence Concepts},
+	year = {1997},
+}
+
+@article{Shefzik_Weather,
+	author       = {Schefzik, R.},
+	title        = {Multivariate discrete copulas, with applications in probabilistic weather forecasting},
+	journal      = {Publications de l'Institut de Statistique de l'Université de Paris},
+	year         = {2015},
+}
+
+@book{Siddique_Stress_testing,
+	author = {Hasan, Iftekhar and Lynch, David and Siddique Akhtar},
+	title = {Stress Testing. Approaches, Methods and Applications},
+	year = {2019},
+}
+
+@book{OpRisk,
+	author = {Peters, Gareth and Shevchenko, Pavel},
+	title = {Advances in Heavy Tailed Risk Modeling: A Handbook of Operational Risk},
+	year = {2015},
+}
+
+@manual{BaselII,
+	author = {{The Basel Committee on Banking Supervision}},
+	title = {Revisions to the Basel II Market Risk Framework},
+	year = {2010},
+}
+
+@online{PetroleumForecasts,
+	author = {{U.S. Energy Information Administration}},
+	title = {Short-Term Energy Outlook},
+	year={2022},
+	month={08},
+	date = {12/08/2022},
+	url = {https://www.eia.gov/outlooks/steo/report/global_oil.php},
+}
+
+@book{Fixed_Income,
+	author = {Choudhry, Moorad},
+	title = {Fixed-income securities and derivatives handbook},
+	year = {2005},
+}
+
+@article{Eyigungor_Markov_Spreads,
+	title={Sovereign Debt Spreads in a Markov Switching Regime},
+	author={Eyigungor, Burcu},
+	journal={Manuscript, UCLA},
+	year={2006},
+	publisher={Citeseer}
+}
+
+@article{KGHM,
+	author = {{KGHM Polska Miedź S.A. Group}},
+	title = {{The management board's report on the activities of KGHM Polska Miedź S.A. and of the KGHM Polska Miedź S.A. Group in 2021}},
+	year = {2021},
 }
