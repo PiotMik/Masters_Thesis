@@ -20,26 +20,20 @@ import matplotlib.dates as mdates
 from matplotlib import cm
 import seaborn as sns
 
-import os
+import os, shutil
 from typing import Callable
 from datetime import date
 
 plt.style.use(['science', 'ggplot-ubs.mplstyle'])
-plt.rcParams['figure.figsize'] = (10, 5)
-plt.rcParams['axes.spines.top'] = False
-plt.rcParams['axes.spines.right'] = False
-plt.rcParams['xtick.top'] = False
-plt.rcParams['ytick.right'] = False
-
 sns.set_context('talk')
 palette = sns.color_palette(as_cmap=True)
 fmt = 'pdf'
 
 DATA = "../../001_Data"
 OUTFIGS = "../Outputs/Figs"
-TEXFIGS = "../../002_LaTeX/Figs/"
+TEXFIGS = "../../002_LaTeX/Inputs/Figs/"
 OUTTABS = "../Outputs/Tables/"
-TEXTABS = "../../002_LaTeX/Tables/"
+TEXTABS = "../../002_LaTeX/Inputs/Tables/"
 
 def savefig(name):
     plt.savefig(os.path.join(OUTFIGS, f'{name}.{fmt}'))
@@ -51,6 +45,26 @@ def writeimage(fig, name):
 def savetab(name, df):
     df.to_csv(os.path.join(OUTTABS, f'{name}.csv'))
     df.to_csv(os.path.join(TEXTABS, f'{name}.csv'))
+    
+def clear_folders(clear_figs=True, clear_tables=True):
+    figs_folders, tabs_folders = [OUTFIGS, TEXFIGS], [OUTTABS, TEXTABS]
+    folders_to_clear = []
+    
+    if clear_figs:
+        folders_to_clear += figs_folders
+    if clear_tables:
+        folders_to_clear += tabs_folders
+
+    def clear_dir(dir_path):
+        for filename in os.listdir(dir_path):
+            file_path = os.path.join(dir_path, filename)
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+    
+    for directory in folders_to_clear:
+        clear_dir(directory)
     
     
 def plot_copula_density(copula, zmax = None, eps = 0.0, nx = 10,
@@ -128,4 +142,4 @@ def plot_copula_contour(copula, nx=30, levels=10, eps=0.0, cmap='copper', normal
     return fig, ax
 
 if __name__ == "__main__":
-    pass
+    main()
