@@ -22,24 +22,24 @@ gdzie $O_t$, $M_t$ i $S_t$ to ceny odpowiednio: jednostki oleju, jednostki śrut
 	\caption{\textbf{Szeregi czasowe cen spot}. Lewy panel od góry: soja, olej sojowy, śruta sojowa. Prawy panel: 1-1-1 crush spread. \label{fig:original_time_series}}
 \end{figure}
 
-Szeregi czasowe były kompletne, poza wyjątkiem trzech obserwacji usuniętych manualnie z szeregu śruty sojowej. Użyliśmy strategii \emph{forward-fill}, aby uzupełnić tę lukę w danych przy pomocą ostatniej dostepnej wartości. Ponieważ soybean crush spreadem najczęściej handluje się w horyzontach miesięcy, zdecydowaliśmy, że modelowanie na dziennych przyrostach wartości nie będzie dobrym wyborem. Wszystkie szeregi zostały przekształcone do częstotliwości tygodniowej, poprzez wzięcie ostatniej dostępnej wartości w danym tygodniu, na podstawie czego policzyliśmy następnie log-zwroty zgodnie z równaniem \ref{eq:logreturn}.
+Szeregi czasowe były kompletne, poza wyjątkiem trzech obserwacji usuniętych manualnie z szeregu śruty sojowej. Użyliśmy strategii \emph{forward-fill}, aby uzupełnić tę lukę w danych przy pomocą ostatniej dostepnej wartości. Ponieważ soybean crush spreadem najczęściej handluje się w horyzontach miesięcy, zdecydowaliśmy, że modelowanie na dziennych przyrostach wartości nie będzie dobrym wyborem. Wszystkie szeregi zostały przekształcone do częstotliwości tygodniowej, poprzez wzięcie ostatniej dostępnej wartości w danym tygodniu, na podstawie czego policzyliśmy następnie logarytmiczne stopy zwrotu zgodnie z równaniem \ref{eq:logreturn}.
 
-\emph{Exploratory data analysis} (EDA) rozpoczęliśmy od struktury zależności logzwrotów, rysując wykresy punktowe widoczne na rysunku \ref{fig:pairplot_original_scale}. Widzimy na nich wysoki stopień zależności między komponentami spreadu, chociaż relacja samego spreadu z poszczególnymi z nich nie wydaje się być oczywista.
+\emph{Exploratory data analysis} (EDA) rozpoczęliśmy od struktury zależności logarytmicznych stóp zwrotu, rysując wykresy punktowe widoczne na rysunku \ref{fig:pairplot_original_scale}. Widzimy na nich wysoki stopień zależności między komponentami spreadu, chociaż relacja samego spreadu z poszczególnymi z nich nie wydaje się być oczywista.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{04_PairPlot}
-	\caption{\textbf{Wykresy zależności log-zwrotów.} Wykresy punktowe każdy-z-każdym, oraz histogramy wszystkich zmiennych. \label{fig:pairplot_original_scale}}
+	\caption{\textbf{Wykresy zależności logarytmicznych stóp zwrotu.} Wykresy punktowe każdy-z-każdym, oraz histogramy wszystkich zmiennych. \label{fig:pairplot_original_scale}}
 \end{figure}
 
-Następnie zbadaliśmy ogony rozkładów logzwrotów, kalibrując do nich rozkład normalny i porównując gęstości, oraz wykres ogonu w skali logarytmicznej. Rysunek \ref{fig:tail_analysis}, a szczególnie ich prawe panele wskazują na ciężkoogonowość logzwrotów, która uwydatniona jest najbardziej dla samego crush spreadu.\\
+Następnie zbadaliśmy ogony rozkładów logarytmicznych stóp zwrotu, kalibrując do nich rozkład normalny i porównując gęstości, oraz wykres ogonu w skali logarytmicznej. Rysunek \ref{fig:tail_analysis}, a szczególnie ich prawe panele wskazują na ciężkoogonowość, która uwydatniona jest najbardziej dla samego crush spreadu.\\
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{04_TailAnalysis_1}
 	\includegraphics[width=0.7\linewidth]{04_TailAnalysis_2}
 	
-	\caption{\textbf{Ogony log-zwrotów.} Histogramy oraz \emph{kde} gęstości logzwrotów dla każdego aktywa, wraz z dopasowaną gęstością rozkładu normalnego (lewy panel). Empiryczny ogon danych w skali logarytmicznej, wraz z ogonem dopasowanego rozkładu normalnego (prawy panel). \label{fig:tail_analysis}}
+	\caption{\textbf{Ogony logarytmicznych stóp zwrotu.} Histogramy oraz \emph{kde} gęstości dla każdego aktywa, wraz z dopasowaną gęstością rozkładu normalnego (lewy panel). Empiryczny ogon danych w skali logarytmicznej, wraz z ogonem dopasowanego rozkładu normalnego (prawy panel). \label{fig:tail_analysis}}
 \end{figure}
 
 \FloatBarrier

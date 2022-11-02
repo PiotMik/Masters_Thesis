@@ -8,11 +8,11 @@ Skalibrowany w ten sposób model integruje ze sobą strukturę czasową komponen
 	\begin{itemize}
 		\item Efektem są wysymulowane rezidua modelu GARCH(2, 3) o odpowiedniej strukturze zależności.
 	\end{itemize}
-	\item Używamy wysymulowanych reziduów, żeby dokonać predykcji logzwrotów według modeli ARIMA-GARCH(2, 3) dla każdego aktywa. 
+	\item Używamy wysymulowanych reziduów, żeby dokonać predykcji logarytmicznych stóp zwrotu według modeli ARIMA-GARCH(2, 3) dla każdego aktywa. 
 	\begin{itemize}
-		\item Efektem są wysymulowane logzwroty dla każdego aktywa, o odpowiedniej strukturze zależności.
+		\item Efektem są wysymulowane stopy zwrotu dla każdego aktywa, o odpowiedniej strukturze zależności.
 	\end{itemize}
-	\item Używamy wysymulowanych logzwrotów razem z ostatnią dostępną wartością ze zbioru danych, żeby dokonać predykcji trajektorii dla każdego aktywa. 
+	\item Używamy wysymulowanych stóp zwrotu razem z ostatnią dostępną wartością ze zbioru danych, żeby dokonać predykcji trajektorii dla każdego aktywa. 
 	\begin{itemize}
 		\item Efektem są wysymulowane trajektorie dla każdego aktywa, o odpowiedniej strukturze zależności.
 	\end{itemize}
@@ -35,7 +35,7 @@ Możemy użyć metody Monte Carlo w celu otrzymania nie pojedynczej trajektorii,
 	\item Money-market rate: $r = 5\%$
 \end{itemize}
 
-Podobnie jak w \cite{Bernard_Pricing_Multivariate_Options_with_copulae}, czy  \cite{Herath_Copula_Crack_Spread} przeprowadziliśmy powtórzenia Monte Carlo, w trakcie których dla każdej ścieżki obliczona została wypłata opcji kupna i sprzedaży, a następnie wyniki zostały uśrednione i zdyskontowane. W ten sposób otrzymujemy finalną cenę opcji w mierze rzeczywistej. 
+Podobnie jak w \cite{Bernard_Pricing_Multivariate_Options_with_copulae}, czy  \cite{Herath_Copula_Crack_Spread} przeprowadziliśmy powtórzenia Monte Carlo, w trakcie których dla każdej ścieżki obliczona została wypłata opcji kupna i sprzedaży, a następnie wyniki zostały uśrednione i zdyskontowane. W ten sposób otrzymujemy finalną cenę opcji. 
 Rysunek \ref{fig:simulation_monte_carlo} prezentuje wynik symulacji trajektorii spreadu w postaci rozkładu wysymulowanych wartości dla każdego punktu czasowego (każdego tygodnia), natomiast rysunek \ref{fig:payoffs_distribution} pokazuje rozkład spreadu w momencie wygaśnięcia opcji, wraz z rozkładem wypłat opcji call i put. Średnia wypłata, zdyskontowana do chwili $T=0$ daje cenę opcji - co prezentujemy dla różnych cen wykonania w tabeli \ref{tab:option_prices}.\\
 \begin{figure}[h]
 	\centering
@@ -66,7 +66,7 @@ Rysunek \ref{fig:simulation_monte_carlo} prezentuje wynik symulacji trajektorii 
 \end{table}
 
 \FloatBarrier
-Na koniec, w celu zilustrowania istotnego wpływu zastosowania Vine Copula, rozważyliśmy sytuację w której model zostałby uproszczony i zamiast struktury Vine do modelowania zależności użytoby najprostszego modelu GMV (gaussian multivariate copula). Rysunek \ref{fig:model_comparison} prezentuje porównanie rozkładu trajektorii spreadu między tymi dwoma modelami. Zaobserwować można, że użycie wielowymiarowej kopuły gaussowskiej skutkuje uchwyceniem ciężkoogonowego charakteru spreadu, oraz że kwantyle dla większości rzędów przebiegają blisko kwantyli powstałych z modelu Vine Copula. Jednak istnieje istotna różnica, widoczna w kwantylach ekstremalnych rzędów, jak $0.01$ czy $0.99$ które udowadniają, że model Vine Copula uchwyca jeszcze cięższe ogony logzwrotów spreadu w stosunku do modelu GMV.
+Na koniec, w celu zilustrowania istotnego wpływu zastosowania Vine Copula, rozważyliśmy sytuację w której model zostałby uproszczony i zamiast struktury Vine do modelowania zależności użytoby najprostszego modelu GMV (gaussian multivariate copula). Rysunek \ref{fig:model_comparison} prezentuje porównanie rozkładu trajektorii spreadu między tymi dwoma modelami. Zaobserwować można, że użycie wielowymiarowej kopuły gaussowskiej skutkuje uchwyceniem ciężkoogonowego charakteru spreadu, oraz że kwantyle dla większości rzędów przebiegają blisko kwantyli powstałych z modelu Vine Copula. Jednak istnieje istotna różnica, widoczna w kwantylach ekstremalnych rzędów, jak $0.01$ czy $0.99$ które udowadniają, że model Vine Copula uchwyca jeszcze cięższe ogony logarytmicznych stóp zwrotu spreadu w stosunku do modelu GMV.
 	
 \begin{figure}[h]
 	\centering
@@ -80,6 +80,6 @@ Na koniec, w celu zilustrowania istotnego wpływu zastosowania Vine Copula, rozw
 	\includegraphics[width=0.5\linewidth]{04_TailComparison}
 	\end{minipage}
 
-	\caption{\textbf{Porównanie modeli.} Kwantyle trajektorii wysymulowanych spreadów przy pomocy wielowymiarowej kopuły normalnej (GMV), oraz Vine Copula (górny panel). Porównanie ciężkości ogonów logzwrotów spreadu (dolny panel).\label{fig:model_comparison}}
+	\caption{\textbf{Porównanie modeli.} Kwantyle trajektorii wysymulowanych spreadów przy pomocy wielowymiarowej kopuły normalnej (GMV), oraz Vine Copula (górny panel). Porównanie ciężkości ogonów logarytmicznych stóp zwrotu spreadu (dolny panel).\label{fig:model_comparison}}
 
 \end{figure}

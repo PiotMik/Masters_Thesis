@@ -3,7 +3,7 @@ Problemem w poprawnym opisie zależności między zmiennymi losowymi jest fakt, 
 \subsubsection{Współczynnik $\rho$ Pearsona}
 Podstawową i najbardziej znaną miarą współzależności zmiennych losowych jest współczynnik korelacji liniowej Pearsona.
 
-\begin{df}[Współczynnik korelacja liniowej Pearsona]
+\begin{df}[Współczynnik korelacji liniowej Pearsona]
 	Niech $X$ i $Y$ będą zmiennymi losowymi o skończonych drugich momentach. Współczynnikiem korelacji liniowej Pearsona $\rho$ nazywamy
 	
 	$$ \rho(X, Y) \coloneqq \Corr(X,Y) = \frac{\Cov(X,Y)}{\sqrt{\Var(X)}\sqrt{\Var(Y)}}.$$
@@ -31,7 +31,7 @@ Aby w pełni zdefiniować aksjomatyczne podejście do miar zgodności jak wprowa
 	\label{def:miara_zgodnosci}		
 \end{df}
 
-Aksjomatyczne podejście z powyższej definicji zawęża przestrzeń miar zgodności do takich, które są niezmiennicze względem rosnących transformacji, czyli:
+Aksjomatyczne podejście z definicji \ref{def:miara_zgodnosci} zawęża przestrzeń miar zgodności do takich, które są niezmiennicze względem rosnących transformacji, czyli:
 $$ M_{X,Y} = M_{\alpha(X), \beta(Y)},$$
 dla dowolnych funkcji $\alpha,\beta$ rosnących prawie wszędzie.\\
 
@@ -52,7 +52,7 @@ Współmonotoniczność i przeciwmonotoniczność to szczególne przypadki zale�
 
 
 \begin{df}[Zmienne losowe współ- i przeciwmonotoniczne]
-	Wektor losowy $(X, Y)$ nazywamy współmonotonicznym (przeciwmonotonicznym), lub perfekcyjnie dodatnio (ujemnie) zależnym wtedy i tylko wtedy gdy istnieje zbiór współmonotoniczny (przeciwmonotoniczny) $A\subset\R^2$:
+	Wektor losowy $(X, Y)$ nazywamy współmonotonicznym (przeciwmonotonicznym) lub perfekcyjnie dodatnio (ujemnie) zależnym wtedy i tylko wtedy gdy istnieje zbiór współmonotoniczny (przeciwmonotoniczny) $A\subset\R^2$:
 	
 	$$ \Pra[(X,Y)\in A]=1.$$
 \end{df}
@@ -86,12 +86,12 @@ Na zależność zmiennych losowych można popatrzeć również ze strony zależn
 	$$ \lambda^{l} = \lim\limits_{t\to0^{+}}\Pra[X_2 \leqslant F_2^{-1}(t) \vert X_1 \leqslant F_1^{-1}(t) ].$$
 \end{df}
 
-Współczynniki zależności ogonów informują o sile zależności zmiennych losowych w granicy, gdy dążymy z jedną z nich coraz dalej w jej ogon. Mówimy, że zmienne losowe posiadają zależność ogonów jeśli $\lambda \in (0, 1]$, lub jej nie posiadają gdy $\lambda =0$. Te wspołczynniki zależą przede wszystkim od obserwacji będących ekstremalnymi względem obu zmiennych. Rysunek \ref{fig:tail_dependence} prezentuje przykładowy rozkład posiadający dolny współczynnik zależności ogonów, lecz nie posiadający górnego wspołczynnika. Kolorami zaznaczone są obserwacje które wpływają na dolny (szare punkty) i górny (czerwone punkty) współczynnik zależności ogonów.\\
-W praktycznych zastosowaniach, jest on jednak trudny do kalibracji z danych - koncept ten działa raczej w drugą stronę: z parametrów skalibrowanego modelu implikowany jest współczynnik zależności ogonów.
+Współczynniki zależności ogonów informują o sile zależności zmiennych losowych gdy zaczynają one przyjmować wartości ekstremalne. Mówimy, że zmienne losowe wykazują zależność ogonów jeśli $\lambda \in (0, 1]$ lub jej nie posiadają gdy $\lambda =0$. Te wspołczynniki zależą przede wszystkim od obserwacji będących ekstremalnymi względem obu zmiennych. Rysunek \ref{fig:tail_dependence} prezentuje przykładowy rozkład posiadający dolny współczynnik zależności ogonów, lecz nie posiadający górnego wspołczynnika. Kolorami zaznaczone są obserwacje które wpływają na dolny (szare punkty) i górny (czerwone punkty) współczynnik zależności ogonów.\\
+W praktycznych zastosowaniach, jest on jednak trudny do kalibracji z danych - idea ta działa raczej w drugą stronę: z parametrów skalibrowanego modelu implikowany jest współczynnik zależności ogonów.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{01_Tail_dependence}	
 	\caption{\textbf{Współczynnik zależności ogonów.} Rozkład o dolnym współczynniku i braku górnego współczynnika. Obserwacje zaznaczone na szaro wpływają na dolny współczynnik. Obserwacje zaznaczone na czerwono wpływają na górny współczynnik zależności ogonów.\label{fig:tail_dependence}}
 \end{figure}
 
-W tym rozdziale zdefiniowialiśmy różne miary pomagające nam zrozumieć zależność zmiennych losowych. Widzimy zatem, że korelacja Pearsona i modele eliptyczne to za mało, aby w pełni uchwycić charakter współzależności. W kolejnym rozdziale podamy teorię \emph{kopuł}, które dadzą nam odpowiednie narzędzia do walki z tym problemem.
+W tym rozdziale zdefiniowialiśmy różne miary pomagające nam zrozumieć zależność zmiennych losowych. Widzimy zatem, że korelacja Pearsona i modele eliptyczne to za mało, aby w pełni uchwycić charakter współzależności. W kolejnym rozdziale podamy teorię \emph{kopuł}, które dadzą nam odpowiednie narzędzia do rozwiązania tego problemu.

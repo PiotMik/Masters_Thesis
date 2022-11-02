@@ -2,20 +2,20 @@ Rozpatrywać będziemy przestrzeń probabilistyczną $(\Omega,\mathcal{F},\Pra)$
 
 \begin{df}[\textit{n}-wymiarowa zmienna losowa]
 	\label{df:n_wym_zmienna_losowa}
-	Niech $\Omega$ będzie przestrzenią zdarzeń elementarnych. Funkcję określoną na tej przestrzeni i przyjmującą wartości rzeczywiste:
+	Niech $\Omega$ będzie przestrzenią zdarzeń elementarnych. Funkcję określoną na tej przestrzeni i przyjmującą wartości w $\mathbb{R}^{n}$:
 	
 	$$ X\colon \Omega \mapsto \mathbb{R}^{n}, $$
 
-	taką, że
+	taką, że dla każdego podzbioru borelowskiego $B\in\mathbb{R}^n$ zachodzi
 	
-	$$ \{ \omega \colon X(\omega) < x) \} \in \mathcal{F},$$
+	$$ X^{-1}(B) \in \mathcal{F},$$
 	
-	dla każdego $x \in \R$ nazywamy \textit{n}-wymiarową zmienną losową.
+	nazywamy \textit{n}-wymiarową zmienną losową.
 \end{df}
 
 W całej pracy zakładać będziemy że poruszamy się w przestrzeni zmiennych ciągłych, ponieważ dotykać będziemy problematyki danych rynkowych o takim charakterze. Teoria kopuł jest rozwinięta co prawda również dla zmiennych dyskretnych (\cite{Genest_Discrete_Copulas}) i dorobiła się już ciekawych aplikacyjnych prac (np. \cite{Koopman_DiscreteCopula_HTF}, czy \cite{Shefzik_Weather}), jednak literatura jest tu zdecydowanie uboższa. Do opisu interesujących nas rozkładów dostępne będziemy więc mieć analityczne postaci ich dystrybuanty lub gęstości. Ponieważ często podaje się różne ich parametryzacje, w tabeli \ref{tab:przykladowe_zmienne_losowe} podajemy gęstości zmiennych losowych przewijających się w niniejszej pracy. Ich wykresy widoczne są na wykresie \ref{fig:przykladowe_zmienne_losowe}.
 
-Warto wspomnieć, że istnieją również użyteczne rozkłady, które nie dają się wyrazić za pomocą gęstości czy dystrybuanty. Najpopularniejszym przykładem mogą być rozkłady stabilne, gdzie jedyne czym może my się posługiwać to funkcja charakterystyczna.  \cite{Stable_Distributions1}, czy \cite{Stable_Distributions2} podają bardzo dobry przegląd teorii rozkładów stabilnych i pokazują ich przewagę w kontekście modelowania niegaussowskich zwrotów na rynkach finansowych.
+Warto wspomnieć, że istnieją również użyteczne rozkłady, które nie dają się wyrazić za pomocą gęstości czy dystrybuanty. Najpopularniejszym przykładem mogą być rozkłady stabilne, gdzie jedyne czym możemy się posługiwać to funkcja charakterystyczna.  \cite{Stable_Distributions1}, czy \cite{Stable_Distributions2} podają bardzo dobry przegląd teorii rozkładów stabilnych i pokazują ich przewagę w kontekście modelowania niegaussowskich zwrotów na rynkach finansowych.
 
 \begin{table}[h]
 	\caption{\textbf{Popularne jednowymiarowe zmienne losowe.} Tabela przedstawia dystrybuanty, oraz gęstości popularnych jednowymiarowych zmiennych losowych pojawiających się w tej pracy.}
@@ -41,7 +41,7 @@ Warto wspomnieć, że istnieją również użyteczne rozkłady, które nie dają
 	\caption{\textbf{Jednowymiarowe zmienne losowe.} Przykładowe gęstości zmiennych losowych z tabeli \ref{tab:przykladowe_zmienne_losowe}.\label{fig:przykladowe_zmienne_losowe}}
 \end{figure}
 
-Do opisu zmiennych losowych \emph{wielo}wymiarowych, oprócz gęstości łącznej rozkładu wyróżniamy dodatkowo gęstości warunkowe i brzegowe. Opisują one jak zachowuje się współrzędna wektora losowego, jeśli pozostałe z nich przyjmą pewne wartości, lub jeśli kompletnie wyłączymy ich wpływ.
+Do opisu zmiennych losowych \emph{wielo}wymiarowych, oprócz gęstości łącznej rozkładu wyróżniamy dodatkowo gęstości warunkowe i brzegowe. Opisują one jak zachowuje się współrzędna wektora losowego, jeśli pozostałe z nich przyjmą pewne wartości lub jeśli kompletnie wyłączymy ich wpływ.
 
 \begin{df}[Rozkłady brzegowy]
 	Rozpatrzmy d-wymiarową zmienną losową $\mathbf{X} = [X_1, X_2, \dots, X_d]$ o gęstości $f(x_1, \dots, x_d)$. Gęstość rozkładu brzegowego $X_j$ definiujemy jako:
@@ -50,5 +50,5 @@ Do opisu zmiennych losowych \emph{wielo}wymiarowych, oprócz gęstości łączne
 
 \begin{df}[Rozkład warunkowy]
 	Rozpatrzmy d-wymiarową zmienną losową $\mathbf{X} = [X_1, X_2, \dots, X_d]$ o gęstości $f(x_1, \dots, x_d)$. Gęstość rozkładu warunkowego $X_j \vert X_k$ definiujemy jako:
-	$$f_{j|k}(x_j|x_k) = \frac{f(x_1, \dots, x_d)}{f_k(x_k)}.$$
+	$$f_{j|k}(x_j|x_k) = \frac{f(x_1, \dots, x_j, \dots,  x_d)}{f_k(x_k)}.$$
 \end{df}

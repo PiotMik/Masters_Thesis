@@ -37,12 +37,12 @@ $$ r_{i, t} = \mu_i + \varepsilon_{i, t}.$$
 
 \FloatBarrier
 \subsubsection{Część GARCH modelu}
-W kolejnym kroku sprawdziliśmy homoskedastyczność szeregów czasowych. Dokonaliśmy wizualnej inspekcji wykresów odchylenia standardowego logzwrotów dla każdego aktywa przy pomocy ruchomego okna o długości $8$ tygodni. Rysunek \ref{fig:homoskedasticity} prezentuje przykład takiego wykresu dla cen soi. Widać na nim, że zmienność nie jest stała, lecz ma oscylujący okresowy charakter. Aby uchwycić tę informację użyliśmy modelu GARCH(m, n) opisanego równaniem \ref{eq:garch_part}. Modele były dopasowywane dla każdego aktywa osobno, za pomocą metody SLSQP (sequential least squares programming) wbudowanej w pakiet \emph{arch}, a następnie porównywane zostały pod względem kryterium informacyjnego AIC. Finalny model GARCH(2,3) został wybrany na podstawie najniższego średniego AIC ze względu na wszystkie aktywa. Wartości AIC, oraz wyniki kalibracji GARCH(2,3) zawarte są w tabelach odpowiednio: \ref{tab:garch_choice} oraz \ref{tab:garch_fit}.
+W kolejnym kroku sprawdziliśmy homoskedastyczność szeregów czasowych. Dokonaliśmy wizualnej inspekcji wykresów odchylenia standardowego logarytmicznych stóp zwrotu dla każdego aktywa przy pomocy ruchomego okna o długości $8$ tygodni. Rysunek \ref{fig:homoskedasticity} prezentuje przykład takiego wykresu dla cen soi. Widać na nim, że zmienność nie jest stała, lecz ma oscylujący okresowy charakter. Aby uchwycić tę informację użyliśmy modelu GARCH(m, n) opisanego równaniem \ref{eq:garch_part}. Modele były dopasowywane dla każdego aktywa osobno, za pomocą metody SLSQP (sequential least squares programming) wbudowanej w pakiet \emph{arch}, a następnie porównywane zostały pod względem kryterium informacyjnego AIC. Finalny model GARCH(2,3) został wybrany na podstawie najniższego średniego AIC ze względu na wszystkie aktywa. Wartości AIC, oraz wyniki kalibracji GARCH(2,3) zawarte są w tabelach odpowiednio: \ref{tab:garch_choice} oraz \ref{tab:garch_fit}.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{04_Heteroskedasticity}
-	\caption{\textbf{Analiza homoskedastyczności.} Wykres odchylenia standardowego logzwrotów cen spot soi na ruchomym oknie o długości 8 tygodni. \label{fig:homoskedasticity}}
+	\caption{\textbf{Analiza homoskedastyczności.} Wykres odchylenia standardowego logarytmicznych stóp zwrotu cen spot soi na ruchomym oknie o długości 8 tygodni. \label{fig:homoskedasticity}}
 \end{figure}
 
 \begin{table}
@@ -70,7 +70,7 @@ W kolejnym kroku sprawdziliśmy homoskedastyczność szeregów czasowych. Dokona
 		Inputs/Tables/GARCH_fit.csv
 	}{}{\csvlinetotablerow}
 	
-	\caption{\textbf{Parametry modeli GARCH(2,3).} Tabela przedstawia dopasowane wartości średniej logzwrotów $\mu$, oraz parametrów modelu GARCH(2,3) dla każdego aktywa. \label{tab:garch_fit}}
+	\caption{\textbf{Parametry modeli GARCH(2,3).} Tabela przedstawia dopasowane wartości średniej logarytmicznych stóp zwrotu $\mu$, oraz parametrów modelu GARCH(2,3) dla każdego aktywa. \label{tab:garch_fit}}
 \end{table}
 
 Finalnie, otrzymaliśmy szeregi czasowe reziduów $e_{i,t}$, które według czwartego równania założonego modelu \ref{eq:model_armagarch} powinny być niezależne od siebie, oraz scentrowane o jednostkowej wariancji. Przeprowadziliśmy więc testy: Ljunga-Boxa, t, oraz chi kwadrat aby sprawdzić hipotezy zerowe niezależności, średniej równej zero i wariancji równej jeden. Wyniki zaprezentowane w tabeli \ref{tab:iid_01_test} pokazują, że w przypadku żadnego aktywa nie udało się odrzucić powyższych hipotez.
