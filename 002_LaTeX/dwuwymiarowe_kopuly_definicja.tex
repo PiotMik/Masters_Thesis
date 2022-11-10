@@ -68,4 +68,24 @@ $$F(x_1, \dots, x_d) = C(F_1(x_1), \dots, F_d(x_d)).$$
 Prawą stronę równania stanowią wyizolowane rozkłady brzegowe, oraz pewna funkcja $C$, postać której jest kompletnie od nich niezależna. Lewa strona równania, to natomiast rozkład łączny pewnej zmiennej losowej. Jeśli zastanowimy się co wpływa na charakter rozkładu łącznego zmiennej losowej, dojdziemy do wniosku, że istnieją dwa komponenty: zachowanie rozkładów brzegowych, oraz ich współzależności. Biorąc znów pod uwagę prawą stronę równania, kopuła musi więc odpowiadać za współzależności między rozkładami brzegowymi. \\
 Istotnie, kopuły pozwalają na rozdzielenie problemu modelowania rozkładu łącznego, na modelowanie osobno rozkładów brzegowych, a osobno struktury ich współzależności (\cite{Sklar_Theorem}, \cite{Joe_Multivariate_Models}). Ta pozorna prostota tworzenia wielowymiarowych modeli przyczyniła się do szybkiej ich popularyzacji, ale i przyniosła ze sobą duże ryzyko modelu. Najbardziej znanym tego przykładem jest zapewne fiasko modeli wyceniających produkty typu CDO (\cite{CDS_Copula}), które niedoszacowywały nasilenia korelacji bankructw wewnątrz struktury tego kontraktu.\\
 
-Zauważamy zatem dualizm kopuł - można patrzeć na nie zarówno jak na funkcje łączące ze sobą dowolne rozkłady brzegowe w spójny rozkład łączny lub też jak na dystrybuanty wielowymiarowych rozkładów jednostajnych.\\
+Możliwość dokonania takiej dekompozycji implikuje, że zależność zmiennych losowych $X$, $Y$ daje się przedstawić jedynie w terminach łączącej je kopuły $C$. Z tego powodu, interesujące są dla nas miary zależności które są niezmiennicze na monotonicznie rosnące przekształcenia zmiennych losowych.
+
+\begin{df}[Miara zgodności]
+	Niech $\mathcal{R}$ będzie przestrzenią ciągłych rozkładów łącznych, oraz $(X, Y) \in \mathcal{R}$ wektorem losowym z tej przestrzeni. Niech $C$ oznacza kopułę łączącą rozkłady brzegowe $X$ i $Y$. Miarą zgodności $M_{X,Y}$ (alternatywnie: $M_C$) między $X$ a $Y$ nazwiemy funkcję $M_{X,Y}\colon \mathcal{R}\mapsto A\subset\R$ wtedy i tylko wtedy gdy spełnia aksjomaty:
+	\begin{enumerate}
+		\item Dziedziny: jest zdefiniowana dla dowolnego wektora zmiennych losowych $(X, Y) \in \mathcal{R}$
+		\item Symetrii: $M_{X,Y}=M_{Y,X}$
+		\item Zgodności: jeśli $C_1(u,v) \leqslant C_2(u,v)$ dla wszystkich $(u, v)\in[0,1]^2$, to $M_{C_1} \leqslant M_{C_2}.$
+		\item Zbioru wartości: $M_{X,Y}\in[-1,1]$
+		\item Niezależności: $X$ i $Y$ są niezależne, to $M_{X,Y}=0$
+		\item Zmiany znaku: $M_{-X,Y}=M_{X,-Y}=-M_{Y,X}$
+		\item Ciągłości: jeśli $\{(X_n,Y_n)\}$ jest ciągiem ciągłych zmiennych losowych o kopułach $\{C_n\}$, oraz 
+		$$ \lim\limits_{n\to\infty} C_n(u, v) =C(u, v)\text{, dla każdych }(u, v)\in[0,1]^2,$$
+		to wtedy
+		$$ \lim\limits_{n\to\infty}M_{X_n,Y_n}=M_{X,Y}.$$
+	\end{enumerate}
+	\label{def:miara_zgodnosci}		
+\end{df}
+Aksjomatyczne podejście z definicji \ref{def:miara_zgodnosci} zawęża przestrzeń miar zgodności do takich, które są niezmiennicze względem rosnących transformacji, czyli:
+$$ M_{X,Y} = M_{\alpha(X), \beta(Y)},$$
+dla dowolnych funkcji $\alpha,\beta$ rosnących prawie wszędzie. Użycie takich miar w teorii kopuł wydaje się być naturalnym wyborem - ponieważ pozostaną one takie same zarówno dla zmiennych oryginalnych, jak i dla zmiennych przetransformowanych poprzez \ref{def:PIT}, zgodnie z  definicją \emph{PIT}.\\
