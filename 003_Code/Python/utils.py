@@ -24,7 +24,7 @@ import os, shutil
 from typing import Callable
 from datetime import date
 
-plt.style.use(['science', 'ggplot-ubs.mplstyle'])
+plt.style.use(['science', 'masters.mplstyle'])
 sns.set_context('talk')
 palette = sns.color_palette(as_cmap=True)
 fmt = 'pdf'
